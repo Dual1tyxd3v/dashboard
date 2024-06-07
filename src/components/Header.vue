@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { useRoute } from "vue-router";
+import FastLinks from "./FastLinks.vue";
 
 const route = useRoute();
 </script>
 
 <template>
-  <header class="flex justify-between py-5">
+  <header class="flex items-center justify-between gap-5 py-5">
     <p class="text-2xl font-bold capitalize text-white">{{ route.name }}</p>
+    <FastLinks />
     <button
       aria-label="Config"
       title="Config"
