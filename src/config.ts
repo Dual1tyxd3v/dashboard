@@ -36,9 +36,9 @@ export const fastLinks = [
     name: "Telegram",
     url: "https://web.telegram.org/k/",
     icon: "co-telegram-plane",
-    color: DefaultIconColor
+    color: DefaultIconColor,
   },
 ];
 
 export const WeatherURL =
-  "https://api.weatherapi.com/v1/current.json?key=c2bd7399878a459fb96104221240606&q=auto:ip";
+  "https://api.weatherapi.com/v1/forecast.json?key=c2bd7399878a459fb96104221240606&q=auto:ip&days=10";

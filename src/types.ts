@@ -3,4 +3,11 @@ export type Weather = {
   temp: number;
   humidity: number;
   pressure: number;
+  icon: string;
+  history: HistoryType[];
+};
+
+export type HistoryType = {
+  date: string;
+  temp: number;
 };

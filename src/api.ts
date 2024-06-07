@@ -9,11 +9,20 @@ export const getWeather = async () => {
     }
 
     const obj = await resp.json();
+    
+    const history = obj.forecast.forecastday.map(
+      (day: { date: string; day: { avgtemp_c: number } }) => ({
+        date: day.date,
+        temp: day.day.avgtemp_c,
+      }),
+    );
     const data = {
       city: obj.location.name as string,
       temp: obj.current.temp_c as number,
+      icon: obj.current.condition.icon as string,
       humidity: obj.current.humidity as number,
       pressure: obj.current.pressure_mb as number,
+      history,
     };
     return { data, error: "" };
   } catch (e) {

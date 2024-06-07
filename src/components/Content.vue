@@ -3,7 +3,7 @@ import Header from "./Header.vue";
 </script>
 
 <template>
-  <div class="flex-grow">
+  <div class="flex-grow overflow-auto">
     <Header></Header>
     <router-view></router-view>
   </div>
