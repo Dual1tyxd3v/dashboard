@@ -11,6 +11,8 @@ module.exports = {
       },
       colors: {
         "bg-main": "#060B26",
+        "bg-nav--active": "rgb(26, 31, 55)",
+        "nav-icon": "rgb(0, 117, 255)",
       },
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],

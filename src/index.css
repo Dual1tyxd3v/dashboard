@@ -6,11 +6,12 @@
   @font-face {
     font-family: "Roboto";
     font-weight: normal;
-    src: url(../public/fonts/Roboto-Regular.ttf);
+    src: url(/fonts/Roboto-Regular.ttf);
   }
   @font-face {
     font-family: "Roboto";
     font-weight: bold;
-    src: url(../public/fonts/Roboto-Bold.ttf);
+    src: url(/fonts/Roboto-Bold.ttf);
   }
 }
+
