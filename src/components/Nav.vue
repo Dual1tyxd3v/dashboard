@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { AppRoute } from "../config";
-// import {  } from "oh-vue-icons/icons";
 </script>
 
 <template>

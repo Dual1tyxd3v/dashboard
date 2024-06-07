@@ -3,9 +3,9 @@ import "./index.css";
 import App from "./App.vue";
 import { router } from "./router";
 import { OhVueIcon, addIcons } from "oh-vue-icons";
-import { MdHome } from "oh-vue-icons/icons";
+import { MdHome, ViFileTypeConfig } from "oh-vue-icons/icons";
 
-addIcons(MdHome);
+addIcons(MdHome, ViFileTypeConfig);
 
 const app = createApp(App);
 
