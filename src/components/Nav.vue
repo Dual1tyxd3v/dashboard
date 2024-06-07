@@ -13,7 +13,10 @@ const appRoutes = computed(() => Object.entries(AppRoute).slice(1));
     <div
       class="mb-5 bg-divider bg-[length:100%_1px] bg-bottom bg-no-repeat py-2 text-center"
     >
-      <router-link class="mx-auto my-2" :to="AppRoute.Main.route" title="Home"
+      <router-link
+        class="mx-auto my-2 opacity-80 transition-opacity hover:opacity-100"
+        :to="AppRoute.Main.route"
+        title="Home"
         ><v-icon name="md-home" scale="3" fill="#fff" animation="pulse" hover
       /></router-link>
     </div>

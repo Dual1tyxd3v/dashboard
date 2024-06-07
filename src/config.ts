@@ -12,7 +12,25 @@ export const AppRoute = {
     icon: "bi-youtube",
   },
   Games: {
-    route: '/games',
-    icon: 'io-game-controller'
-  }
+    route: "/games",
+    icon: "io-game-controller",
+  },
 };
+
+export const fastLinks = [
+  {
+    name: "VK",
+    url: "https://vk.com/feed",
+    icon: "fa-vk",
+  },
+  {
+    name: "Whatsapp",
+    url: "https://web.whatsapp.com/",
+    icon: "bi-whatsapp",
+  },
+  {
+    name: "Telegram",
+    url: "https://web.telegram.org/k/",
+    icon: "co-telegram-plane",
+  },
+];
