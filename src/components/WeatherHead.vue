@@ -21,9 +21,7 @@ const temperature = computed(() => {
 
 const iconUrl = computed(() => {
   if (!props.icon) return "";
-  const url = props.icon.replace("//", "https://");
-
-  return `before:bg-[url('${url}')]`;
+  return props.icon.replace("//", "https://");
 });
 
 onUnmounted(() => clearInterval(timer));
@@ -32,9 +30,11 @@ onUnmounted(() => clearInterval(timer));
 <template>
   <div class="mb-3 flex items-center justify-around">
     <div class="flex flex-col items-center justify-between">
-      <p
-        :class="`relative text-3xl before:absolute ${iconUrl} before:top-0 before:left-[-60%] before:h-8 before:w-8 before:bg-cover before:bg-center before:bg-no-repeat`"
-      >
+      <p :class="`relative text-3xl`">
+        <span
+          class="absolute left-[-60%] top-0 h-8 w-8 bg-cover bg-center bg-no-repeat"
+          :style="`background-image: url(${iconUrl});`"
+        ></span>
         {{ temperature }}
       </p>
       <div class="flex items-center gap-4 text-sm">
