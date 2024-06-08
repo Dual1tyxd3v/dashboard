@@ -25,7 +25,6 @@ const iconUrl = computed(() => {
 
   return `before:bg-[url('${url}')]`;
 });
-console.log(iconUrl.value);
 
 onUnmounted(() => clearInterval(timer));
 </script>

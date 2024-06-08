@@ -17,7 +17,6 @@ onMounted(async () => {
   if (data) {
     weather.data = data;
   }
-  // console.log(isLoading);
 });
 </script>
 
