@@ -11,7 +11,6 @@ const weather = reactive<{
   data: null | Weather;
 }>({ isLoading: true, data: null });
 
-
 onMounted(async () => {
   const { data } = await getWeather();
   weather.isLoading = false;
@@ -32,8 +31,8 @@ onMounted(async () => {
       :humidity="weather.data?.humidity"
       :pressure="weather.data?.pressure"
       :city="weather.data?.city"
+      :icon="weather.data?.icon"
     />
-    <!-- <div class="chart"></div> -->
     <WeatherChart :history="weather.data?.history" />
   </div>
 </template>
