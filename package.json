@@ -9,10 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "chart.js": "^4.4.3",
     "oh-vue-icons": "^1.0.0-rc3",
     "vue": "^3.3.8",
-    "vue-router": "^4.3.2",
-    "vue3-charts": "^1.1.33"
+    "vue-chartjs": "^5.3.1",
+    "vue-router": "^4.3.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.5.0",

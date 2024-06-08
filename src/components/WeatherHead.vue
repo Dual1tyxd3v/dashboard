@@ -23,7 +23,7 @@ onUnmounted(() => clearInterval(timer));
 </script>
 
 <template>
-  <div class="flex items-center justify-around">
+  <div class="flex items-center justify-around mb-3">
     <div class="flex flex-col items-center justify-between">
       <p class="text-3xl">{{ temperature }}</p>
       <div class="flex items-center gap-4 text-sm">

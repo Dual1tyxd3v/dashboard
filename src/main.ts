@@ -5,7 +5,7 @@ import { router } from "./router";
 import { OhVueIcon, addIcons } from "oh-vue-icons";
 import * as Icons from "oh-vue-icons/icons";
 
-const AllIcons = Object.values({...Icons});
+const AllIcons = Object.values({ ...Icons });
 
 addIcons(...AllIcons);
 

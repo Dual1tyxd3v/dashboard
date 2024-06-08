@@ -42,3 +42,41 @@ export const fastLinks = [
 
 export const WeatherURL =
   "https://api.weatherapi.com/v1/forecast.json?key=c2bd7399878a459fb96104221240606&q=auto:ip&days=10";
+
+export const ChartConfig = {
+  plugins: {
+    legend: {
+      display: false,
+    },
+  },
+  datasets: {
+    line: {
+      borderColor: "rgb(44, 217, 255)",
+      borderWidth: 1.5,
+    },
+  },
+  elements: {
+    point: {
+      backgroundColor: "yellow",
+    },
+  },
+
+  scales: {
+    x: {
+      grid: {
+        color: "rgba(255, 255, 255, .2)",
+      },
+      ticks: {
+        color: "#fff",
+      },
+    },
+    y: {
+      grid: {
+        color: "rgba(255, 255, 255, .2)",
+      },
+      ticks: {
+        color: "#fff",
+      },
+    },
+  },
+};
