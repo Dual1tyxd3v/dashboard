@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import SearchBar from "../components/SearchBar.vue";
 import Weather from "../components/Weather.vue";
 </script>
 
 <template>
-  <div class="flex">
+  <SearchBar />
+  <div class="md:flex">
     <Weather />
   </div>
-  <div class="searchbar"></div>
 </template>

@@ -15,6 +15,9 @@ module.exports = {
         "bg-main": "#060B26",
         "bg-nav--active": "rgb(26, 31, 55)",
         "nav-icon": "rgb(0, 117, 255)",
+        "input-bg": "rgb(15, 21, 53)",
+        "input-border": "rgba(226, 232, 240, 0.3)",
+        "input-border--active": "rgb(44, 217, 255)",
       },
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],

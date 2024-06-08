@@ -42,6 +42,7 @@ export const fastLinks = [
 
 export const WeatherURL =
   "https://api.weatherapi.com/v1/forecast.json?key=c2bd7399878a459fb96104221240606&q=auto:ip&days=10";
+export const SEARCH_URL = "https://www.google.com/search?q=";
 
 export const ChartConfig = {
   plugins: {

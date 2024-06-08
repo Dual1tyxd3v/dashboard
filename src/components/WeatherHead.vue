@@ -34,7 +34,7 @@ onUnmounted(() => clearInterval(timer));
   <div class="mb-3 flex items-center justify-around">
     <div class="flex flex-col items-center justify-between">
       <p
-        :class="`relative text-3xl before:absolute ${iconUrl} before:top-0 before:left-[-50%] before:h-8 before:w-8 before:bg-cover before:bg-center before:bg-no-repeat`"
+        :class="`relative text-3xl before:absolute ${iconUrl} before:top-0 before:left-[-60%] before:h-8 before:w-8 before:bg-cover before:bg-center before:bg-no-repeat`"
       >
         {{ temperature }}
       </p>
