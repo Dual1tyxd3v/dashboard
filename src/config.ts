@@ -60,3 +60,8 @@ export const getChartConfig = (
     },
   },
 });
+
+export enum LocalStorage {
+  NOTES = "notes",
+  CONFIG = "config",
+}

@@ -1,3 +1,4 @@
+import { LocalStorage } from "./config";
 import { ConfigType } from "./types";
 
 const DefaultConfig = {
@@ -21,6 +22,8 @@ const DefaultConfig = {
     block: ["rgba(6, 11, 40, 0.74)", "rgba(10, 14, 35, 0.71)"],
     "mini-block":
       "linear-gradient(175.70deg, rgb(6, 12, 41) 14.588%,rgba(4, 12, 48, 0.5) 110.513%)",
+    formWrapper: ["rgb(15, 18, 59)", "rgb(9, 13, 46)", "rgb(2, 5, 21)"],
+    form: "linear-gradient(92.67deg, rgba(255, 255, 255, 0) -39.666%, rgba(255, 255, 255, 0.04) 94.679%)",
   },
   fastLinks: [
     {
@@ -52,7 +55,7 @@ class Config {
   config: null | ConfigType = null;
 
   constructor() {
-    const localConfig = localStorage.getItem("config");
+    const localConfig = localStorage.getItem(LocalStorage.CONFIG);
     this.config = localConfig ? JSON.parse(localConfig) : DefaultConfig;
   }
 
@@ -62,7 +65,7 @@ class Config {
 
   setConfig(config: ConfigType) {
     this.config = config;
-    localStorage.setItem("config", JSON.stringify(config));
+    localStorage.setItem(LocalStorage.CONFIG, JSON.stringify(config));
   }
 }
 

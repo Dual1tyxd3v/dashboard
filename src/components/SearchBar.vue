@@ -26,7 +26,7 @@ function submitHandler(e: Event) {
 </script>
 
 <template>
-  <form class="mb-4" @submit="submitHandler">
+  <form @submit="submitHandler">
     <input
       ref="input"
       class="input w-full rounded-xl border-2 p-3 font-roboto outline-none"

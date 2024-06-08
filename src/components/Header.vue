@@ -20,6 +20,12 @@ const route = useRoute();
       aria-label="Config"
       title="Config"
       class="opacity-50 transition-opacity hover:opacity-100"
+      @click="
+        () => {
+          if (!store.colors) return;
+          store.colors.active = 'green';
+        }
+      "
     >
       <v-icon
         name="vi-file-type-config"

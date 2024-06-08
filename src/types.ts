@@ -39,10 +39,18 @@ export type ConfigType = {
     divider: string;
     block: string[];
     "mini-block": string;
+    formWrapper: string[];
+    form: string[];
   };
   fastLinks: FastLink[];
   currency: {
     base: string;
     query: string;
   };
+};
+
+export type Note = {
+  label: string;
+  date: number;
+  time?: number;
 };
