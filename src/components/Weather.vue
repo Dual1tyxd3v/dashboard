@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { onMounted, reactive, ref } from "vue";
+import { onMounted, reactive } from "vue";
 import { Weather } from "../types";
 import WeatherChart from "./WeatherChart.vue";
 import WeatherHead from "./WeatherHead.vue";
 import { getWeather } from "../api";
+import Loader from "./Loader.vue";
 
-const container = ref();
 const weather = reactive<{
   isLoading: boolean;
   data: null | Weather;
@@ -23,16 +23,18 @@ onMounted(async () => {
 
 <template>
   <div
-    :ref="container"
-    class="flex-grow rounded-2xl bg-bg-block p-4 text-white md:min-w-[500px]"
+    class="relative flex-grow overflow-hidden rounded-2xl bg-bg-block p-4 text-white md:min-h-[315px] md:min-w-[500px]"
   >
-    <WeatherHead
-      :temp="weather.data?.temp"
-      :humidity="weather.data?.humidity"
-      :pressure="weather.data?.pressure"
-      :city="weather.data?.city"
-      :icon="weather.data?.icon"
-    />
-    <WeatherChart :history="weather.data?.history" />
+    <Loader v-if="weather.isLoading" />
+    <template v-else>
+      <WeatherHead
+        :temp="weather.data?.temp"
+        :humidity="weather.data?.humidity"
+        :pressure="weather.data?.pressure"
+        :city="weather.data?.city"
+        :icon="weather.data?.icon"
+      />
+      <WeatherChart :history="weather.data?.history" />
+    </template>
   </div>
 </template>
