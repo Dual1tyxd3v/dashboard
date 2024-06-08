@@ -12,7 +12,8 @@ import {
 } from "chart.js";
 import { computed } from "vue";
 import { Line } from "vue-chartjs";
-import { ChartConfig } from "../config";
+import { getChartConfig } from "../config";
+import { useConfigStore } from "../store";
 
 ChartJS.register(
   CategoryScale,
@@ -28,6 +29,8 @@ const props = defineProps({
   history: Array || null,
 });
 
+const store = useConfigStore();
+
 const data = computed(() => {
   if (!props.history) return null;
 
@@ -37,7 +40,7 @@ const data = computed(() => {
     labels: history.map((day) => day.date),
     datasets: [
       {
-        backgroundColor: "rgb(44, 217, 255)",
+        backgroundColor: store.colors?.active,
         data: history.map((day) => day.temp),
         tension: 0.2,
       },
@@ -48,6 +51,17 @@ const data = computed(() => {
 
 <template>
   <template v-if="data">
-    <Line class="max-h-52" responsive :data="data" :options="ChartConfig" />
+    <Line
+      class="max-h-52"
+      responsive
+      :data="data"
+      :options="
+        getChartConfig(
+          store.colors?.active || '#fff',
+          store.colors?.main || '#fff',
+          store.colors?.gridColor || '#fff',
+        )
+      "
+    />
   </template>
 </template>

@@ -17,29 +17,6 @@ export const AppRoute = {
   },
 };
 
-const DefaultIconColor = "rgb(0, 117, 255)";
-
-export const fastLinks = [
-  {
-    name: "VK",
-    url: "https://vk.com/feed",
-    icon: "fa-vk",
-    color: DefaultIconColor,
-  },
-  {
-    name: "Whatsapp",
-    url: "https://web.whatsapp.com/",
-    icon: "bi-whatsapp",
-    color: "#3c8b1f",
-  },
-  {
-    name: "Telegram",
-    url: "https://web.telegram.org/k/",
-    icon: "co-telegram-plane",
-    color: DefaultIconColor,
-  },
-];
-
 export const WeatherURL =
   "https://api.weatherapi.com/v1/forecast.json?key=c2bd7399878a459fb96104221240606&q=auto:ip&days=10";
 export const SEARCH_URL = "https://www.google.com/search?q=";
@@ -48,7 +25,11 @@ const BASE_CURRENCY = "RUB";
 const QUERY_CURRENCIES = "USD,EUR";
 export const CURRENCY_API_URL = `https://api.freecurrencyapi.com/v1/latest?base_currency=${BASE_CURRENCY}&currencies=${QUERY_CURRENCIES}`;
 
-export const ChartConfig = {
+export const getChartConfig = (
+  activeColor: string,
+  mainColor: string,
+  gridColor: string,
+) => ({
   plugins: {
     legend: {
       display: false,
@@ -56,26 +37,26 @@ export const ChartConfig = {
   },
   datasets: {
     line: {
-      borderColor: "rgb(44, 217, 255)",
+      borderColor: activeColor,
       borderWidth: 1.5,
     },
   },
   scales: {
     x: {
       grid: {
-        color: "rgba(255, 255, 255, .2)",
+        color: gridColor,
       },
       ticks: {
-        color: "#fff",
+        color: mainColor,
       },
     },
     y: {
       grid: {
-        color: "rgba(255, 255, 255, .2)",
+        color: gridColor,
       },
       ticks: {
-        color: "#fff",
+        color: mainColor,
       },
     },
   },
-};
+});

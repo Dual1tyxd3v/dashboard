@@ -1,11 +1,22 @@
 <script setup lang="ts">
-import Nav from "./components/Nav.vue";
+import Navigation from "./components/Navigation.vue";
 import Content from "./components/Content.vue";
+import { useConfigStore } from "./store";
+
+const store = useConfigStore();
 </script>
 
 <template>
-  <div class="flex gap-5 h-dvh pb-10 pl-2.5 pr-5 pt-2.5 backdrop-blur-[100px]">
-    <Nav></Nav>
-    <Content></Content>
+  <div
+    class="bg-cover bg-center bg-no-repeat"
+    :style="`background-color:${store.colors?.['bg-main'] || '#000'}; background-image: url(${store.backgroundImage?.main || 'none'});`"
+  >
+    <div
+      class="flex h-dvh gap-5 pb-10 pl-2.5 pr-5 pt-2.5"
+      :style="`backdrop-filter: blur(${store.backgroundImage?.blur || 0}px)`"
+    >
+      <Navigation />
+      <Content></Content>
+    </div>
   </div>
 </template>

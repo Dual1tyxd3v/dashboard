@@ -6,7 +6,7 @@ import Weather from "../components/Weather.vue";
 
 <template>
   <SearchBar />
-  <div class="md:flex gap-6">
+  <div class="gap-6 md:flex">
     <Weather />
     <Currency />
   </div>

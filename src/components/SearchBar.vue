@@ -1,9 +1,15 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { SEARCH_URL } from "../config";
+import { useConfigStore } from "../store";
 
 const search = ref("");
 const input = ref(null);
+const store = useConfigStore();
+
+const getHoverColor = computed(() =>
+  store.colors ? store.colors.active : "#fff",
+);
 
 onMounted(() => {
   if (!input.value) return;
@@ -23,10 +29,17 @@ function submitHandler(e: Event) {
   <form class="mb-4" @submit="submitHandler">
     <input
       ref="input"
-      class="bg-input-bg border-input-border focus:border-input-border--active w-full rounded-xl border-2 p-3 font-roboto text-white outline-none"
+      class="input w-full rounded-xl border-2 p-3 font-roboto outline-none"
       type="text"
+      :style="`background-color: ${store.colors?.['input-bg']}; border-color: ${store.colors?.['input-border']}; color: ${store.colors?.main}`"
       placeholder="Search..."
       v-model="search"
     />
   </form>
 </template>
+
+<style scoped>
+.input:focus {
+  border-color: v-bind(getHoverColor) !important;
+}
+</style>

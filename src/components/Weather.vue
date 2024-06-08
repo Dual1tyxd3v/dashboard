@@ -5,6 +5,9 @@ import WeatherChart from "./WeatherChart.vue";
 import WeatherHead from "./WeatherHead.vue";
 import { getWeather } from "../api";
 import Loader from "./Loader.vue";
+import { useConfigStore } from "../store";
+
+const store = useConfigStore();
 
 const weather = reactive<{
   isLoading: boolean;
@@ -22,7 +25,8 @@ onMounted(async () => {
 
 <template>
   <div
-    class="relative flex-grow overflow-hidden rounded-2xl bg-bg-block p-4 text-white md:min-h-[315px] md:min-w-[500px]"
+    class="relative flex-grow overflow-hidden rounded-2xl p-4 md:min-h-[315px] md:min-w-[500px]"
+    :style="`color: ${store.colors?.main}; background-image: linear-gradient(175.70deg, ${store.backgroundImage?.block[0]} 12.226%,${store.backgroundImage?.block[1]} 113.851%)`"
   >
     <Loader v-if="weather.isLoading" />
     <template v-else>
