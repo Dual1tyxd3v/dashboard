@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import ConfigApi from "./configAPI";
-import { getNotes, saveNotes } from "./utils";
+import { getNotes, removeNote, saveNotes } from "./utils";
 import { Note } from "./types";
 
 export const useConfigStore = defineStore({
@@ -8,15 +8,21 @@ export const useConfigStore = defineStore({
   state: () => ({ ...ConfigApi.getConfig() }),
 });
 
-export const useNotesStore = defineStore({
+export const useAppStore = defineStore({
   id: "noteStore",
   state: () => ({
-    notes: getNotes(),
+    notes: getNotes().actual,
+    expiredNotes: getNotes().expired,
   }),
   actions: {
     addNote(note: Note) {
       this.notes.push(note);
       saveNotes(this.notes);
+    },
+    deleteExpiredNote() {
+      const note = this.expiredNotes.pop();
+
+      note && removeNote(note);
     },
   },
 });

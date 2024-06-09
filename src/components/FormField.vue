@@ -13,7 +13,8 @@ type Props = {
 
 const store = useConfigStore();
 const props = defineProps<Props>();
-console.log(props.value);
+
+const getBackgroundColor = computed(() => store.colors.miniTitle);
 const getFocusColor = computed(() => store.colors.active);
 </script>
 
@@ -30,7 +31,7 @@ const getFocusColor = computed(() => store.colors.active);
       max="3000-12-31"
       :data-js="props.label"
       :min="getCurrentDate()"
-      @change="changeHandler"
+      @input="changeHandler"
       :style="
         getFormElementStyle(
           store.colors?.inputBg || '#000',
@@ -45,5 +46,10 @@ const getFocusColor = computed(() => store.colors.active);
 <style>
 .input:focus {
   border-color: v-bind(getFocusColor);
+}
+.input::-webkit-calendar-picker-indicator {
+  background-color: v-bind(getBackgroundColor);
+  border-radius: 10px;
+  cursor: pointer;
 }
 </style>

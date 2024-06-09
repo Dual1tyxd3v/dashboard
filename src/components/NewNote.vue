@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { useConfigStore, useNotesStore } from "../store";
+import { useConfigStore, useAppStore } from "../store";
 import { getCurrentDate, getFormElementStyle, getTime } from "../utils";
 import FormField from "./FormField.vue";
+import Button from "./Button.vue";
 
 const store = useConfigStore();
-const notesStore = useNotesStore();
+const notesStore = useAppStore();
 
 const formData = ref({
   label: "",
@@ -28,7 +29,14 @@ function onClickHandler(e: Event) {
 
 function onSumbitHanlder(e: Event) {
   e.preventDefault();
-  notesStore.addNote(formData.value);
+  const time = new Date(
+    `${formData.value.date} ${formData.value.time}`,
+  ).getTime();
+
+  if (time - new Date().getTime() <= 0) {
+    return;
+  }
+  notesStore.addNote({ label: formData.value.label, time });
   props.closeForm();
 }
 
@@ -86,15 +94,9 @@ function onChangeHandler(e: Event) {
           :changeHandler="onChangeHandler"
           :value="formData.time"
           type="time"
-          label="time (not required)"
+          label="time"
         />
-        <button
-          type="submit"
-          class="m-auto block rounded-xl px-4 py-2 text-sm uppercase grayscale-[0.5] transition-all hover:grayscale-0"
-          :style="`background-color: ${store.colors.icon}`"
-        >
-          Add note
-        </button>
+        <Button>Add note</Button>
       </form>
     </div>
   </div>
