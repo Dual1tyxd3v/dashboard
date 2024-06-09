@@ -23,7 +23,7 @@ const route = useRoute();
       @click="
         () => {
           if (!store.colors) return;
-          store.colors.active = 'green';
+          store.colors.active = 'red';
         }
       "
     >

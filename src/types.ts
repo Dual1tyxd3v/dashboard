@@ -22,25 +22,23 @@ type FastLink = {
 export type ConfigType = {
   colors: {
     icon: string;
-    "bg-main": string;
-    "bg-nav--active": string;
-    "input-bg": string;
-    "input-border": string;
+    bgMain: string;
+    bgNavActive: string;
+    inputBg: string;
+    inputBorder: string;
     active: string;
     miniTitle: string;
     gridColor: string;
     labelColor: string;
     main: string;
+    fromElementsBorder: string;
   };
   backgroundImage: {
     blur: string;
     main: string;
-    "bg-nav": string[];
+    bgNav: string[];
     divider: string;
     block: string[];
-    "mini-block": string;
-    formWrapper: string[];
-    form: string[];
   };
   fastLinks: FastLink[];
   currency: {
@@ -51,6 +49,6 @@ export type ConfigType = {
 
 export type Note = {
   label: string;
-  date: number;
-  time?: number;
+  date: string;
+  time: string;
 };

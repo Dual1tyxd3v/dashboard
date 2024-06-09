@@ -13,12 +13,24 @@ export const getTime = (ms: number) => {
 
 export const getNotes = () => {
   const notes = localStorage.getItem(LocalStorage.NOTES);
-  return notes ? JSON.parse(notes) : null;
+  return notes ? JSON.parse(notes) : [];
 };
 
-export const saveNote = (note: Note) => {
-  const notes = localStorage.getItem(LocalStorage.NOTES);
-  const newNotes = notes ? [...JSON.parse(notes), note] : [note];
-
-  localStorage.setItem(LocalStorage.NOTES, JSON.stringify(newNotes));
+export const saveNotes = (notes: Note[]) => {
+  localStorage.setItem(LocalStorage.NOTES, JSON.stringify(notes));
 };
+
+export const getFormElementStyle = (
+  background1: string,
+  background2: string,
+  border: string,
+) => {
+  return `background-image:
+      linear-gradient(${background1}, ${background2}),
+      linear-gradient(
+   to bottom right, ${border} 30%, transparent, ${border} 70%);
+      background-clip: padding-box, border-box;
+      background-size: cover;`;
+};
+
+export const getCurrentDate = () => new Date().toISOString().split("T")[0];

@@ -9,7 +9,7 @@ const store = useConfigStore();
 <template>
   <div
     class="bg-cover bg-center bg-no-repeat"
-    :style="`background-color:${store.colors?.['bg-main'] || '#000'}; background-image: url(${store.backgroundImage?.main || 'none'});`"
+    :style="`background-color:${store.colors?.bgMain || '#000'}; background-image: url(${store.backgroundImage?.main || 'none'});`"
   >
     <div
       class="flex h-dvh gap-5 pb-10 pl-2.5 pr-5 pt-2.5"

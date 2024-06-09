@@ -13,7 +13,7 @@ const appRoutes = computed(() => Object.entries(AppRoute).slice(1));
 <template>
   <nav
     class="rounded-[20px] px-5 backdrop-blur-[120px] md:w-72"
-    :style="`background: linear-gradient(157.20deg, ${store.backgroundImage?.['bg-nav'][0]} 31.883%, ${store.backgroundImage?.['bg-nav'][1]} 100%);`"
+    :style="`background: linear-gradient(157.20deg, ${store.backgroundImage?.bgNav[0]} 31.883%, ${store.backgroundImage?.bgNav[1]} 100%);`"
   >
     <div
       class="mb-5 bg-[length:100%_1px] bg-bottom bg-no-repeat py-2 text-center"
@@ -44,14 +44,14 @@ const appRoutes = computed(() => Object.entries(AppRoute).slice(1));
             color: ${store.colors?.main};
             ${
               localRoute === route.path
-                ? `background-color: ${store.colors?.['bg-nav--active']}; opacity: 1 !important;`
+                ? `background-color: ${store.colors?.bgNavActive}; opacity: 1 !important;`
                 : 'background-color: transparent;'
             }`"
           :to="localRoute"
         >
           <span
             class="transition-all' mr-3 flex h-7 w-7 items-center justify-center rounded-xl"
-            :style="`background-color: ${localRoute === route.path ? store.colors?.icon : store.colors?.['bg-nav--active']}`"
+            :style="`background-color: ${localRoute === route.path ? store.colors?.icon : store.colors?.bgNavActive}`"
           >
             <v-icon
               :style="`fill: ${

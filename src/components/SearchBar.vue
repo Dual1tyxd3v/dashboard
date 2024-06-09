@@ -31,7 +31,7 @@ function submitHandler(e: Event) {
       ref="input"
       class="input w-full rounded-xl border-2 p-3 font-roboto outline-none"
       type="text"
-      :style="`background-color: ${store.colors?.['input-bg']}; border-color: ${store.colors?.['input-border']}; color: ${store.colors?.main}`"
+      :style="`background-color: ${store.colors?.inputBg}; border-color: ${store.colors?.inputBorder}; color: ${store.colors?.main}`"
       placeholder="Search..."
       v-model="search"
     />

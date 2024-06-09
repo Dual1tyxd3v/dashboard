@@ -6,7 +6,7 @@ import Notes from "../components/Notes.vue";
 </script>
 
 <template>
-  <div class="flex-grow flex flex-col gap-4">
+  <div class="flex flex-grow flex-col gap-4">
     <SearchBar />
     <div class="gap-6 md:flex">
       <Weather />
