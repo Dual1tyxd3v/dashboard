@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onUnmounted, ref } from "vue";
-import { getTime } from "../utils";
+import { getTime } from "../utils/timeAndDate";
 
 const props = defineProps({
   temp: Number,

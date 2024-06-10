@@ -1,7 +1,8 @@
 import { defineStore } from "pinia";
 import ConfigApi from "./configAPI";
-import { getNotes, removeNote, saveNotes } from "./utils";
+
 import { Note } from "./types";
+import { getNotes, saveNotes, removeNote } from "./utils/notes";
 
 export const useConfigStore = defineStore({
   id: "configStore",

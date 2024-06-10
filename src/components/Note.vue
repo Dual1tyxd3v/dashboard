@@ -2,7 +2,7 @@
 import { onUnmounted, ref } from "vue";
 import { useAppStore, useConfigStore } from "../store";
 import { Note } from "../types";
-import { getRemainingTime } from "../utils";
+import { getRemainingTime } from "../utils/timeAndDate";
 
 type Props = {
   note: Note;

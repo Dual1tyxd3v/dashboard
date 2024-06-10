@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useConfigStore, useAppStore } from "../store";
-import { getCurrentDate, getFormElementStyle, getTime } from "../utils";
+
 import FormField from "./FormField.vue";
 import Button from "./Button.vue";
+import { getFormElementStyle } from "../utils/styles";
+import { getCurrentDate, getTime } from "../utils/timeAndDate";
 
 const store = useConfigStore();
 const notesStore = useAppStore();
