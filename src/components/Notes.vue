@@ -2,7 +2,7 @@
 import NewNote from "./NewNote.vue";
 import { computed, ref } from "vue";
 import { useConfigStore, useAppStore } from "../store";
-import Message from "./Message.vue";
+
 
 const store = useConfigStore();
 const notes = useAppStore();
@@ -20,12 +20,10 @@ function onclickHandler(e: Event) {
 </script>
 
 <template>
-  <Message
-    v-if="notes.expiredNotes.length"
-    :message="`Note - '${notes.expiredNotes[notes.expiredNotes.length - 1].label}' is expired.`"
-    :onClick="() => notes.deleteExpiredNote()"
-  />
-  <NewNote v-if="showForm" :closeForm="() => (showForm = false)" />
+  
+  <Transition name="new-note">
+    <NewNote v-if="showForm" :closeForm="() => (showForm = false)" />
+  </Transition>
   <div
     class="wrapper relative flex-grow cursor-pointer overflow-hidden rounded-2xl py-4"
     :style="`color: ${store.colors?.main}`"
@@ -49,5 +47,18 @@ function onclickHandler(e: Event) {
 }
 .wrapper:hover::before {
   opacity: 1;
+}
+
+.new-note-enter-from,
+.new-note-leave-to {
+  opacity: 0;
+  transform: translateY(20rem) scaleY(0);
+}
+
+.new-note-enter-active,
+.new-note-leave-active {
+  transition:
+    opacity 0.2s ease-in-out,
+    transform 0.2s ease-in-out;
 }
 </style>
