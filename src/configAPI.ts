@@ -14,6 +14,7 @@ const DefaultConfig = {
     labelColor: "#fff",
     main: "#fff",
     fromElementsBorder: "#383838",
+    activeMedia: "rgb(1, 181, 116)",
   },
   backgroundImage: {
     blur: "100",

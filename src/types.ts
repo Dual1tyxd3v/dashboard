@@ -1,3 +1,5 @@
+import { LocalStorage } from "./config";
+
 export type Weather = {
   city: string;
   temp: number;
@@ -32,6 +34,7 @@ export type ConfigType = {
     labelColor: string;
     main: string;
     fromElementsBorder: string;
+    activeMedia: string;
   };
   backgroundImage: {
     blur: string;
@@ -51,4 +54,16 @@ export type Note = {
   label: string;
   time: number;
   id: number;
+};
+
+export type MediaLink = {
+  url: string;
+  label: string;
+};
+
+export type Store = {
+  notes: Note[];
+  expiredNotes: Note[];
+  activeLink: null | MediaLink;
+  [LocalStorage.YOUTUBE]: MediaLink[];
 };

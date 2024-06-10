@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { useRoute } from "vue-router";
 import FastLinks from "./FastLinks.vue";
-import { useConfigStore } from "../store";
+import { useAppStore, useConfigStore } from "../store";
 
 const store = useConfigStore();
+const appStore = useAppStore();
 const route = useRoute();
 </script>
 
@@ -22,8 +23,14 @@ const route = useRoute();
       class="opacity-50 transition-opacity hover:opacity-100"
       @click="
         () => {
-          if (!store.colors) return;
-          store.colors.active = 'red';
+          appStore.youtube = appStore.youtube.length
+            ? []
+            : [
+                {
+                  url: 'https://www.youtube.com/c/RecrentChannel/videos',
+                  label: '@@@@@@@@@@@@@@@',
+                },
+              ];
         }
       "
     >

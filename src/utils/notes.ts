@@ -1,5 +1,5 @@
-import { LocalStorage } from '../config';
-import { Note } from '../types';
+import { LocalStorage } from "../config";
+import { Note } from "../types";
 
 export const getNotes = () => {
   const notes = localStorage.getItem(LocalStorage.NOTES);
@@ -14,7 +14,6 @@ export const getNotes = () => {
   const expired: Note[] = [];
 
   localNotes.forEach((note: Note) => {
-    console.log(new Date(note.time));
     if (note.time - new Date().getTime() > 0) {
       actual.push(note);
     } else {

@@ -1,8 +1,10 @@
 import { defineStore } from "pinia";
 import ConfigApi from "./configAPI";
 
-import { Note } from "./types";
+import { MediaLink, Note, Store } from "./types";
 import { getNotes, saveNotes, removeNote } from "./utils/notes";
+import { getLinks, setLinks } from "./utils/media";
+import { LocalStorage } from "./config";
 
 export const useConfigStore = defineStore({
   id: "configStore",
@@ -10,10 +12,12 @@ export const useConfigStore = defineStore({
 });
 
 export const useAppStore = defineStore({
-  id: "noteStore",
-  state: () => ({
+  id: "appStore",
+  state: (): Store => ({
     notes: getNotes().actual,
     expiredNotes: getNotes().expired,
+    [LocalStorage.YOUTUBE]: getLinks(LocalStorage.YOUTUBE),
+    activeLink: null,
   }),
   actions: {
     addNote(note: Note) {
@@ -28,6 +32,22 @@ export const useAppStore = defineStore({
       const note = this.expiredNotes.pop();
 
       note && removeNote(note);
+    },
+    deleteLink(link: MediaLink, key: string) {
+      if (this.activeLink?.url === link.url) {
+        this.activeLink = null;
+      }
+
+      let newMediaLinks = null;
+
+      if (key === LocalStorage.YOUTUBE) {
+        this[LocalStorage.YOUTUBE] = this[LocalStorage.YOUTUBE].filter(
+          (storeLink) => storeLink.url !== link.url,
+        );
+        newMediaLinks = [...this[LocalStorage.YOUTUBE]];
+      }
+
+      setLinks(newMediaLinks as MediaLink[], key);
     },
   },
 });
