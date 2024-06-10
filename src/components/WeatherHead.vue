@@ -11,7 +11,10 @@ const props = defineProps({
 });
 const currentTime = ref(new Date().getTime());
 
-const timer = setInterval(() => (currentTime.value += 1000), 1000);
+const timer = setInterval(
+  () => (currentTime.value = new Date().getTime()),
+  1000,
+);
 
 const temperature = computed(() => {
   if (!props.temp) return "";

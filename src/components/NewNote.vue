@@ -36,7 +36,11 @@ function onSumbitHanlder(e: Event) {
   if (time - new Date().getTime() <= 0) {
     return;
   }
-  notesStore.addNote({ label: formData.value.label, time });
+  notesStore.addNote({
+    label: formData.value.label,
+    time,
+    id: new Date().getTime(),
+  });
   props.closeForm();
 }
 

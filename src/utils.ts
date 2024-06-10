@@ -40,8 +40,7 @@ export const removeNote = (note: Note) => {
   if (!notes) return;
 
   const newNotes = JSON.parse(notes).filter(
-    (existNote: Note) =>
-      existNote.label !== note.label && existNote.time !== note.time,
+    (existNote: Note) => existNote.id !== note.id,
   );
   localStorage.setItem("notes", JSON.stringify(newNotes));
 };
@@ -68,4 +67,16 @@ export const getCurrentDate = () => {
   const month = (date.getMonth() + 1).toString().padStart(2, "0");
 
   return `${date.getFullYear()}-${month}-${date.getDate()}`;
+};
+
+export const getRemainingTime = (time: number) => {
+  const currentTime = new Date().getTime();
+  const remainingTime = time - currentTime;
+
+  const date = new Date(remainingTime);
+
+  const days = Math.floor(remainingTime / 1000 / 60 / 60 / 24);
+  const timer = date.toISOString().split("T")[1].split(".")[0];
+
+  return `${days}:${timer}`;
 };

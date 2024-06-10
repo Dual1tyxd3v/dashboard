@@ -19,6 +19,10 @@ export const useAppStore = defineStore({
       this.notes.push(note);
       saveNotes(this.notes);
     },
+    deleteNote(note: Note) {
+      this.notes = this.notes.filter((storeNote) => storeNote.id !== note.id);
+      saveNotes(this.notes);
+    },
     deleteExpiredNote() {
       const note = this.expiredNotes.pop();
 

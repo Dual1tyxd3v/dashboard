@@ -50,4 +50,5 @@ export type ConfigType = {
 export type Note = {
   label: string;
   time: number;
+  id: number;
 };

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import NewNote from "./NewNote.vue";
+import Note from "./Note.vue";
 import { computed, ref } from "vue";
 import { useConfigStore, useAppStore } from "../store";
-
 
 const store = useConfigStore();
 const notes = useAppStore();
@@ -14,13 +14,14 @@ const background = computed(
 );
 
 function onclickHandler(e: Event) {
-  e.stopPropagation();
+  const note = (e.target as HTMLElement).closest('div[data-js="note"]');
+  if (note) return;
+
   showForm.value = true;
 }
 </script>
 
 <template>
-  
   <Transition name="new-note">
     <NewNote v-if="showForm" :closeForm="() => (showForm = false)" />
   </Transition>
@@ -30,7 +31,16 @@ function onclickHandler(e: Event) {
     @click="onclickHandler"
   >
     <p class="text-center" v-if="!notes.notes.length">There is no notes yet.</p>
-    <div class="flex flex-wrap items-center justify-center" v-else></div>
+    <div class="mb-3 flex flex-wrap items-center justify-center gap-3">
+      <transition-group name="notes" move-class="notes-move">
+        <Note
+          v-for="(note, i) in notes.notes"
+          :key="`note_${i}_${note.time}`"
+          :note="note"
+        />
+      </transition-group>
+    </div>
+
     <p class="text-center">Click on the field to add a new note</p>
   </div>
 </template>
@@ -60,5 +70,17 @@ function onclickHandler(e: Event) {
   transition:
     opacity 0.2s ease-in-out,
     transform 0.2s ease-in-out;
+}
+
+.notes-enter-from,
+.notes-leave-to {
+  transform: scale(0);
+}
+.notes-enter-active,
+.notes-leave-active {
+  transition: transform 0.2s ease-in-out;
+}
+.notes-move {
+  transition: all 0.2s;
 }
 </style>
