@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useAppStore, useConfigStore } from "../store";
-import { getMatch, checkYoutubeURL } from "../utils/media";
+import { getMatch, checkURL, yandexMusicURLParser } from "../utils/media";
 import FormField from "./FormField.vue";
 import FormTitle from "./FormTitle.vue";
 import Modal from "./Modal.vue";
@@ -32,17 +32,29 @@ function onChangeHandler(e: Event) {
 }
 
 function onSumbitHanlder() {
-  if (
-    props.type === AppStorage.YOUTUBE &&
-    !checkYoutubeURL(formData.value.url)
-  ) {
+  if (!checkURL(formData.value.url, props.type)) {
     error.value = "Incorrect URL";
     return;
   }
 
+  const link = formData.value.url.includes("music.yandex.ru")
+    ? yandexMusicURLParser(formData.value.url)
+    : formData.value.url;
+  console.log(link);
+
+  if (!link) {
+    error.value = "Incorrect value";
+    return;
+  }
+
+  const newMedia = {
+    label: formData.value.label,
+    url: link,
+  };
+
   const matchResult = getMatch(
     appStore[props.type as keyof Store] as MediaLink[],
-    formData.value,
+    newMedia,
   );
   if (matchResult) {
     error.value = `
@@ -51,8 +63,8 @@ function onSumbitHanlder() {
     return;
   }
 
-  appStore.addLink(formData.value, props.type);
-  appStore.activeLink = formData.value;
+  appStore.addLink(newMedia, props.type);
+  appStore.activeLink = newMedia;
   props.closeForm();
 }
 </script>

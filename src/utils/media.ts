@@ -1,3 +1,4 @@
+import { AppStorage } from "../config";
 import { MediaLink } from "../types";
 
 export const getLinks = (storageName: string): MediaLink[] => {
@@ -21,6 +22,17 @@ export const getMatch = (links: MediaLink[], link: MediaLink) => {
   return false;
 };
 
-export const checkYoutubeURL = (url: string) => {
-  return !!url.match(/^https:\/\/www.youtube.com/i);
+export const checkURL = (url: string, type: AppStorage) => {
+  return type === AppStorage.YOUTUBE
+    ? !!url.match(/^https:\/\/www.youtube.com/i)
+    : !!url.match(/^https:\/\//i);
+};
+
+export const yandexMusicURLParser = (url: string) => {
+  if (url.includes("/iframe/")) return url;
+
+  const [name, id] = url.split("users/")[1].split("/playlists/");
+  if (!name || !id) return false;
+
+  return `https://music.yandex.ru/iframe/playlist/${name}/${id}`;
 };
