@@ -54,8 +54,8 @@ function onSumbitHanlder() {
 </script>
 
 <template>
-  <Message v-if="error" :message="error" :onClick="() => (error = '')" />
   <Modal :closeForm="closeForm">
+    <Message v-if="error" :message="error" :onClick="() => (error = '')" />
     <form
       class="p-5"
       :style="`color: ${configStore.colors.main}`"

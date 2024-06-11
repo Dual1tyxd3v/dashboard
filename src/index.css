@@ -13,4 +13,45 @@
     font-weight: bold;
     src: url(/fonts/Roboto-Bold.ttf);
   }
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-thumb {
+    border: 4px solid transparent;
+    border-radius: 8px;
+    background-clip: padding-box;
+  }
+}
+
+@layer components {
+  .dark-edges::after,
+  .dark-edges::before {
+    content: "";
+    position: absolute;
+    width: 0.5rem;
+    height: 100%;
+    z-index: 2;
+    top: 0;
+  }
+  .dark-edges::after {
+    right: 0;
+    background-image: linear-gradient(to right, transparent, #000);
+  }
+  .dark-edges::before {
+    left: 0;
+    background-image: linear-gradient(to left, transparent, #000);
+  }
+}
+
+.form-enter-from,
+.form-leave-to {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.form-enter-active,
+.form-leave-active {
+  transition:
+    opacity 0.2s ease-in-out,
+    transform 0.2s ease-in-out;
 }

@@ -25,12 +25,10 @@ function onClickHandler(e: Event) {
 
 <template>
   <div
-    class="group relative w-40 min-w-40 cursor-pointer overflow-hidden rounded-2xl p-2 text-center text-sm"
+    class="group relative w-40 min-w-40 cursor-pointer overflow-hidden rounded-2xl p-2 text-center text-sm capitalize"
     :style="`
       background: ${appStore.activeLink?.url === media.url ? configStore.colors.activeMedia : configStore.colors.icon};
-      color: ${configStore.colors.main}; 
-      width: ${configStore.size.mediaLinks.width}rem; 
-      min-width: ${configStore.size.mediaLinks.width}rem`"
+      color: ${configStore.colors.main};`"
     @click="appStore.activeLink = props.media"
     :title="media.label"
   >

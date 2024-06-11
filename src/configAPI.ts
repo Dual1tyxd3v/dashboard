@@ -47,12 +47,6 @@ const DefaultConfig = {
     base: "RUB",
     query: "USD,EUR",
   },
-  size: {
-    mediaLinks: {
-      width: 10,
-      gap: 0.75,
-    },
-  },
 };
 
 class Config {

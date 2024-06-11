@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, watch } from "vue";
+import { computed, ref } from "vue";
 import { LocalStorage } from "../config";
 import { useAppStore, useConfigStore } from "../store";
 import Button from "./Button.vue";
@@ -16,9 +16,6 @@ const appStore = useAppStore();
 const configStore = useConfigStore();
 
 const showForm = ref(false);
-const needSlider = ref(false);
-const slider = ref(null);
-const slidesContainer = ref(null);
 
 const getButtonStyles = computed(() => {
   const links = appStore[props.type as keyof typeof appStore] as MediaLink[];
@@ -28,50 +25,31 @@ const getButtonStyles = computed(() => {
     : "top-[50%] translate-y-[-50%]";
 });
 
-watch(
-  [
-    () => slider.value,
-    () => (appStore[props.type as keyof typeof appStore] as MediaLink[]).length,
-  ],
-  () => {
-    if (!slider.value) return;
-
-    const sliderWidth = (slider.value as HTMLElement).getBoundingClientRect()
-      .width;
-    const slides = appStore[props.type as keyof typeof appStore] as MediaLink[];
-    const slidesContainerWidth =
-      slides.length * configStore.size.mediaLinks.width * 16 +
-      (slides.length - 1) * configStore.size.mediaLinks.gap * 16;
-
-    needSlider.value = sliderWidth < slidesContainerWidth ? true : false;
-  },
-  {
-    immediate: true,
-  },
-);
+const getScrollBarColor = computed(() => configStore.colors.icon);
+const getScrollBarActiveColor = computed(() => configStore.colors.active);
 </script>
 
 <template>
-  <NewMediaLink
-    v-if="showForm"
-    :closeForm="() => (showForm = false)"
-    :type="type"
-  />
+  <Transition name="form">
+    <NewMediaLink
+      v-if="showForm"
+      :closeForm="() => (showForm = false)"
+      :type="type"
+    />
+  </Transition>
   <div
     class="relative mb-10 min-h-16 rounded-2xl"
     :style="`background-image: linear-gradient(175.70deg, ${configStore.backgroundImage?.block[0]} 12.226%,${configStore.backgroundImage?.block[1]} 113.851%)`"
   >
     <Button
-      :class="`absolute ${getButtonStyles} left-[50%] translate-x-[-50%]`"
+      :class="`absolute ${getButtonStyles} left-[50%] z-[5] translate-x-[-50%]`"
       @click="showForm = true"
     >
       Add new link
     </Button>
-    <div class="relative h-full w-full overflow-hidden px-2 py-1" ref="slider">
+    <div class="dark-edges relative h-full overflow-hidden rounded-2xl">
       <div
-        :class="`flex-start flex h-full items-center`"
-        :style="`gap: ${configStore.size.mediaLinks.gap}rem`"
-        ref="slidesContainer"
+        class="flex-start container flex h-full w-full items-center gap-3 overflow-x-scroll px-2 py-1"
       >
         <transition-group name="media">
           <MediaItem
@@ -100,5 +78,13 @@ watch(
 }
 .media-leave-active {
   position: absolute;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background-color: v-bind(getScrollBarColor);
+  cursor: pointer;
+}
+.container::-webkit-scrollbar-thumb:hover {
+  background-color: v-bind(getScrollBarActiveColor);
 }
 </style>

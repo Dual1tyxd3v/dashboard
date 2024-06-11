@@ -22,7 +22,7 @@ function onclickHandler(e: Event) {
 </script>
 
 <template>
-  <Transition name="new-note">
+  <Transition name="form">
     <NewNote v-if="showForm" :closeForm="() => (showForm = false)" />
   </Transition>
   <div
@@ -57,19 +57,6 @@ function onclickHandler(e: Event) {
 }
 .wrapper:hover::before {
   opacity: 1;
-}
-
-.new-note-enter-from,
-.new-note-leave-to {
-  opacity: 0;
-  transform: translateY(20rem) scaleY(0);
-}
-
-.new-note-enter-active,
-.new-note-leave-active {
-  transition:
-    opacity 0.2s ease-in-out,
-    transform 0.2s ease-in-out;
 }
 
 .notes-enter-from,

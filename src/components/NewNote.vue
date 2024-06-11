@@ -31,7 +31,7 @@ function onSumbitHanlder() {
   ).getTime();
 
   if (time - new Date().getTime() <= 0) {
-    error.value = "Select correct date/time";
+    error.value = "Incorrect date/time";
     return;
   }
   notesStore.addNote({
@@ -52,8 +52,8 @@ function onChangeHandler(e: Event) {
 </script>
 
 <template>
-  <Message v-if="error" :message="error" :onClick="() => (error = '')" />
   <Modal :closeForm="closeForm">
+    <Message v-if="error" :message="error" :onClick="() => (error = '')" />
     <form
       @submit.prevent="onSumbitHanlder"
       class="p-5"

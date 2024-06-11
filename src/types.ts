@@ -48,12 +48,6 @@ export type ConfigType = {
     base: string;
     query: string;
   };
-  size: {
-    mediaLinks: {
-      width: number;
-      gap: number;
-    };
-  };
 };
 
 export type Note = {
