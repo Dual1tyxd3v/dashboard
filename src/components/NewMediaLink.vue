@@ -50,9 +50,9 @@ function onSumbitHanlder() {
     You already have - ${matchResult.label} with ${matchResult.url}`;
     return;
   }
-  console.log(formData.value);
 
   appStore.addLink(formData.value, props.type);
+  appStore.activeLink = formData.value;
   props.closeForm();
 }
 </script>

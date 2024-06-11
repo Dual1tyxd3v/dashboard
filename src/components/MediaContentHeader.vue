@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import { AppStorage } from "../config";
 import { useAppStore, useConfigStore } from "../store";
 import Button from "./Button.vue";
@@ -16,6 +16,7 @@ const appStore = useAppStore();
 const configStore = useConfigStore();
 
 const showForm = ref(false);
+const itemsContainer = ref(null);
 
 const getButtonStyles = computed(() => {
   const links = appStore[props.type as keyof typeof appStore] as MediaLink[];
@@ -27,6 +28,20 @@ const getButtonStyles = computed(() => {
 
 const getScrollBarColor = computed(() => configStore.colors.icon);
 const getScrollBarActiveColor = computed(() => configStore.colors.active);
+
+watch(
+  () => appStore[props.type].length,
+  (newValue, oldValue) => {
+    if (itemsContainer.value && newValue > oldValue) {
+      setTimeout(
+        () =>
+          itemsContainer.value &&
+          ((itemsContainer.value as HTMLElement).scrollLeft += 9999999999999),
+        0,
+      );
+    }
+  },
+);
 </script>
 
 <template>
@@ -49,6 +64,7 @@ const getScrollBarActiveColor = computed(() => configStore.colors.active);
     </Button>
     <div class="dark-edges relative h-full overflow-hidden rounded-2xl">
       <div
+        ref="itemsContainer"
         class="flex-start container flex h-full w-full items-center gap-3 overflow-x-scroll px-2 py-1"
       >
         <transition-group name="media">
