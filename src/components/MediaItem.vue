@@ -32,7 +32,7 @@ function onClickHandler(e: Event) {
   >
     {{ formatLabel(media.label) }}
     <button
-      class="bg-black-50% absolute right-[-50%] top-[50%] h-full origin-right translate-y-[-50%] scale-x-0 px-1 transition-all group-hover:right-0 group-hover:scale-x-100"
+      class="absolute right-[-50%] top-[50%] h-full origin-right translate-y-[-50%] scale-x-0 bg-black-50% px-1 transition-all group-hover:right-0 group-hover:scale-x-100"
       title="Delete link"
       @click="onClickHandler"
     >

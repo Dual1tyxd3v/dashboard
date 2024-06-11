@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { LocalStorage } from "../config";
 import { useAppStore, useConfigStore } from "../store";
 import Button from "./Button.vue";
@@ -13,6 +13,8 @@ const props = defineProps<Props>();
 
 const appStore = useAppStore();
 const configStore = useConfigStore();
+
+const showForm = ref(false);
 
 const getButtonStyles = computed(() => {
   const links = appStore[props.type as keyof typeof appStore] as MediaLink[];
@@ -30,20 +32,40 @@ const getButtonStyles = computed(() => {
   >
     <Button
       :class="`absolute ${getButtonStyles} left-[50%] translate-x-[-50%]`"
+      @click="showForm = true"
     >
       Add new link
     </Button>
     <div class="h-full overflow-hidden px-2 py-1">
       <div class="flex h-full items-center justify-center">
-        <MediaItem
-          v-for="(link, i) in appStore[
-            props.type as keyof typeof appStore
-          ] as MediaLink[]"
-          :key="`media_${i}, ${link.url}`"
-          :media="link"
-          :type="props.type"
-        />
+        <transition-group name="media" move-class="media-move">
+          <MediaItem
+            v-for="(link, i) in appStore[
+              props.type as keyof typeof appStore
+            ] as MediaLink[]"
+            :key="`media_${i}, ${link.url}`"
+            :media="link"
+            :type="props.type"
+          />
+        </transition-group>
       </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+.media-enter-from,
+.media-leave-to {
+  transform: scaleX(0);
+  opacity: 0;
+}
+.media-enter-active,
+.media-leave-active {
+  transition:
+    transform 0.2s ease-in-out,
+    opacity 0.2s ease-in-out;
+}
+.media-move {
+  transition: all 0.2s ease-in;
+}
+</style>
