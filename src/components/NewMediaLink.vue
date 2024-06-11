@@ -7,12 +7,12 @@ import FormTitle from "./FormTitle.vue";
 import Modal from "./Modal.vue";
 import Button from "./Button.vue";
 import Message from "./Message.vue";
-import { LocalStorage } from "../config";
+import { AppStorage } from "../config";
 import { MediaLink, Store } from "../types";
 
 type Props = {
   closeForm: () => void;
-  type: LocalStorage;
+  type: AppStorage;
 };
 
 const props = defineProps<Props>();
@@ -32,7 +32,10 @@ function onChangeHandler(e: Event) {
 }
 
 function onSumbitHanlder() {
-  if (!checkYoutubeURL(formData.value.url)) {
+  if (
+    props.type === AppStorage.YOUTUBE &&
+    !checkYoutubeURL(formData.value.url)
+  ) {
     error.value = "Incorrect URL";
     return;
   }
@@ -47,6 +50,7 @@ function onSumbitHanlder() {
     You already have - ${matchResult.label} with ${matchResult.url}`;
     return;
   }
+  console.log(formData.value);
 
   appStore.addLink(formData.value, props.type);
   props.closeForm();

@@ -4,7 +4,7 @@ import ConfigApi from "./configAPI";
 import { MediaLink, Note, Store } from "./types";
 import { getNotes, saveNotes, removeNote } from "./utils/notes";
 import { getLinks, setLinks } from "./utils/media";
-import { LocalStorage } from "./config";
+import { AppStorage } from "./config";
 
 export const useConfigStore = defineStore({
   id: "configStore",
@@ -16,7 +16,8 @@ export const useAppStore = defineStore({
   state: (): Store => ({
     notes: getNotes().actual,
     expiredNotes: getNotes().expired,
-    [LocalStorage.YOUTUBE]: getLinks(LocalStorage.YOUTUBE),
+    [AppStorage.YOUTUBE]: getLinks(AppStorage.YOUTUBE),
+    [AppStorage.MUSIC]: getLinks(AppStorage.MUSIC),
     activeLink: null,
   }),
   actions: {
@@ -33,31 +34,21 @@ export const useAppStore = defineStore({
 
       note && removeNote(note);
     },
-    deleteLink(link: MediaLink, key: string) {
+    deleteLink(link: MediaLink, key: AppStorage) {
       if (this.activeLink?.url === link.url) {
         this.activeLink = null;
       }
 
-      let newMediaLinks = null;
+      (this[key] as MediaLink[]) = (this[key] as MediaLink[]).filter(
+        (storeLink) => storeLink.url !== link.url,
+      );
 
-      if (key === LocalStorage.YOUTUBE) {
-        this[LocalStorage.YOUTUBE] = this[LocalStorage.YOUTUBE].filter(
-          (storeLink) => storeLink.url !== link.url,
-        );
-        newMediaLinks = [...this[LocalStorage.YOUTUBE]];
-      }
-
-      setLinks(newMediaLinks as MediaLink[], key);
+      setLinks(this[key] as MediaLink[], key);
     },
-    addLink(link: MediaLink, key: string) {
-      let newMediaLinks = null;
+    addLink(link: MediaLink, key: AppStorage) {
+      (this[key] as MediaLink[]).push(link);
 
-      if (key === LocalStorage.YOUTUBE) {
-        this[LocalStorage.YOUTUBE].push(link);
-        newMediaLinks = [...this[LocalStorage.YOUTUBE]];
-      }
-
-      setLinks(newMediaLinks as MediaLink[], key);
+      setLinks(this[key] as MediaLink[], key);
     },
   },
 });

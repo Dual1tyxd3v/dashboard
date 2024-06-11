@@ -4,5 +4,5 @@ import { AppStorage } from "../config";
 </script>
 
 <template>
-  <MediaContent :type="AppStorage.YOUTUBE" />
+  <MediaContent :type="AppStorage.MUSIC" />
 </template>

@@ -1,4 +1,4 @@
-import { LocalStorage } from "./config";
+import { ConfigStorage } from "./config";
 import { ConfigType } from "./types";
 
 const DefaultConfig = {
@@ -53,7 +53,7 @@ class Config {
   config: ConfigType = DefaultConfig;
 
   constructor() {
-    const localConfig = localStorage.getItem(LocalStorage.CONFIG);
+    const localConfig = localStorage.getItem(ConfigStorage);
     if (localConfig) {
       this.config = JSON.parse(localConfig);
     }
@@ -65,7 +65,7 @@ class Config {
 
   setConfig(config: ConfigType) {
     this.config = config;
-    localStorage.setItem(LocalStorage.CONFIG, JSON.stringify(config));
+    localStorage.setItem(ConfigStorage, JSON.stringify(config));
   }
 }
 

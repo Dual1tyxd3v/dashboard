@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { LocalStorage } from "../config";
+import { AppStorage, MAX_CHARS } from "../config";
 import { useAppStore, useConfigStore } from "../store";
 import { MediaLink } from "../types";
 
 type Props = {
   media: MediaLink;
-  type: LocalStorage;
+  type: AppStorage;
 };
 const props = defineProps<Props>();
 
@@ -13,7 +13,7 @@ const configStore = useConfigStore();
 const appStore = useAppStore();
 
 function formatLabel(text: string) {
-  return text.length > 10 ? `${text.slice(0, 10)}...` : text;
+  return text.length > MAX_CHARS ? `${text.slice(0, MAX_CHARS)}...` : text;
 }
 
 function onClickHandler(e: Event) {

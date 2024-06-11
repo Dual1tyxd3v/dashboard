@@ -3,6 +3,7 @@ import NewNote from "./NewNote.vue";
 import Note from "./Note.vue";
 import { computed, ref } from "vue";
 import { useConfigStore, useAppStore } from "../store";
+import Message from "./Message.vue";
 
 const store = useConfigStore();
 const notes = useAppStore();
@@ -22,6 +23,13 @@ function onclickHandler(e: Event) {
 </script>
 
 <template>
+  <Transition name="message">
+    <Message
+      v-if="notes.expiredNotes.length"
+      :message="`Note - '${notes.expiredNotes[notes.expiredNotes.length - 1].label}' is expired.`"
+      :onClick="() => notes.deleteExpiredNote()"
+    />
+  </Transition>
   <Transition name="form">
     <NewNote v-if="showForm" :closeForm="() => (showForm = false)" />
   </Transition>

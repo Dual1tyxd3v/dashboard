@@ -61,8 +61,12 @@ export const getChartConfig = (
   },
 });
 
-export enum LocalStorage {
+export const ConfigStorage = "config";
+
+export const MAX_CHARS = 15;
+
+export enum AppStorage {
   NOTES = "notes",
-  CONFIG = "config",
   YOUTUBE = "youtube",
+  MUSIC = "music",
 }

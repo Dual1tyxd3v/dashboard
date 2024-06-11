@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import { AppRoute } from "./config";
 import Main from "./pages/Main.vue";
 import Youtube from "./pages/Youtube.vue";
+import Music from "./pages/Music.vue";
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -15,6 +16,11 @@ export const router = createRouter({
       path: AppRoute.YouTube.route,
       name: "youtube",
       component: Youtube,
+    },
+    {
+      path: AppRoute.Music.route,
+      name: "music",
+      component: Music,
     },
   ],
 });

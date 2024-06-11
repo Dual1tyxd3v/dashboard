@@ -1,4 +1,4 @@
-import { LocalStorage } from "./config";
+import { AppStorage } from "./config";
 
 export type Weather = {
   city: string;
@@ -65,5 +65,6 @@ export type Store = {
   notes: Note[];
   expiredNotes: Note[];
   activeLink: null | MediaLink;
-  [LocalStorage.YOUTUBE]: MediaLink[];
+  [AppStorage.YOUTUBE]: MediaLink[];
+  [AppStorage.MUSIC]: MediaLink[];
 };

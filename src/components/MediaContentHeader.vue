@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { LocalStorage } from "../config";
+import { AppStorage } from "../config";
 import { useAppStore, useConfigStore } from "../store";
 import Button from "./Button.vue";
 import { MediaLink } from "../types";
@@ -8,7 +8,7 @@ import MediaItem from "./MediaItem.vue";
 import NewMediaLink from "./NewMediaLink.vue";
 
 type Props = {
-  type: LocalStorage;
+  type: AppStorage;
 };
 const props = defineProps<Props>();
 

@@ -1,8 +1,8 @@
-import { LocalStorage } from "../config";
+import { AppStorage } from "../config";
 import { Note } from "../types";
 
 export const getNotes = () => {
-  const notes = localStorage.getItem(LocalStorage.NOTES);
+  const notes = localStorage.getItem(AppStorage.NOTES);
   if (!notes)
     return {
       actual: [],
@@ -35,5 +35,5 @@ export const removeNote = (note: Note) => {
 };
 
 export const saveNotes = (notes: Note[]) => {
-  localStorage.setItem(LocalStorage.NOTES, JSON.stringify(notes));
+  localStorage.setItem(AppStorage.NOTES, JSON.stringify(notes));
 };
