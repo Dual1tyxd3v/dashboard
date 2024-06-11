@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import { LocalStorage } from "../config";
 import { useAppStore, useConfigStore } from "../store";
 import Button from "./Button.vue";
@@ -16,6 +16,9 @@ const appStore = useAppStore();
 const configStore = useConfigStore();
 
 const showForm = ref(false);
+const needSlider = ref(false);
+const slider = ref(null);
+const slidesContainer = ref(null);
 
 const getButtonStyles = computed(() => {
   const links = appStore[props.type as keyof typeof appStore] as MediaLink[];
@@ -24,10 +27,36 @@ const getButtonStyles = computed(() => {
     ? "top-[100%] text-xs py-1-important px-6 tracking-[4px]"
     : "top-[50%] translate-y-[-50%]";
 });
+
+watch(
+  [
+    () => slider.value,
+    () => (appStore[props.type as keyof typeof appStore] as MediaLink[]).length,
+  ],
+  () => {
+    if (!slider.value) return;
+
+    const sliderWidth = (slider.value as HTMLElement).getBoundingClientRect()
+      .width;
+    const slides = appStore[props.type as keyof typeof appStore] as MediaLink[];
+    const slidesContainerWidth =
+      slides.length * configStore.size.mediaLinks.width * 16 +
+      (slides.length - 1) * configStore.size.mediaLinks.gap * 16;
+
+    needSlider.value = sliderWidth < slidesContainerWidth ? true : false;
+  },
+  {
+    immediate: true,
+  },
+);
 </script>
 
 <template>
-  <NewMediaLink v-if="showForm" :closeForm="() => (showForm = false)" />
+  <NewMediaLink
+    v-if="showForm"
+    :closeForm="() => (showForm = false)"
+    :type="type"
+  />
   <div
     class="relative mb-10 min-h-16 rounded-2xl"
     :style="`background-image: linear-gradient(175.70deg, ${configStore.backgroundImage?.block[0]} 12.226%,${configStore.backgroundImage?.block[1]} 113.851%)`"
@@ -38,14 +67,18 @@ const getButtonStyles = computed(() => {
     >
       Add new link
     </Button>
-    <div class="h-full overflow-hidden px-2 py-1">
-      <div class="flex h-full items-center justify-center">
-        <transition-group name="media" move-class="media-move">
+    <div class="relative h-full w-full overflow-hidden px-2 py-1" ref="slider">
+      <div
+        :class="`flex-start flex h-full items-center`"
+        :style="`gap: ${configStore.size.mediaLinks.gap}rem`"
+        ref="slidesContainer"
+      >
+        <transition-group name="media">
           <MediaItem
-            v-for="(link, i) in appStore[
+            v-for="link in appStore[
               props.type as keyof typeof appStore
             ] as MediaLink[]"
-            :key="`media_${i}, ${link.url}`"
+            :key="`${link.url}`"
             :media="link"
             :type="props.type"
           />
@@ -58,16 +91,14 @@ const getButtonStyles = computed(() => {
 <style scoped>
 .media-enter-from,
 .media-leave-to {
-  transform: scaleX(0);
-  opacity: 0;
+  transform: scaleX(0.01) translateY(150%);
 }
 .media-enter-active,
-.media-leave-active {
-  transition:
-    transform 0.2s ease-in-out,
-    opacity 0.2s ease-in-out;
-}
+.media-leave-active,
 .media-move {
-  transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in-out;
+}
+.media-leave-active {
+  position: absolute;
 }
 </style>

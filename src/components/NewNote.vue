@@ -6,6 +6,7 @@ import Button from "./Button.vue";
 import { getCurrentDate, getTime } from "../utils/timeAndDate";
 import Modal from "./Modal.vue";
 import Message from "./Message.vue";
+import FormTitle from "./FormTitle.vue";
 
 const store = useConfigStore();
 const notesStore = useAppStore();
@@ -24,8 +25,7 @@ const props = defineProps({
   },
 });
 
-function onSumbitHanlder(e: Event) {
-  e.preventDefault();
+function onSumbitHanlder() {
   const time = new Date(
     `${formData.value.date} ${formData.value.time}`,
   ).getTime();
@@ -55,16 +55,11 @@ function onChangeHandler(e: Event) {
   <Message v-if="error" :message="error" :onClick="() => (error = '')" />
   <Modal :closeForm="closeForm">
     <form
-      @submit="onSumbitHanlder"
+      @submit.prevent="onSumbitHanlder"
       class="p-5"
       :style="`color: ${store.colors?.main}`"
     >
-      <h3
-        class="mb-4 bg-[length:100%_1px] bg-bottom bg-no-repeat pb-2 text-center text-2xl"
-        :style="`background-image: linear-gradient(to right, transparent, ${store.backgroundImage?.divider}, transparent);`"
-      >
-        New note
-      </h3>
+      <FormTitle>Add new note</FormTitle>
       <FormField
         :changeHandler="onChangeHandler"
         :value="formData.label"

@@ -49,5 +49,15 @@ export const useAppStore = defineStore({
 
       setLinks(newMediaLinks as MediaLink[], key);
     },
+    addLink(link: MediaLink, key: string) {
+      let newMediaLinks = null;
+
+      if (key === LocalStorage.YOUTUBE) {
+        this[LocalStorage.YOUTUBE].push(link);
+        newMediaLinks = [...this[LocalStorage.YOUTUBE]];
+      }
+
+      setLinks(newMediaLinks as MediaLink[], key);
+    },
   },
 });
