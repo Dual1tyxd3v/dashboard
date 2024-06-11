@@ -5,6 +5,7 @@ import { useAppStore, useConfigStore } from "../store";
 import Button from "./Button.vue";
 import { MediaLink } from "../types";
 import MediaItem from "./MediaItem.vue";
+import NewMediaLink from "./NewMediaLink.vue";
 
 type Props = {
   type: LocalStorage;
@@ -26,6 +27,7 @@ const getButtonStyles = computed(() => {
 </script>
 
 <template>
+  <NewMediaLink v-if="showForm" :closeForm="() => (showForm = false)" />
   <div
     class="relative mb-10 min-h-16 rounded-2xl"
     :style="`background-image: linear-gradient(175.70deg, ${configStore.backgroundImage?.block[0]} 12.226%,${configStore.backgroundImage?.block[1]} 113.851%)`"

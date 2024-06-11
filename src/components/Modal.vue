@@ -25,7 +25,7 @@ function onClickHandler(e: Event) {
     data-js="wrapper"
   >
     <div
-      class="relative z-10 h-96 w-96 overflow-hidden rounded-2xl border-[3px] border-transparent bg-origin-border"
+      class="relative z-10  overflow-hidden rounded-2xl border-[3px] border-transparent bg-origin-border"
       :style="
         getFormElementStyle(
           store.colors?.inputBg || '#000',

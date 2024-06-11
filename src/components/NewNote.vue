@@ -5,6 +5,7 @@ import FormField from "./FormField.vue";
 import Button from "./Button.vue";
 import { getCurrentDate, getTime } from "../utils/timeAndDate";
 import Modal from "./Modal.vue";
+import Message from "./Message.vue";
 
 const store = useConfigStore();
 const notesStore = useAppStore();
@@ -14,6 +15,7 @@ const formData = ref({
   date: getCurrentDate(),
   time: getTime(new Date().getTime()).slice(0, -3),
 });
+const error = ref("");
 
 const props = defineProps({
   closeForm: {
@@ -29,6 +31,7 @@ function onSumbitHanlder(e: Event) {
   ).getTime();
 
   if (time - new Date().getTime() <= 0) {
+    error.value = "Select correct date/time";
     return;
   }
   notesStore.addNote({
@@ -49,6 +52,7 @@ function onChangeHandler(e: Event) {
 </script>
 
 <template>
+  <Message v-if="error" :message="error" :onClick="() => (error = '')" />
   <Modal :closeForm="closeForm">
     <form
       @submit="onSumbitHanlder"

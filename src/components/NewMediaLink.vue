@@ -1,5 +1,13 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Modal from "./Modal.vue";
+
+type Props = {
+  closeForm: () => void;
+};
+
+defineProps<Props>();
+</script>
 
 <template>
-  <div class="fixed inset-0 z-10 flex items-center justify-center"></div>
+  <Modal :closeForm="closeForm"></Modal>
 </template>
