@@ -2,10 +2,9 @@
 import { computed, ref, watch } from "vue";
 import { AppStorage } from "../config";
 import { useAppStore, useConfigStore } from "../store";
-import Button from "./Button.vue";
 import { MediaLink } from "../types";
 import MediaItem from "./MediaItem.vue";
-import NewMediaLink from "./NewMediaLink.vue";
+import MediaContentControls from "./MediaContentControls.vue";
 
 type Props = {
   type: AppStorage;
@@ -15,19 +14,20 @@ const props = defineProps<Props>();
 const appStore = useAppStore();
 const configStore = useConfigStore();
 
-const showForm = ref(false);
 const itemsContainer = ref(null);
+const search = ref("");
 
-const getButtonStyles = computed(() => {
-  const links = appStore[props.type as keyof typeof appStore] as MediaLink[];
-
-  return links.length
-    ? "top-[100%] text-xs py-1-important px-6 tracking-[4px]"
-    : "top-[50%] translate-y-[-50%]";
-});
+function changeHandler(value: string) {
+  search.value = value;
+}
 
 const getScrollBarColor = computed(() => configStore.colors.icon);
 const getScrollBarActiveColor = computed(() => configStore.colors.active);
+const filteredLinks = computed(() =>
+  (appStore[props.type as keyof typeof appStore] as MediaLink[]).filter(
+    (link) => link.label.toLowerCase().includes(search.value.toLowerCase()),
+  ),
+);
 
 watch(
   () => appStore[props.type].length,
@@ -45,23 +45,15 @@ watch(
 </script>
 
 <template>
-  <Transition name="form">
-    <NewMediaLink
-      v-if="showForm"
-      :closeForm="() => (showForm = false)"
-      :type="type"
-    />
-  </Transition>
   <div
     class="relative mb-10 min-h-16 rounded-2xl"
     :style="`background-image: linear-gradient(175.70deg, ${configStore.backgroundImage?.block[0]} 12.226%,${configStore.backgroundImage?.block[1]} 113.851%)`"
   >
-    <Button
-      :class="`absolute ${getButtonStyles} left-[50%] z-[5] translate-x-[-50%]`"
-      @click="showForm = true"
-    >
-      Add new link
-    </Button>
+    <MediaContentControls
+      :changeHandler="changeHandler"
+      :type="type"
+      :value="search"
+    />
     <div class="dark-edges relative h-full overflow-hidden rounded-2xl">
       <div
         ref="itemsContainer"
@@ -69,9 +61,7 @@ watch(
       >
         <transition-group name="media">
           <MediaItem
-            v-for="link in appStore[
-              props.type as keyof typeof appStore
-            ] as MediaLink[]"
+            v-for="link in filteredLinks"
             :key="`${link.url}`"
             :media="link"
             :type="props.type"

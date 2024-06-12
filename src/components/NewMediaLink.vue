@@ -40,8 +40,6 @@ function onSumbitHanlder() {
   const link = formData.value.url.includes("music.yandex.ru")
     ? yandexMusicURLParser(formData.value.url)
     : formData.value.url;
-  console.log(link);
-
   if (!link) {
     error.value = "Incorrect value";
     return;
