@@ -2,17 +2,17 @@
 import Navigation from "./components/Navigation.vue";
 import Content from "./components/Content.vue";
 import { useConfigStore } from "./store";
+import { getImage } from "./utils/styles";
 
 const store = useConfigStore();
 </script>
 
 <template>
   <div
-    class="bg-no-repeat"
+    class="bg-center bg-no-repeat"
     :style="`
-      background-color:${store.Colors.bgMain || '#000'}; 
-      background-image: url(${store.Background.main || 'none'});
-      background-position: ${store.Background.position[0]} ${store.Background.position[1]};
+      background-color:${store.Background.color || '#000'}; 
+      background-image: url(${getImage(store.Background.images) || 'none'});
       background-size: ${store.Background.size};`"
   >
     <div

@@ -1,5 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="h-full w-full bg-yellow-500"></div>
+  <div class="h-full w-ful">
+    <h4 class="text-xl">Background</h4>
+  </div>
 </template>

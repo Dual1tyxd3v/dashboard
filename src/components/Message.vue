@@ -22,10 +22,10 @@ function onClickHandler() {
     :style="`background-image: linear-gradient(175.70deg, ${configStore.Colors.block[0]} 12.226%,${configStore.Colors.block[1]} 113.851%)`"
   >
     <p
-      class="mb-6 text-center"
+      class="mb-6 text-center capitalize"
       :style="`color: ${configStore.Colors.main}`"
       v-html="props.message"
     ></p>
-    <Button @click="onClickHandler">Ok</Button>
+    <Button type="button" @click="onClickHandler">Ok</Button>
   </div>
 </template>

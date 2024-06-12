@@ -10,3 +10,9 @@ export const getFormElementStyle = (
       background-clip: padding-box, border-box;
       background-size: cover;`;
 };
+
+export const getImage = (images: string[]) => {
+  const random = Math.floor(Math.random() * images.length);
+
+  return images[random];
+};

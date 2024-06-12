@@ -7,9 +7,7 @@ const search = ref("");
 const input = ref(null);
 const store = useConfigStore();
 
-const getHoverColor = computed(() =>
-  store.Colors ? store.Colors.active : "#fff",
-);
+const getHoverColor = computed(() => store.Colors.active);
 
 onMounted(() => {
   if (!input.value) return;

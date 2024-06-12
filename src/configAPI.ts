@@ -1,10 +1,9 @@
 import { ConfigStorage } from "./config";
 import { ConfigType } from "./types";
 
-const DefaultConfig: ConfigType = {
+export const DefaultConfig: ConfigType = {
   Colors: {
     icon: "rgb(0, 117, 255)",
-    bgMain: "#060B26",
     bgNavActive: "rgb(26, 31, 55)",
     inputBg: "rgb(15, 21, 53)",
     inputBorder: "rgba(226, 232, 240, 0.3)",
@@ -20,9 +19,9 @@ const DefaultConfig: ConfigType = {
   },
   Background: {
     blur: "100",
-    main: ["/imgs/bg.jpeg"],
-    position: ["center", "center"],
+    images: ["/imgs/bg.jpeg"],
     size: "cover",
+    color: "#060B26",
   },
   FastLinks: [
     {
@@ -61,12 +60,12 @@ class Config {
   }
 
   getConfig() {
-    return this.config;
+    return JSON.stringify(this.config);
   }
 
-  setConfig(config: ConfigType) {
-    this.config = config;
-    localStorage.setItem(ConfigStorage, JSON.stringify(config));
+  setConfig(config: string) {
+    this.config = JSON.parse(config);
+    localStorage.setItem(ConfigStorage, config);
   }
 }
 

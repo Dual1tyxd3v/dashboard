@@ -24,7 +24,6 @@ type FastLink = {
 export type ConfigType = {
   Colors: {
     icon: string;
-    bgMain: string;
     bgNavActive: string;
     inputBg: string;
     inputBorder: string;
@@ -39,10 +38,10 @@ export type ConfigType = {
     activeMedia: string;
   };
   Background: {
+    color: string;
     blur: string;
-    main: string[];
-    position: string[];
-    size: "cover" | "contain";
+    images: string[];
+    size: "cover" | "contain" | "100% 100%";
   };
   FastLinks: FastLink[];
   Currency: {

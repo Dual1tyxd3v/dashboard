@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { useConfigStore } from "../../store";
 import { OptionsTabs } from "../../config";
 import OptionsTab from "./OptionsTab.vue";
@@ -20,22 +20,24 @@ const config = useConfigStore();
 
 const activeTab = ref(OptionsTabs.BACKGROUND);
 
+const getScrollBarColor = computed(() => config.Colors.icon);
+const getScrollBarActiveColor = computed(() => config.Colors.active);
+
 function closeHandler() {
   activeTab.value = OptionsTabs.BACKGROUND;
   props.closeOptions();
 }
-console.log(activeTab.value);
 </script>
 
 <template>
   <div
-    class="bg-black-90% fixed bottom-5 right-0 top-5 z-30 w-[50%] rounded-l-2xl backdrop:blur-[30px]"
+    class="bg-black-90% fixed bottom-5 right-0 top-5 z-30 w-[50%] rounded-l-2xl backdrop:blur-[30px] md:min-w-[614px]"
     :style="`background-image: linear-gradient(157.20deg, ${config.Colors.bgNav[0]} 31.883%, ${config.Colors.bgNav[1]} 100%);`"
   >
-    <div class="relative flex h-full w-full p-5">
+    <div class="relative flex h-full w-full p-5 pt-7">
       <button
         @click="closeHandler"
-        class="absolute right-3 top-3 opacity-50 transition-opacity hover:opacity-100"
+        class="absolute right-0 top-0 opacity-50 transition-opacity hover:opacity-100"
         title="Close options"
         aria-label="Close options"
       >
@@ -58,12 +60,13 @@ console.log(activeTab.value);
           />
         </li>
       </ul>
-      <div class="relative flex-grow overflow-auto">
+      <div class="relative flex-grow overflow-hidden">
         <KeepAlive>
           <Transition name="tab">
             <component
               :is="Tabs[activeTab as keyof typeof Tabs]"
               :key="activeTab"
+              class="my-scroll overflow-y-scroll flex flex-col"
             ></component>
           </Transition>
         </KeepAlive>
@@ -82,5 +85,13 @@ console.log(activeTab.value);
 .tab-enter-active,
 .tab-leave-active {
   transition: transform 0.2s ease-in-out;
+}
+
+.my-scroll::-webkit-scrollbar-thumb {
+  background-color: v-bind(getScrollBarColor);
+  cursor: pointer;
+}
+.my-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: v-bind(getScrollBarActiveColor);
 }
 </style>
