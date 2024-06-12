@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import Currency from "../components/Currency.vue";
 import SearchBar from "../components/SearchBar.vue";
-import Weather from "../components/Weather.vue";
-import Notes from "../components/Notes.vue";
+import Weather from "../components/Weather/Weather.vue";
+import Notes from "../components/Notes/Notes.vue";
 </script>
 
 <template>

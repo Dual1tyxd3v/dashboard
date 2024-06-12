@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { AppStorage, MAX_CHARS } from "../config";
-import { useAppStore, useConfigStore } from "../store";
-import { MediaLink } from "../types";
+import { AppStorage, MAX_CHARS } from "../../config";
+import { useAppStore, useConfigStore } from "../../store";
+import { MediaLink } from "../../types";
 
 type Props = {
   media: MediaLink;

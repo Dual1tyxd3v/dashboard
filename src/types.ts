@@ -31,7 +31,6 @@ export type ConfigType = {
     active: string;
     miniTitle: string;
     gridColor: string;
-    labelColor: string;
     main: string;
     fromElementsBorder: string;
     activeMedia: string;

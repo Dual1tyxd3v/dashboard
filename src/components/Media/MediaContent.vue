@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
-import Loader from "./Loader.vue";
-import MediaContentHeader from "./MediaContentHeader.vue";
-import { AppStorage } from "../config";
-import { useAppStore } from "../store";
+import Loader from "../Loader.vue";
+import MediaContentHeader from "../Media/MediaContentHeader.vue";
+import { AppStorage } from "../../config";
+import { useAppStore } from "../../store";
 
 type Props = {
   type: AppStorage;

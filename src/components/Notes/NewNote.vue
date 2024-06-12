@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { useConfigStore, useAppStore } from "../store";
-import FormField from "./FormField.vue";
-import Button from "./Button.vue";
-import { getCurrentDate, getTime } from "../utils/timeAndDate";
-import Modal from "./Modal.vue";
-import Message from "./Message.vue";
-import FormTitle from "./FormTitle.vue";
+import { useConfigStore, useAppStore } from "../../store";
+import FormField from "../Form/FormField.vue";
+import Button from "../Button.vue";
+import { getCurrentDate, getTime } from "../../utils/timeAndDate";
+import Modal from "../Modal.vue";
+import Message from "../Message.vue";
+import FormTitle from "../Form/FormTitle.vue";
 
 const store = useConfigStore();
 const notesStore = useAppStore();

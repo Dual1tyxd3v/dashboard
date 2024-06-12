@@ -2,8 +2,8 @@
 import NewNote from "./NewNote.vue";
 import Note from "./Note.vue";
 import { computed, ref } from "vue";
-import { useConfigStore, useAppStore } from "../store";
-import Message from "./Message.vue";
+import { useConfigStore, useAppStore } from "../../store";
+import Message from "../Message.vue";
 
 const store = useConfigStore();
 const notes = useAppStore();

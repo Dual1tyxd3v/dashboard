@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { onUnmounted, ref } from "vue";
-import { useAppStore, useConfigStore } from "../store";
-import { Note } from "../types";
-import { getRemainingTime } from "../utils/timeAndDate";
+import { useAppStore, useConfigStore } from "../../store";
+import { Note } from "../../types";
+import { getRemainingTime } from "../../utils/timeAndDate";
 
 type Props = {
   note: Note;

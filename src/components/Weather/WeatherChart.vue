@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { HistoryType } from "../types";
+import { HistoryType } from "../../types";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -12,8 +12,8 @@ import {
 } from "chart.js";
 import { computed } from "vue";
 import { Line } from "vue-chartjs";
-import { getChartConfig } from "../config";
-import { useConfigStore } from "../store";
+import { getChartConfig } from "../../config";
+import { useConfigStore } from "../../store";
 
 ChartJS.register(
   CategoryScale,

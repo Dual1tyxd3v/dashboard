@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { useConfigStore } from "../store";
-import { getFormElementStyle } from "../utils/styles";
-import { getCurrentDate } from "../utils/timeAndDate";
+import { useConfigStore } from "../../store";
+import { getFormElementStyle } from "../../utils/styles";
+import { getCurrentDate } from "../../utils/timeAndDate";
 
 type Props = {
   type: string;

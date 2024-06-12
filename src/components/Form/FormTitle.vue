@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useConfigStore } from "../store";
+import { useConfigStore } from "../../store";
 
 const store = useConfigStore();
 </script>

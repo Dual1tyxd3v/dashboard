@@ -11,7 +11,6 @@ const DefaultConfig = {
     active: "rgb(44, 217, 255)",
     miniTitle: "rgb(160, 174, 192)",
     gridColor: "rgba(255, 255, 255, .2)",
-    labelColor: "#fff",
     main: "#fff",
     fromElementsBorder: "#383838",
     activeMedia: "rgb(1, 181, 116)",

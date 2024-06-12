@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import MediaContent from "../components/MediaContent.vue";
+import MediaContent from "../components/Media/MediaContent.vue";
 import { AppStorage } from "../config";
 </script>
 

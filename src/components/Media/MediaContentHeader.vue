@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
-import { AppStorage } from "../config";
-import { useAppStore, useConfigStore } from "../store";
-import { MediaLink } from "../types";
+import { AppStorage } from "../../config";
+import { useAppStore, useConfigStore } from "../../store";
+import { MediaLink } from "../../types";
 import MediaItem from "./MediaItem.vue";
 import MediaContentControls from "./MediaContentControls.vue";
 

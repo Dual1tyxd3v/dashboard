@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { useAppStore, useConfigStore } from "../store";
-import { getMatch, checkURL, yandexMusicURLParser } from "../utils/media";
-import FormField from "./FormField.vue";
-import FormTitle from "./FormTitle.vue";
-import Modal from "./Modal.vue";
-import Button from "./Button.vue";
-import Message from "./Message.vue";
-import { AppStorage } from "../config";
-import { MediaLink, Store } from "../types";
+import { useAppStore, useConfigStore } from "../../store";
+import { getMatch, checkURL, yandexMusicURLParser } from "../../utils/media";
+import FormField from "../Form/FormField.vue";
+import FormTitle from "../Form/FormTitle.vue";
+import Modal from "../Modal.vue";
+import Button from "../Button.vue";
+import Message from "../Message.vue";
+import { AppStorage } from "../../config";
+import { MediaLink, Store } from "../../types";
 
 type Props = {
   closeForm: () => void;

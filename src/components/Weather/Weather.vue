@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { onMounted, reactive } from "vue";
-import { Weather } from "../types";
-import WeatherChart from "./WeatherChart.vue";
-import WeatherHead from "./WeatherHead.vue";
-import { getWeather } from "../api";
-import Loader from "./Loader.vue";
-import { useConfigStore } from "../store";
+import { Weather } from "../../types";
+import WeatherChart from "../Weather/WeatherChart.vue";
+import WeatherHead from "../Weather/WeatherHead.vue";
+import { getWeather } from "../../api";
+import Loader from "../Loader.vue";
+import { useConfigStore } from "../../store";
 
 const store = useConfigStore();
 

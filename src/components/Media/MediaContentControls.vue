@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { useAppStore, useConfigStore } from "../store";
-import { MediaLink } from "../types";
-import { AppStorage } from "../config";
+import { useAppStore, useConfigStore } from "../../store";
+import { MediaLink } from "../../types";
+import { AppStorage } from "../../config";
 import NewMediaLink from "./NewMediaLink.vue";
-import Button from "./Button.vue";
+import Button from "../Button.vue";
 
 type Props = {
   type: AppStorage;
@@ -73,6 +73,7 @@ function onClickHandler() {
           : 'hidden'
       "
       @click="onClickHandler"
+      title="Search link"
     >
       <v-icon name="co-magnifying-glass" />
       <form @submit.prevent="" v-if="showSearch">
