@@ -39,7 +39,7 @@ const appRoutes = computed(() => Object.entries(AppRoute).slice(1));
         :key="`nav_${name}_${i}`"
       >
         <router-link
-          :class="`flex items-center rounded-2xl px-4 py-3 text-sm capitalize opacity-80 transition-all hover:opacity-100`"
+          class="flex items-center rounded-2xl px-4 py-3 text-sm capitalize opacity-80 transition-all hover:opacity-100"
           :style="`
             color: ${store.colors?.main};
             ${
