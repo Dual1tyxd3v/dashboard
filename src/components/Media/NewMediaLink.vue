@@ -72,7 +72,7 @@ function onSumbitHanlder() {
     <Message v-if="error" :message="error" :onClick="() => (error = '')" />
     <form
       class="p-5"
-      :style="`color: ${configStore.colors.main}`"
+      :style="`color: ${configStore.Colors.main}`"
       @submit.prevent="onSumbitHanlder"
     >
       <FormTitle> Add new link </FormTitle>

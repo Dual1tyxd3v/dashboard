@@ -15,8 +15,8 @@ type Props = {
 const store = useConfigStore();
 const props = defineProps<Props>();
 
-const getBackgroundColor = computed(() => store.colors.miniTitle);
-const getFocusColor = computed(() => store.colors.active);
+const getBackgroundColor = computed(() => store.Colors.miniTitle);
+const getFocusColor = computed(() => store.Colors.active);
 </script>
 
 <template>
@@ -35,9 +35,9 @@ const getFocusColor = computed(() => store.colors.active);
       @input="changeHandler"
       :style="
         getFormElementStyle(
-          store.colors?.inputBg || '#000',
-          store.colors?.inputBg || '#000',
-          store.colors?.fromElementsBorder || '#fff',
+          store.Colors.inputBg || '#000',
+          store.Colors.inputBg || '#000',
+          store.Colors.fromElementsBorder || '#fff',
         )
       "
     />

@@ -13,11 +13,11 @@ const appRoutes = computed(() => Object.entries(AppRoute).slice(1));
 <template>
   <nav
     class="rounded-[20px] px-5 backdrop-blur-[120px] md:w-72"
-    :style="`background: linear-gradient(157.20deg, ${store.colors.bgNav[0]} 31.883%, ${store.colors.bgNav[1]} 100%);`"
+    :style="`background: linear-gradient(157.20deg, ${store.Colors.bgNav[0]} 31.883%, ${store.Colors.bgNav[1]} 100%);`"
   >
     <div
       class="mb-5 bg-[length:100%_1px] bg-bottom bg-no-repeat py-2 text-center"
-      :style="`background-image: linear-gradient(to right, transparent, ${store.colors.divider}, transparent);`"
+      :style="`background-image: linear-gradient(to right, transparent, ${store.Colors.divider}, transparent);`"
     >
       <router-link
         class="mx-auto my-2 opacity-80 transition-opacity hover:opacity-100"
@@ -27,7 +27,7 @@ const appRoutes = computed(() => Object.entries(AppRoute).slice(1));
         <v-icon
           name="md-home"
           scale="3"
-          :fill="store.colors?.main || '#fff'"
+          :fill="store.Colors.main || '#fff'"
           animation="pulse"
           hover
         />
@@ -41,23 +41,23 @@ const appRoutes = computed(() => Object.entries(AppRoute).slice(1));
         <router-link
           class="flex items-center rounded-2xl px-4 py-3 text-sm capitalize opacity-80 transition-all hover:opacity-100"
           :style="`
-            color: ${store.colors?.main};
+            color: ${store.Colors.main};
             ${
               localRoute === route.path
-                ? `background-color: ${store.colors?.bgNavActive}; opacity: 1 !important;`
+                ? `background-color: ${store.Colors.bgNavActive}; opacity: 1 !important;`
                 : 'background-color: transparent;'
             }`"
           :to="localRoute"
         >
           <span
             class="transition-all' mr-3 flex h-7 w-7 items-center justify-center rounded-xl"
-            :style="`background-color: ${localRoute === route.path ? store.colors?.icon : store.colors?.bgNavActive}`"
+            :style="`background-color: ${localRoute === route.path ? store.Colors.icon : store.Colors.bgNavActive}`"
           >
             <v-icon
               :style="`fill: ${
                 localRoute === route.path
-                  ? store.colors?.main
-                  : store.colors?.icon
+                  ? store.Colors.main
+                  : store.Colors.icon
               }`"
               :name="icon"
           /></span>

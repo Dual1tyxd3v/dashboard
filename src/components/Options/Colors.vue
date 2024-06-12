@@ -1,0 +1,5 @@
+<script setup lang="ts"></script>
+
+<template>
+  <div class="h-full w-full bg-yellow-500"></div>
+</template>

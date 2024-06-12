@@ -8,7 +8,7 @@ const input = ref(null);
 const store = useConfigStore();
 
 const getHoverColor = computed(() =>
-  store.colors ? store.colors.active : "#fff",
+  store.Colors ? store.Colors.active : "#fff",
 );
 
 onMounted(() => {
@@ -31,7 +31,10 @@ function submitHandler(e: Event) {
       ref="input"
       class="input w-full rounded-xl border-2 p-3 font-roboto outline-none"
       type="text"
-      :style="`background-color: ${store.colors?.inputBg}; border-color: ${store.colors?.inputBorder}; color: ${store.colors?.main}`"
+      :style="`
+        background-color: ${store.Colors.inputBg}; 
+        border-color: ${store.Colors.inputBorder};
+        color: ${store.Colors.main}`"
       placeholder="Search..."
       v-model="search"
     />

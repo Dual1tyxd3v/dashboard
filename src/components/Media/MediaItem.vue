@@ -27,8 +27,8 @@ function onClickHandler(e: Event) {
   <div
     class="group relative w-40 min-w-40 cursor-pointer overflow-hidden rounded-2xl p-2 text-center text-sm capitalize"
     :style="`
-      background: ${appStore.activeLink?.url === media.url ? configStore.colors.activeMedia : configStore.colors.icon};
-      color: ${configStore.colors.main};`"
+      background: ${appStore.activeLink?.url === media.url ? configStore.Colors.activeMedia : configStore.Colors.icon};
+      color: ${configStore.Colors.main};`"
     @click="appStore.activeLink = props.media"
     :title="media.label"
   >

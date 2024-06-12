@@ -2,7 +2,7 @@ import { ConfigStorage } from "./config";
 import { ConfigType } from "./types";
 
 const DefaultConfig: ConfigType = {
-  colors: {
+  Colors: {
     icon: "rgb(0, 117, 255)",
     bgMain: "#060B26",
     bgNavActive: "rgb(26, 31, 55)",
@@ -18,13 +18,13 @@ const DefaultConfig: ConfigType = {
     bgNav: ["rgba(6, 11, 38, 0.94)", "rgba(26, 31, 55, 0)"],
     block: ["rgba(6, 11, 40, 0.74)", "rgba(10, 14, 35, 0.71)"],
   },
-  background: {
+  Background: {
     blur: "100",
     main: ["/imgs/bg.jpeg"],
     position: ["center", "center"],
     size: "cover",
   },
-  fastLinks: [
+  FastLinks: [
     {
       name: "VK",
       url: "https://vk.com/feed",
@@ -44,7 +44,7 @@ const DefaultConfig: ConfigType = {
       color: "rgb(0, 117, 255)",
     },
   ],
-  currency: {
+  Currency: {
     base: "RUB",
     query: "USD,EUR",
   },

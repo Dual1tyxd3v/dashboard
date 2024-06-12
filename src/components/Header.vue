@@ -19,7 +19,7 @@ const showOptions = ref(false);
   <header class="flex items-center justify-between gap-5 py-5">
     <p
       class="text-2xl font-bold capitalize"
-      :style="`color: ${store.colors?.main}`"
+      :style="`color: ${store.Colors.main}`"
     >
       {{ route.name }}
     </p>
@@ -33,7 +33,7 @@ const showOptions = ref(false);
       <v-icon
         name="vi-file-type-config"
         scale="1.5"
-        :fill="store.colors?.main"
+        :fill="store.Colors.main"
       />
     </button>
   </header>

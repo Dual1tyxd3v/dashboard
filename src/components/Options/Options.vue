@@ -3,12 +3,18 @@ import { ref } from "vue";
 import { useConfigStore } from "../../store";
 import { OptionsTabs } from "../../config";
 import OptionsTab from "./OptionsTab.vue";
+import Background from "./Background.vue";
+import Colors from "./Colors.vue";
 
 type Props = {
   closeOptions: () => void;
 };
-
 const props = defineProps<Props>();
+
+const Tabs = {
+  Background,
+  Colors,
+};
 
 const config = useConfigStore();
 
@@ -18,12 +24,13 @@ function closeHandler() {
   activeTab.value = OptionsTabs.BACKGROUND;
   props.closeOptions();
 }
+console.log(activeTab.value);
 </script>
 
 <template>
   <div
     class="bg-black-90% fixed bottom-5 right-0 top-5 z-30 w-[50%] rounded-l-2xl backdrop:blur-[30px]"
-    :style="`background-image: linear-gradient(157.20deg, ${config.colors.bgNav[0]} 31.883%, ${config.colors.bgNav[1]} 100%);`"
+    :style="`background-image: linear-gradient(157.20deg, ${config.Colors.bgNav[0]} 31.883%, ${config.Colors.bgNav[1]} 100%);`"
   >
     <div class="relative flex h-full w-full p-5">
       <button
@@ -32,14 +39,18 @@ function closeHandler() {
         title="Close options"
         aria-label="Close options"
       >
-        <v-icon :fill="config.colors.main" scale="2" name="io-close-sharp" />
+        <v-icon :fill="config.Colors.main" scale="2" name="io-close-sharp" />
       </button>
 
       <ul
         class="h-full w-40 min-w-40 bg-[length:1px_100%] bg-right bg-no-repeat py-3 pr-3"
-        :style="`background-image: linear-gradient(to bottom, transparent, ${config.colors.divider}, transparent);`"
+        :style="`background-image: linear-gradient(to bottom, transparent, ${config.Colors.divider}, transparent);`"
       >
-        <li class="[&:not(:last-child)]:mb-3"v-for="(k, v, i) in OptionsTabs" :key="`tab_${i}_${k}`">
+        <li
+          class="[&:not(:last-child)]:mb-3"
+          v-for="(k, v, i) in OptionsTabs"
+          :key="`tab_${i}_${k}`"
+        >
           <OptionsTab
             @click="activeTab = k"
             :label="v.replace(/_/g, ' ').toLowerCase()"
@@ -47,6 +58,29 @@ function closeHandler() {
           />
         </li>
       </ul>
+      <div class="relative flex-grow overflow-auto">
+        <KeepAlive>
+          <Transition name="tab">
+            <component
+              :is="Tabs[activeTab as keyof typeof Tabs]"
+              :key="activeTab"
+            ></component>
+          </Transition>
+        </KeepAlive>
+      </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+.tab-leave-to {
+  transform-origin: bottom;
+  position: absolute;
+  right: 0;
+  transform: scaleY(0);
+}
+.tab-enter-active,
+.tab-leave-active {
+  transition: transform 0.2s ease-in-out;
+}
+</style>

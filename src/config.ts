@@ -72,9 +72,9 @@ export enum AppStorage {
 }
 
 export enum OptionsTabs {
-  BACKGROUND = "background",
-  COLORS = "colors",
-  FAST_LINKS = "fastLinks",
-  NAV_LINKS = "navLinks",
-  CURRENCY = "currency",
+  BACKGROUND = "Background",
+  COLORS = "Colors",
+  FAST_LINKS = "FastLinks",
+  NAV_LINKS = "NavLinks",
+  CURRENCY = "Currency",
 }

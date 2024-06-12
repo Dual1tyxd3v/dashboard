@@ -21,8 +21,8 @@ function changeHandler(value: string) {
   search.value = value;
 }
 
-const getScrollBarColor = computed(() => configStore.colors.icon);
-const getScrollBarActiveColor = computed(() => configStore.colors.active);
+const getScrollBarColor = computed(() => configStore.Colors.icon);
+const getScrollBarActiveColor = computed(() => configStore.Colors.active);
 const filteredLinks = computed(() =>
   (appStore[props.type as keyof typeof appStore] as MediaLink[]).filter(
     (link) => link.label.toLowerCase().includes(search.value.toLowerCase()),
@@ -47,7 +47,7 @@ watch(
 <template>
   <div
     class="relative mb-10 min-h-16 rounded-2xl"
-    :style="`background-image: linear-gradient(175.70deg, ${configStore.colors.block[0]} 12.226%,${configStore.colors.block[1]} 113.851%)`"
+    :style="`background-image: linear-gradient(175.70deg, ${configStore.Colors.block[0]} 12.226%,${configStore.Colors.block[1]} 113.851%)`"
   >
     <MediaContentControls
       :changeHandler="changeHandler"

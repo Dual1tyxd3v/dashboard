@@ -80,8 +80,8 @@ function onClickHandler() {
         <input
           class="px-1 tracking-widest outline-none"
           :style="`
-            color: ${configStore.colors.main};
-            background: linear-gradient(157.20deg, ${configStore.colors.bgNav[0]} 31.883%, ${configStore.colors.bgNav[1]} 100%);`"
+            color: ${configStore.Colors.main};
+            background: linear-gradient(157.20deg, ${configStore.Colors.bgNav[0]} 31.883%, ${configStore.Colors.bgNav[1]} 100%);`"
           ref="input"
           @blur="onBlurHandler"
           type="text"

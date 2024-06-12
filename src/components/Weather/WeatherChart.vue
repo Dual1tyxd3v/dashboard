@@ -40,7 +40,7 @@ const data = computed(() => {
     labels: history.map((day) => day.date),
     datasets: [
       {
-        backgroundColor: store.colors?.active,
+        backgroundColor: store.Colors.active,
         data: history.map((day) => day.temp),
         tension: 0.2,
       },
@@ -57,9 +57,9 @@ const data = computed(() => {
       :data="data"
       :options="
         getChartConfig(
-          store.colors?.active || '#fff',
-          store.colors?.main || '#fff',
-          store.colors?.gridColor || '#fff',
+          store.Colors.active || '#fff',
+          store.Colors.main || '#fff',
+          store.Colors.gridColor || '#fff',
         )
       "
     />

@@ -11,7 +11,7 @@ const showForm = ref(false);
 
 const background = computed(
   () =>
-    `linear-gradient(175.70deg, ${store.colors.block[0]} 12.226%,${store.colors.block[1]} 113.851%)`,
+    `linear-gradient(175.70deg, ${store.Colors.block[0]} 12.226%,${store.Colors.block[1]} 113.851%)`,
 );
 
 function onclickHandler(e: Event) {
@@ -35,7 +35,7 @@ function onclickHandler(e: Event) {
   </Transition>
   <div
     class="wrapper relative flex-grow cursor-pointer overflow-hidden rounded-2xl py-4"
-    :style="`color: ${store.colors?.main}`"
+    :style="`color: ${store.Colors.main}`"
     @click="onclickHandler"
   >
     <p class="text-center" v-if="!notes.notes.length">There is no notes yet.</p>

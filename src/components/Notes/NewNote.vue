@@ -57,7 +57,7 @@ function onChangeHandler(e: Event) {
     <form
       @submit.prevent="onSumbitHanlder"
       class="p-5"
-      :style="`color: ${store.colors?.main}`"
+      :style="`color: ${store.Colors.main}`"
     >
       <FormTitle>Add new note</FormTitle>
       <FormField
