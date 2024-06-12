@@ -1,7 +1,7 @@
 import { ConfigStorage } from "./config";
 import { ConfigType } from "./types";
 
-const DefaultConfig = {
+const DefaultConfig: ConfigType = {
   colors: {
     icon: "rgb(0, 117, 255)",
     bgMain: "#060B26",
@@ -14,13 +14,15 @@ const DefaultConfig = {
     main: "#fff",
     fromElementsBorder: "#383838",
     activeMedia: "rgb(1, 181, 116)",
-  },
-  backgroundImage: {
-    blur: "100",
-    main: "/imgs/bg.jpeg",
-    bgNav: ["rgba(6, 11, 38, 0.94)", "rgba(26, 31, 55, 0)"],
     divider: "#E0E1E2",
+    bgNav: ["rgba(6, 11, 38, 0.94)", "rgba(26, 31, 55, 0)"],
     block: ["rgba(6, 11, 40, 0.74)", "rgba(10, 14, 35, 0.71)"],
+  },
+  background: {
+    blur: "100",
+    main: ["/imgs/bg.jpeg"],
+    position: ["center", "center"],
+    size: "cover",
   },
   fastLinks: [
     {

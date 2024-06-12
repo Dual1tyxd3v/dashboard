@@ -70,3 +70,11 @@ export enum AppStorage {
   YOUTUBE = "youtube",
   MUSIC = "music",
 }
+
+export enum OptionsTabs {
+  BACKGROUND = "background",
+  COLORS = "colors",
+  FAST_LINKS = "fastLinks",
+  NAV_LINKS = "navLinks",
+  CURRENCY = "currency",
+}

@@ -33,14 +33,16 @@ export type ConfigType = {
     gridColor: string;
     main: string;
     fromElementsBorder: string;
-    activeMedia: string;
-  };
-  backgroundImage: {
-    blur: string;
-    main: string;
     bgNav: string[];
     divider: string;
     block: string[];
+    activeMedia: string;
+  };
+  background: {
+    blur: string;
+    main: string[];
+    position: string[];
+    size: "cover" | "contain";
   };
   fastLinks: FastLink[];
   currency: {

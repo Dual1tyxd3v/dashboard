@@ -20,6 +20,7 @@ module.exports = {
       },
       colors: {
         "black-50%": 'rgba(0, 0, 0, 0.5)',
+        "black-90%": 'rgba(0, 0, 0, 0.9)',
       },
       animation: {
         loader: "loader 2s infinite",

@@ -13,11 +13,11 @@ const appRoutes = computed(() => Object.entries(AppRoute).slice(1));
 <template>
   <nav
     class="rounded-[20px] px-5 backdrop-blur-[120px] md:w-72"
-    :style="`background: linear-gradient(157.20deg, ${store.backgroundImage?.bgNav[0]} 31.883%, ${store.backgroundImage?.bgNav[1]} 100%);`"
+    :style="`background: linear-gradient(157.20deg, ${store.colors.bgNav[0]} 31.883%, ${store.colors.bgNav[1]} 100%);`"
   >
     <div
       class="mb-5 bg-[length:100%_1px] bg-bottom bg-no-repeat py-2 text-center"
-      :style="`background-image: linear-gradient(to right, transparent, ${store.backgroundImage?.divider}, transparent);`"
+      :style="`background-image: linear-gradient(to right, transparent, ${store.colors.divider}, transparent);`"
     >
       <router-link
         class="mx-auto my-2 opacity-80 transition-opacity hover:opacity-100"

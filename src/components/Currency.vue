@@ -23,7 +23,7 @@ onMounted(async () => {
 <template>
   <div
     class="relative overflow-hidden rounded-2xl md:min-h-[315px] md:min-w-[300px]"
-    :style="`background-image: linear-gradient(175.70deg, ${store.backgroundImage?.block[0]} 12.226%,${store.backgroundImage?.block[1]} 113.851%)`"
+    :style="`background-image: linear-gradient(175.70deg, ${store.colors.block[0]} 12.226%,${store.colors.block[1]} 113.851%)`"
   >
     <Loader v-if="currencies.isLoading" />
     <p v-else-if="!currencies.data">no data</p>
@@ -34,7 +34,7 @@ onMounted(async () => {
           v-for="(value, name, i) in currencies.data"
           :key="`cur_${i}_${name}`"
           class="rounded-xl px-4 py-3 [&:not(:last-child)]:mb-2"
-          :style="`background-image: linear-gradient(175.70deg, ${store.backgroundImage?.block[0]} 12.226%,${store.backgroundImage?.block[1]} 113.851%)`"
+          :style="`background-image: linear-gradient(175.70deg, ${store.colors.block[0]} 12.226%,${store.colors.block[1]} 113.851%)`"
         >
           <p
             class="flex items-center justify-between uppercase"

@@ -1,14 +1,21 @@
 <script setup lang="ts">
 import { useRoute } from "vue-router";
 import FastLinks from "./FastLinks.vue";
-import { useAppStore, useConfigStore } from "../store";
+import { useConfigStore } from "../store";
+import { ref } from "vue";
+import Options from "./Options/Options.vue";
 
 const store = useConfigStore();
-const appStore = useAppStore();
+
 const route = useRoute();
+
+const showOptions = ref(false);
 </script>
 
 <template>
+  <Transition name="options">
+    <Options v-if="showOptions" :closeOptions="() => showOptions = false" />
+  </Transition>
   <header class="flex items-center justify-between gap-5 py-5">
     <p
       class="text-2xl font-bold capitalize"
@@ -21,18 +28,7 @@ const route = useRoute();
       aria-label="Config"
       title="Config"
       class="opacity-50 transition-opacity hover:opacity-100"
-      @click="
-        () => {
-          appStore.youtube = appStore.youtube.length
-            ? []
-            : [
-                {
-                  url: 'https://www.youtube.com/c/RecrentChannel/videos',
-                  label: '@@@@@@@@@@@@@@@',
-                },
-              ];
-        }
-      "
+      @click="() => (showOptions = true)"
     >
       <v-icon
         name="vi-file-type-config"
@@ -42,3 +38,14 @@ const route = useRoute();
     </button>
   </header>
 </template>
+
+<style scoped>
+.options-enter-from,
+.options-leave-to {
+  transform: translateX(100%);
+}
+.options-enter-active,
+.options-leave-active {
+  transition: transform 0.2s ease-in-out;
+}
+</style>

@@ -26,7 +26,7 @@ onMounted(async () => {
 <template>
   <div
     class="relative flex-grow overflow-hidden rounded-2xl p-4 md:min-h-[315px] md:min-w-[500px]"
-    :style="`color: ${store.colors?.main}; background-image: linear-gradient(175.70deg, ${store.backgroundImage?.block[0]} 12.226%,${store.backgroundImage?.block[1]} 113.851%)`"
+    :style="`color: ${store.colors?.main}; background-image: linear-gradient(175.70deg, ${store.colors.block[0]} 12.226%,${store.colors.block[1]} 113.851%)`"
   >
     <Loader v-if="weather.isLoading" />
     <template v-else>

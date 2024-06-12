@@ -31,7 +31,7 @@ onUnmounted(() => clearInterval(timer));
 <template>
   <div
     class="group relative w-52 rounded-2xl p-2 text-center"
-    :style="`background-image: linear-gradient(175.70deg, ${configStore.backgroundImage?.block[0]} 12.226%,${configStore.backgroundImage?.block[1]} 113.851%)`"
+    :style="`background-image: linear-gradient(175.70deg, ${configStore.colors.block[0]} 12.226%,${configStore.colors.block[1]} 113.851%)`"
     data-js="note"
   >
     <button

@@ -6,8 +6,8 @@ const store = useConfigStore();
 
 <template>
   <ul
-    class="flex flex-grow items-center justify-evenly rounded-2xl bg-bg-block"
-    :style="`background-image: linear-gradient(175.70deg, ${store.backgroundImage?.block[0]} 12.226%,${store.backgroundImage?.block[1]} 113.851%)`"
+    class="bg-bg-block flex flex-grow items-center justify-evenly rounded-2xl"
+    :style="`background-image: linear-gradient(175.70deg, ${store.colors.block[0]} 12.226%,${store.colors.block[1]} 113.851%)`"
   >
     <li
       class="py-2"
