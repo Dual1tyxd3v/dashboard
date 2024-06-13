@@ -5,7 +5,7 @@ import { getTime } from "../../utils/timeAndDate";
 const props = defineProps({
   temp: Number,
   city: String,
-  humidity: Number,
+  humidity: String,
   pressure: Number,
   icon: String,
 });
@@ -22,10 +22,6 @@ const temperature = computed(() => {
   return `${props.temp > 0 ? "+" : "-"}${props.temp}`;
 });
 
-const iconUrl = computed(() => {
-  if (!props.icon) return "";
-  return props.icon.replace("//", "https://");
-});
 
 onUnmounted(() => clearInterval(timer));
 </script>
@@ -36,12 +32,12 @@ onUnmounted(() => clearInterval(timer));
       <p :class="`relative text-3xl`">
         <span
           class="absolute left-[-60%] top-0 h-8 w-8 bg-cover bg-center bg-no-repeat"
-          :style="`background-image: url(${iconUrl});`"
+          :style="`background-image: url(${icon});`"
         ></span>
         {{ temperature }}
       </p>
       <div class="flex items-center gap-4 text-sm">
-        <p><v-icon name="wi-humidity" scale="1.3" />{{ humidity }}%</p>
+        <p><v-icon name="wi-humidity" scale="1.3" />{{ humidity }}</p>
         <p><v-icon name="fa-ruler-vertical" scale="1.3" />{{ pressure }}</p>
       </div>
     </div>

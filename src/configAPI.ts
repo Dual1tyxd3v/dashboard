@@ -16,6 +16,7 @@ export const DefaultConfig: ConfigType = {
     divider: "#E0E1E2",
     bgNav: ["rgba(6, 11, 38, 0.94)", "rgba(26, 31, 55, 0)"],
     block: ["rgba(6, 11, 40, 0.74)", "rgba(10, 14, 35, 0.71)"],
+    chartMin: "#E31A1A",
   },
   Background: {
     blur: "100",

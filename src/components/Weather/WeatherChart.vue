@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { HistoryType } from "../../types";
+import { ForecastTemp } from "../../types";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -26,23 +26,39 @@ ChartJS.register(
 );
 
 const props = defineProps({
-  history: Array || null,
+  forecastTemp: Array || null,
 });
 
 const store = useConfigStore();
 
 const data = computed(() => {
-  if (!props.history) return null;
+  if (!props.forecastTemp) return null;
 
-  const history = props.history as HistoryType[];
+  const history = props.forecastTemp as ForecastTemp[];
 
   return {
     labels: history.map((day) => day.date),
     datasets: [
       {
         backgroundColor: store.Colors.active,
-        data: history.map((day) => day.temp),
+        borderColor: store.Colors.active,
+        data: history.map((day) => day.average),
         tension: 0.2,
+        label: "Average",
+      },
+      {
+        backgroundColor: store.Colors.activeMedia,
+        borderColor: store.Colors.activeMedia,
+        data: history.map((day) => day.max),
+        tension: 0.2,
+        label: "Max",
+      },
+      {
+        backgroundColor: store.Colors.chartMin,
+        borderColor: store.Colors.chartMin,
+        data: history.map((day) => day.min),
+        tension: 0.2,
+        label: "Min",
       },
     ],
   };
@@ -57,7 +73,6 @@ const data = computed(() => {
       :data="data"
       :options="
         getChartConfig(
-          store.Colors.active || '#fff',
           store.Colors.main || '#fff',
           store.Colors.gridColor || '#fff',
         )

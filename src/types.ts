@@ -3,15 +3,17 @@ import { AppStorage } from "./config";
 export type Weather = {
   city: string;
   temp: number;
-  humidity: number;
+  humidity: string;
   pressure: number;
   icon: string;
-  history: HistoryType[];
+  forecastTemp: ForecastTemp[];
 };
 
-export type HistoryType = {
+export type ForecastTemp = {
   date: string;
-  temp: number;
+  max: number;
+  min: number;
+  average: number;
 };
 
 type FastLink = {
@@ -36,6 +38,7 @@ export type ConfigType = {
     divider: string;
     block: string[];
     activeMedia: string;
+    chartMin: string;
   };
   Background: {
     color: string;

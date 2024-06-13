@@ -10,23 +10,9 @@ export const getWeather = async () => {
       return { data: null, error: resp.statusText };
     }
 
-    const obj = await resp.json();
+    const data = await resp.json();
 
-    const history = obj.forecast.forecastday.map(
-      (day: { date: string; day: { avgtemp_c: number } }) => ({
-        date: day.date,
-        temp: day.day.avgtemp_c,
-      }),
-    );
-    const data = {
-      city: obj.location.name as string,
-      temp: obj.current.temp_c as number,
-      icon: obj.current.condition.icon as string,
-      humidity: obj.current.humidity as number,
-      pressure: obj.current.pressure_mb as number,
-      history,
-    };
-    return { data, error: "" };
+    return { data: data.data, error: "" };
   } catch (e) {
     console.log(e);
     return { data: null, error: (e as Error).message };

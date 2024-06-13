@@ -39,7 +39,7 @@ onMounted(async () => {
         :city="weather.data?.city"
         :icon="weather.data?.icon"
       />
-      <WeatherChart :history="weather.data?.history" />
+      <WeatherChart :forecastTemp="weather.data?.forecastTemp" />
     </template>
   </div>
 </template>
