@@ -34,7 +34,10 @@ function onChangeHandler(e: Event) {
   }
 
   if (name === "images") {
-    config.Background.images = formData.value.images.split(",");
+    config.Background.images = formData.value.images
+      .replace(/ /g, "")
+      .replace(/\n/g, "")
+      .split(",");
     return;
   }
 

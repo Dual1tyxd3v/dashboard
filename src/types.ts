@@ -46,7 +46,7 @@ export type ConfigType = {
   FastLinks: FastLink[];
   Currency: {
     base: string;
-    query: string;
+    query: string[];
   };
 };
 
@@ -67,4 +67,9 @@ export type Store = {
   activeLink: null | MediaLink;
   [AppStorage.YOUTUBE]: MediaLink[];
   [AppStorage.MUSIC]: MediaLink[];
+  allCurrencies: string[];
+};
+
+export type Currencies = {
+  [propertyName: string]: number;
 };

@@ -5,6 +5,7 @@ import { OptionsTabs } from "../../config";
 import OptionsTab from "./OptionsTab.vue";
 import Background from "./Background.vue";
 import Colors from "./Colors.vue";
+import Currency from "./Currency.vue";
 
 type Props = {
   closeOptions: () => void;
@@ -13,6 +14,7 @@ const props = defineProps<Props>();
 
 const Tabs = {
   Background,
+  Currency,
   Colors,
 };
 
@@ -31,7 +33,7 @@ function closeHandler() {
 
 <template>
   <div
-    class="bg-black-90% fixed bottom-5 right-0 top-5 z-30 w-[50%] rounded-l-2xl backdrop:blur-[30px] md:min-w-[614px]"
+    class="fixed bottom-5 right-0 top-5 z-30 w-[50%] rounded-l-2xl bg-black-90% backdrop:blur-[30px] md:min-w-[614px]"
     :style="`background-image: linear-gradient(157.20deg, ${config.Colors.bgNav[0]} 31.883%, ${config.Colors.bgNav[1]} 100%);`"
   >
     <div class="relative flex h-full w-full p-5 pt-7">
@@ -66,7 +68,7 @@ function closeHandler() {
             <component
               :is="Tabs[activeTab as keyof typeof Tabs]"
               :key="activeTab"
-              class="my-scroll overflow-y-scroll flex flex-col"
+              class="my-scroll flex flex-col overflow-y-scroll"
             ></component>
           </Transition>
         </KeepAlive>

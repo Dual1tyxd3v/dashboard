@@ -29,6 +29,7 @@ export const useAppStore = defineStore({
     [AppStorage.YOUTUBE]: getLinks(AppStorage.YOUTUBE),
     [AppStorage.MUSIC]: getLinks(AppStorage.MUSIC),
     activeLink: null,
+    allCurrencies: []
   }),
   actions: {
     addNote(note: Note) {

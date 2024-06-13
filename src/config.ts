@@ -20,10 +20,8 @@ export const AppRoute = {
 export const WeatherURL =
   "https://api.weatherapi.com/v1/forecast.json?key=c2bd7399878a459fb96104221240606&q=auto:ip&days=10";
 export const SEARCH_URL = "https://www.google.com/search?q=";
-
-const BASE_CURRENCY = "RUB";
-const QUERY_CURRENCIES = "USD,EUR";
-export const CURRENCY_API_URL = `https://api.freecurrencyapi.com/v1/latest?base_currency=${BASE_CURRENCY}&currencies=${QUERY_CURRENCIES}`;
+export const ALL_CURRENCIES_URL =
+  "https://api.freecurrencyapi.com/v1/currencies";
 
 export const getChartConfig = (
   activeColor: string,
@@ -64,6 +62,7 @@ export const getChartConfig = (
 export const ConfigStorage = "config";
 
 export const MAX_CHARS = 15;
+export const MAX_CURRENCIES = 4;
 
 export enum AppStorage {
   NOTES = "notes",

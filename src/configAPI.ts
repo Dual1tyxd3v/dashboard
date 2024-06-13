@@ -45,7 +45,7 @@ export const DefaultConfig: ConfigType = {
   ],
   Currency: {
     base: "RUB",
-    query: "USD,EUR",
+    query: ["USD", "EUR"],
   },
 };
 

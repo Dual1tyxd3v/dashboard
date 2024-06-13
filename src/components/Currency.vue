@@ -1,22 +1,35 @@
 <script setup lang="ts">
 import { getCurrencies } from "../api";
 import { useConfigStore } from "../store";
+import { formatValues, getCurrencyExchangeURL } from "../utils/currency";
 import Loader from "./Loader.vue";
-import { onMounted, reactive } from "vue";
+import { onMounted, reactive, watch } from "vue";
 
 const currencies = reactive<{ isLoading: boolean; data: null | Object }>({
-  isLoading: true,
+  isLoading: false,
   data: null,
 });
 const store = useConfigStore();
 
-onMounted(async () => {
-  const data = await getCurrencies();
+async function loadCurrency() {
+  currencies.isLoading = true;
+  const resp = await getCurrencies(
+    getCurrencyExchangeURL(store.Currency.base, store.Currency.query),
+  );
   currencies.isLoading = false;
 
-  if (!data.data) return;
+  if (!resp.data) return;
+  const data = formatValues(resp.data);
 
-  currencies.data = data.data;
+  currencies.data = data;
+}
+
+watch([() => store.Currency.base, () => store.Currency.query], () => {
+  loadCurrency();
+});
+
+onMounted(() => {
+  loadCurrency();
 });
 </script>
 
@@ -27,7 +40,7 @@ onMounted(async () => {
   >
     <Loader v-if="currencies.isLoading" />
     <p v-else-if="!currencies.data">no data</p>
-    <div v-else class="p-4" :style="`color: ${store.Colors?.main}`">
+    <div v-else class="p-4" :style="`color: ${store.Colors.main}`">
       <h3 class="mb-4 text-2xl font-bold">Currencies</h3>
       <ul>
         <li
@@ -40,10 +53,10 @@ onMounted(async () => {
             class="flex items-center justify-between uppercase"
             :style="`color: ${store.Colors.miniTitle}`"
           >
-            {{ name }}
-            <span class="text-l" :style="`color: ${store.Colors.main}`">{{
-              value
-            }}</span>
+            1 {{ name }} to {{ store.Currency.base }}
+            <span class="text-l" :style="`color: ${store.Colors.main}`">
+              {{ value }}</span
+            >
           </p>
         </li>
       </ul>

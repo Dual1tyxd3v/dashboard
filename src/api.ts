@@ -1,4 +1,6 @@
-import { CURRENCY_API_URL, WeatherURL } from "./config";
+import { ALL_CURRENCIES_URL, WeatherURL } from "./config";
+
+const CURRENCY_API_KEY = "fca_live_nkgJCR6VcRSHvwF1Ktqe5nuamdeVMIV3zFLSiiRT";
 
 export const getWeather = async () => {
   try {
@@ -31,30 +33,48 @@ export const getWeather = async () => {
   }
 };
 
-export const getCurrencies = async () => {
+export const getCurrencies = async (url: string) => {
   try {
-    const resp = await fetch(CURRENCY_API_URL, {
+    const resp = await fetch(url, {
       headers: {
-        apiKey: "fca_live_nkgJCR6VcRSHvwF1Ktqe5nuamdeVMIV3zFLSiiRT",
+        apiKey: CURRENCY_API_KEY,
         base_currency: "RUB",
         currencies: "EUR, USD",
       },
     });
     if (!resp.ok) {
       console.log(resp.statusText);
-      return { data: null, erorr: resp.statusText };
+      return { data: null, error: resp.statusText };
     }
 
     const { data } = await resp.json();
     return {
-      data: {
-        eur: (1 / data.EUR).toFixed(2),
-        usd: (1 / data.USD).toFixed(2),
-      },
+      data,
       error: "",
     };
   } catch (e) {
     console.log(e);
     return { data: null, error: (e as Error).message };
+  }
+};
+
+export const getAllCurrencies = async () => {
+  try {
+    const resp = await fetch(ALL_CURRENCIES_URL, {
+      headers: {
+        apiKey: CURRENCY_API_KEY,
+      },
+    });
+    if (!resp.ok) {
+      console.log(resp.statusText);
+      return { data: [], error: resp.statusText };
+    }
+
+    const data = await resp.json();
+
+    return { data: Object.keys(data.data), error: "" };
+  } catch (e) {
+    console.log(e);
+    return { data: [], error: (e as Error).message };
   }
 };

@@ -21,8 +21,8 @@ function onResetHandler(needHardReset: boolean) {
 }
 
 function onSaveHandler() {
-  config.save();
   props.save();
+  config.save();
 }
 </script>
 
