@@ -3,10 +3,10 @@ import { computed, ref } from "vue";
 import { useConfigStore } from "../../store";
 import FormField from "./FormField.vue";
 import InputText from "./InputText.vue";
-import Button from "../Button.vue";
 import Hint from "./Hint.vue";
 import InputColor from "./InputColor.vue";
 import Message from "../Message.vue";
+import FormButtons from "./FormButtons.vue";
 
 const config = useConfigStore();
 
@@ -46,19 +46,12 @@ function onChangeHandler(e: Event) {
   config.Background.color = value;
 }
 
-function onResetHandler(needHardReset: boolean) {
-  if (needHardReset) {
-    config.hardReset();
-  } else {
-    config.reset();
-  }
-
+function reset() {
   formData.value = { ...config.Background };
   message.value = "config reset successfully";
 }
 
-function onSaveHandler() {
-  config.save();
+function save() {
   message.value = "Config saved successfully";
 }
 </script>
@@ -155,13 +148,7 @@ function onSaveHandler() {
       You can insert a link to an image, or several, separated by commas. In the
       latter case, 1 random one will be selected
     </Hint>
-    <div class="mt-auto flex">
-      <Button type="button" @click="() => onResetHandler(false)">Reset</Button>
-      <Button type="button" @click="onSaveHandler">Save</Button>
-      <Button type="button" @click="() => onResetHandler(true)"
-        >Hard reset</Button
-      >
-    </div>
+    <FormButtons :save="save" :reset="reset" />
   </form>
 </template>
 
