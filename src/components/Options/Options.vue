@@ -61,7 +61,7 @@ function closeHandler() {
       </ul>
       <div class="relative flex-grow overflow-hidden">
         <KeepAlive>
-          <Transition name="tab">
+          <Transition name="tab" mode="out-in">
             <component
               :is="Tabs[activeTab as keyof typeof Tabs]"
               :key="activeTab"
@@ -81,8 +81,13 @@ function closeHandler() {
   right: 0;
   transform: scaleY(0);
 }
+.tab-enter-from {
+  opacity: 0;
+}
 .tab-enter-active,
 .tab-leave-active {
-  transition: transform 0.2s ease-in-out;
+  transition:
+    transform 0.2s cubic-bezier(0.8, 0, 0.29, 0.99),
+    opacity 0.2s cubic-bezier(0.8, 0, 0.29, 0.99);
 }
 </style>
