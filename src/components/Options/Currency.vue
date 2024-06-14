@@ -3,7 +3,7 @@ import { getAllCurrencies } from "../../api";
 import { useConfigStore } from "../../store";
 import Loader from "../Loader.vue";
 import Message from "../Message.vue";
-import { computed, onMounted, ref } from "vue";
+import { onMounted, ref } from "vue";
 import FormField from "./FormField.vue";
 import Hint from "./Hint.vue";
 import InputSelect from "./InputSelect.vue";
@@ -26,10 +26,6 @@ const initData = {
 const message = ref("");
 const isLoading = ref(true);
 const formData = ref<typeof initData>(JSON.parse(JSON.stringify(initData)));
-
-const disabled = computed(
-  () => JSON.stringify(initData) === JSON.stringify(formData.value),
-);
 
 onMounted(async () => {
   if (!appStore.allCurrencies.length) {
@@ -106,6 +102,6 @@ function reset() {
         />
       </div>
     </FormField>
-    <FormButtons :disabled="disabled" :save="save" :reset="reset" />
+    <FormButtons :save="save" :reset="reset" />
   </form>
 </template>
