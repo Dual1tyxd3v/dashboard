@@ -54,14 +54,14 @@ function onClickHandler() {
     />
   </Transition>
   <div
-    :class="`absolute left-[50%] z-[5] flex translate-x-[-50%] gap-3 transition-all ${
+    :class="`absolute left-[50%] z-[5] flex translate-x-[-50%] items-stretch gap-3 transition-all ${
       getLinksLength
         ? 'text-xs-important top-[100%] tracking-[4px]'
         : 'top-[50%] translate-y-[-50%]'
     }`"
   >
     <Button
-      :class="`transition-all ${getLinksLength ? 'px-6 py-1-important text-xs tracking-[4px]' : ''}`"
+      :class="`my-0 transition-all ${getLinksLength ? 'px-6 py-1-important text-xs tracking-[4px]' : ''}`"
       @click="showForm = true"
     >
       Add new link

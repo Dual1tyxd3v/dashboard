@@ -13,6 +13,7 @@
     font-weight: bold;
     src: url(/fonts/Roboto-Bold.ttf);
   }
+  
   ::-webkit-scrollbar {
     width: 14px;
   }

@@ -3,7 +3,7 @@ import { getAllCurrencies } from "../../api";
 import { useConfigStore } from "../../store";
 import Loader from "../Loader.vue";
 import Message from "../Message.vue";
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import FormField from "./FormField.vue";
 import Hint from "./Hint.vue";
 import InputSelect from "./InputSelect.vue";
@@ -13,7 +13,7 @@ import { useAppStore } from "../../store";
 const config = useConfigStore();
 const appStore = useAppStore();
 
-const initData = () => ({
+const initData = {
   base: config.Currency.base,
   currencies: [
     config.Currency.query[0] || "",
@@ -21,11 +21,15 @@ const initData = () => ({
     config.Currency.query[2] || "",
     config.Currency.query[3] || "",
   ],
-});
+};
 
 const message = ref("");
 const isLoading = ref(true);
-const formData = ref(initData());
+const formData = ref<typeof initData>(JSON.parse(JSON.stringify(initData)));
+
+const disabled = computed(
+  () => JSON.stringify(initData) === JSON.stringify(formData.value),
+);
 
 onMounted(async () => {
   if (!appStore.allCurrencies.length) {
@@ -62,7 +66,7 @@ function save() {
 }
 
 function reset() {
-  formData.value = initData();
+  formData.value = JSON.parse(JSON.stringify(initData));
   message.value = "config reset successfully";
 }
 </script>
@@ -102,6 +106,6 @@ function reset() {
         />
       </div>
     </FormField>
-    <FormButtons :save="save" :reset="reset" />
+    <FormButtons :disabled="disabled" :save="save" :reset="reset" />
   </form>
 </template>

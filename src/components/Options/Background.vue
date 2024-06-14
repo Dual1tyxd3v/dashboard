@@ -21,6 +21,9 @@ const formData = ref({ ...initData });
 const message = ref("");
 
 const getHoverColor = computed(() => config.Colors.active);
+const disabled = computed(
+  () => JSON.stringify(formData.value) === JSON.stringify(initData),
+);
 
 function onChangeHandler(e: Event) {
   const { value, name } = e.target as HTMLInputElement | HTMLTextAreaElement;
@@ -151,7 +154,7 @@ function save() {
       You can insert a link to an image, or several, separated by commas. In the
       latter case, 1 random one will be selected
     </Hint>
-    <FormButtons :save="save" :reset="reset" />
+    <FormButtons :save="save" :reset="reset" :disabled="disabled" />
   </form>
 </template>
 

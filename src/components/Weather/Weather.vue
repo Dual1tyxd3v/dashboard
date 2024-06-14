@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, reactive } from "vue";
+import { onMounted, ref } from "vue";
 import { Weather } from "../../types";
 import WeatherChart from "../Weather/WeatherChart.vue";
 import WeatherHead from "../Weather/WeatherHead.vue";
@@ -9,17 +9,22 @@ import { useConfigStore } from "../../store";
 
 const store = useConfigStore();
 
-const weather = reactive<{
-  isLoading: boolean;
+const weather = ref<{
   data: null | Weather;
-}>({ isLoading: true, data: null });
+  error: string;
+}>({ data: null, error: "" });
+const isLoading = ref(false);
+
+async function loadWeather() {
+  isLoading.value = true;
+  const data = await getWeather();
+  isLoading.value = false;
+
+  weather.value = data;
+}
 
 onMounted(async () => {
-  const { data } = await getWeather();
-  weather.isLoading = false;
-  if (data) {
-    weather.data = data;
-  }
+  loadWeather();
 });
 </script>
 
@@ -30,7 +35,7 @@ onMounted(async () => {
       color: ${store.Colors.main}; 
       background-image: linear-gradient(175.70deg, ${store.Colors.block[0]} 12.226%,${store.Colors.block[1]} 113.851%)`"
   >
-    <Loader v-if="weather.isLoading" />
+    <Loader v-if="isLoading" />
     <template v-else>
       <WeatherHead
         :temp="weather.data?.temp"

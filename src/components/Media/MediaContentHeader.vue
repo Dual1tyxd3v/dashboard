@@ -21,8 +21,6 @@ function changeHandler(value: string) {
   search.value = value;
 }
 
-const getScrollBarColor = computed(() => configStore.Colors.icon);
-const getScrollBarActiveColor = computed(() => configStore.Colors.active);
 const filteredLinks = computed(() =>
   (appStore[props.type as keyof typeof appStore] as MediaLink[]).filter(
     (link) => link.label.toLowerCase().includes(search.value.toLowerCase()),
@@ -57,7 +55,7 @@ watch(
     <div class="dark-edges relative h-full overflow-hidden rounded-2xl">
       <div
         ref="itemsContainer"
-        class="flex-start container flex h-full w-full items-center gap-3 overflow-x-scroll px-2 py-1"
+        class="flex-start flex h-full w-full items-center gap-3 overflow-x-scroll px-2 py-1"
       >
         <transition-group name="media">
           <MediaItem
@@ -84,13 +82,5 @@ watch(
 }
 .media-leave-active {
   position: absolute;
-}
-
-.container::-webkit-scrollbar-thumb {
-  background-color: v-bind(getScrollBarColor);
-  cursor: pointer;
-}
-.container::-webkit-scrollbar-thumb:hover {
-  background-color: v-bind(getScrollBarActiveColor);
 }
 </style>

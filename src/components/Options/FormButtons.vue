@@ -5,6 +5,7 @@ import Button from "../Button.vue";
 type Props = {
   reset: () => void;
   save: () => void;
+  disabled: boolean;
 };
 const props = defineProps<Props>();
 
@@ -28,8 +29,15 @@ function onSaveHandler() {
 
 <template>
   <div class="mt-auto flex">
-    <Button type="button" @click="() => onResetHandler(false)">Reset</Button>
-    <Button type="button" @click="onSaveHandler">Save</Button>
+    <Button
+      :disabled="disabled"
+      type="button"
+      @click="() => onResetHandler(false)"
+      >Reset</Button
+    >
+    <Button :disabled="disabled" type="button" @click="onSaveHandler"
+      >Save</Button
+    >
     <Button type="button" @click="() => onResetHandler(true)"
       >Hard reset</Button
     >

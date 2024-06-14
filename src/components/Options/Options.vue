@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { ref } from "vue";
 import { useConfigStore } from "../../store";
 import { OptionsTabs } from "../../config";
 import OptionsTab from "./OptionsTab.vue";
@@ -21,9 +21,6 @@ const Tabs = {
 const config = useConfigStore();
 
 const activeTab = ref(OptionsTabs.BACKGROUND);
-
-const getScrollBarColor = computed(() => config.Colors.icon);
-const getScrollBarActiveColor = computed(() => config.Colors.active);
 
 function closeHandler() {
   activeTab.value = OptionsTabs.BACKGROUND;
@@ -68,7 +65,7 @@ function closeHandler() {
             <component
               :is="Tabs[activeTab as keyof typeof Tabs]"
               :key="activeTab"
-              class="my-scroll flex flex-col overflow-y-scroll"
+              class="flex flex-col overflow-y-scroll"
             ></component>
           </Transition>
         </KeepAlive>
@@ -87,13 +84,5 @@ function closeHandler() {
 .tab-enter-active,
 .tab-leave-active {
   transition: transform 0.2s ease-in-out;
-}
-
-.my-scroll::-webkit-scrollbar-thumb {
-  background-color: v-bind(getScrollBarColor);
-  cursor: pointer;
-}
-.my-scroll::-webkit-scrollbar-thumb:hover {
-  background-color: v-bind(getScrollBarActiveColor);
 }
 </style>

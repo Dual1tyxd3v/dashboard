@@ -3,8 +3,12 @@ import Navigation from "./components/Navigation.vue";
 import Content from "./components/Content.vue";
 import { useConfigStore } from "./store";
 import { getImage } from "./utils/styles";
+import { computed } from 'vue';
 
 const store = useConfigStore();
+
+const getScrollBarColor = computed(() => store.Colors.icon);
+const getScrollBarActiveColor = computed(() => store.Colors.active);
 </script>
 
 <template>
@@ -24,3 +28,13 @@ const store = useConfigStore();
     </div>
   </div>
 </template>
+
+<style>
+::-webkit-scrollbar-thumb {
+  background-color: v-bind(getScrollBarColor);
+  cursor: pointer;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: v-bind(getScrollBarActiveColor);
+}
+</style>
