@@ -30,18 +30,21 @@ export const DefaultConfig: ConfigType = {
       url: "https://vk.com/feed",
       icon: "fa-vk",
       color: "#0075ff",
+      id: 1,
     },
     {
       name: "Whatsapp",
       url: "https://web.whatsapp.com/",
       icon: "bi-whatsapp",
       color: "#3c8b1f",
+      id: 2,
     },
     {
       name: "Telegram",
       url: "https://web.telegram.org/k/",
       icon: "co-telegram-plane",
       color: "#0075ff",
+      id: 3,
     },
   ],
   Currency: {

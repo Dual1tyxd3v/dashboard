@@ -11,7 +11,8 @@ const config = useConfigStore();
 
 const formData = ref<FastLink[]>(config.FastLinks);
 
-function onDelete(index: number) {
+function onDelete(item: FastLink) {
+  const index = config.FastLinks.indexOf(item);
   config.FastLinks.splice(index, 1);
 }
 
@@ -21,25 +22,26 @@ function addLink() {
     icon: "",
     color: "#c1c1c1",
     url: "",
+    id: new Date().getTime(),
   });
 }
 </script>
 
 <template>
-  <Form class="gap-2">
-    <template v-for="(item, i) in formData" :key="`${item}`">
-      <FastLinkItem
-        :link="item"
-        :index="i"
-        v-model="formData[i]"
-        :deleteLink="() => onDelete(i)"
-      />
-      <div
-        v-if="formData.length"
-        class="bg w-full bg-[length:100%_1px] bg-center bg-no-repeat py-2"
-        :style="getDividerBackground(config.Colors.divider)"
-      ></div>
-    </template>
+  <Form class="relative gap-2">
+    <transition-group name="fastlinks" moveClass="fastlinks-move">
+      <template v-for="(item, i) in formData" :key="`${item.id}`">
+        <FastLinkItem
+          :link="item"
+          v-model="formData[i]"
+          :deleteLink="() => onDelete(item)"
+        />
+        <div
+          class="bg w-full bg-[length:100%_1px] bg-center bg-no-repeat py-2"
+          :style="getDividerBackground(config.Colors.divider)"
+        ></div>
+      </template>
+    </transition-group>
     <button
       v-if="config.FastLinks.length < MAX_FAST_LINKS"
       @click="addLink"

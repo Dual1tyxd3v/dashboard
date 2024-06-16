@@ -76,3 +76,16 @@
     opacity 0.2s ease-in-out,
     transform 0.2s ease-in-out;
 }
+
+.fastlinks-enter-from,
+.fastlinks-leave-to {
+  transform: scale(0.01);
+}
+.fastlinks-leave-active {
+  position: absolute;
+}
+.fastlinks-enter-active,
+.fastlinks-leave-active,
+.fastlinks-move {
+  transition: all 0.2s ease-in-out;
+}

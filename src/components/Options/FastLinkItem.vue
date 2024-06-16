@@ -9,7 +9,6 @@ import Button from "../Button.vue";
 
 type Props = {
   link: FastLink;
-  index: number;
   deleteLink: () => void;
 };
 defineProps<Props>();
@@ -20,7 +19,7 @@ const config = useConfigStore();
 </script>
 
 <template>
-  <div class="relative w-full" :data-index="index">
+  <div class="relative w-full">
     <FormField>
       <p>Label</p>
       <InputText type="text" :name="link.name" v-model="model.name" />

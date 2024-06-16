@@ -21,6 +21,7 @@ export type FastLink = {
   url: string;
   icon: string;
   color: string;
+  id: number;
 };
 
 export type ConfigColors = {
