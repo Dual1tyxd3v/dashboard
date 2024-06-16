@@ -4,7 +4,6 @@ import { useAppStore, useConfigStore } from "../../store";
 
 type Props = {
   name: string;
-  index?: number;
   value: string;
 };
 defineProps<Props>();

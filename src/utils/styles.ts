@@ -16,3 +16,12 @@ export const getImage = (images: string[]) => {
 
   return images[random];
 };
+
+export const getBlockBackground = (color1: string, color2: string) =>
+  `background-image: linear-gradient(175.70deg, ${color1}bd 12.226%,${color2}b5 113.851%)`;
+
+export const getNavBackground = (color1: string, color2: string) =>
+  `background-image: linear-gradient(157.20deg, ${color1}f0 31.883%, ${color2}00 100%);`;
+
+export const getDividerBackground = (color: string) =>
+  `background-image: linear-gradient(to right, transparent, ${color}, transparent);`;

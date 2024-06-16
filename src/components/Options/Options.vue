@@ -6,6 +6,7 @@ import OptionsTab from "./OptionsTab.vue";
 import Background from "./Background.vue";
 import Colors from "./Colors.vue";
 import Currency from "./Currency.vue";
+import { getDividerBackground, getNavBackground } from "../../utils/styles";
 
 type Props = {
   closeOptions: () => void;
@@ -31,7 +32,7 @@ function closeHandler() {
 <template>
   <div
     class="fixed bottom-5 right-0 top-5 z-30 w-[50%] rounded-l-2xl bg-black-90% backdrop:blur-[30px] md:min-w-[614px]"
-    :style="`background-image: linear-gradient(157.20deg, ${config.Colors.bgNav[0]} 31.883%, ${config.Colors.bgNav[1]} 100%);`"
+    :style="getNavBackground(config.Colors.bgNav[0], config.Colors.bgNav[1])"
   >
     <div class="relative flex h-full w-full p-5 pt-7">
       <button
@@ -45,7 +46,7 @@ function closeHandler() {
 
       <ul
         class="h-full w-40 min-w-40 bg-[length:1px_100%] bg-right bg-no-repeat py-3 pr-3"
-        :style="`background-image: linear-gradient(to bottom, transparent, ${config.Colors.divider}, transparent);`"
+        :style="getDividerBackground(config.Colors.divider)"
       >
         <li
           class="[&:not(:last-child)]:mb-3"

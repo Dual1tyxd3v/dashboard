@@ -23,23 +23,25 @@ type FastLink = {
   color: string;
 };
 
+export type ConfigColors = {
+  icon: string;
+  bgNavActive: string;
+  inputBg: string;
+  inputBorder: string;
+  active: string;
+  miniTitle: string;
+  gridColor: string;
+  main: string;
+  formElementsBorder: string;
+  bgNav: string[];
+  divider: string;
+  block: string[];
+  activeMedia: string;
+  chartMin: string;
+};
+
 export type ConfigType = {
-  Colors: {
-    icon: string;
-    bgNavActive: string;
-    inputBg: string;
-    inputBorder: string;
-    active: string;
-    miniTitle: string;
-    gridColor: string;
-    main: string;
-    fromElementsBorder: string;
-    bgNav: string[];
-    divider: string;
-    block: string[];
-    activeMedia: string;
-    chartMin: string;
-  };
+  Colors: ConfigColors;
   Background: {
     color: string;
     blur: string;
@@ -71,6 +73,7 @@ export type Store = {
   [AppStorage.YOUTUBE]: MediaLink[];
   [AppStorage.MUSIC]: MediaLink[];
   allCurrencies: string[];
+  message: string;
 };
 
 export type Currencies = {

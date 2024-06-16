@@ -73,8 +73,8 @@ const data = computed(() => {
       :data="data"
       :options="
         getChartConfig(
-          store.Colors.main || '#fff',
-          store.Colors.gridColor || '#fff',
+          store.Colors.main,
+          `${store.Colors.gridColor}33`,
         )
       "
     />

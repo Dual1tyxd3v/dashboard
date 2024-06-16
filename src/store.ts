@@ -14,9 +14,12 @@ export const useConfigStore = defineStore({
     },
     hardReset() {
       this.$state = JSON.parse(JSON.stringify(DefaultConfig));
+      ConfigApi.setConfig(JSON.stringify(DefaultConfig));
+      console.log(this.$state);
     },
     save() {
       ConfigApi.setConfig(JSON.stringify(this.$state));
+      console.log(this.$state);
     },
   },
 });
@@ -29,7 +32,8 @@ export const useAppStore = defineStore({
     [AppStorage.YOUTUBE]: getLinks(AppStorage.YOUTUBE),
     [AppStorage.MUSIC]: getLinks(AppStorage.MUSIC),
     activeLink: null,
-    allCurrencies: []
+    allCurrencies: [],
+    message: "",
   }),
   actions: {
     addNote(note: Note) {

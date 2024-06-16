@@ -6,6 +6,7 @@ import WeatherHead from "../Weather/WeatherHead.vue";
 import { getWeather } from "../../api";
 import Loader from "../Loader.vue";
 import { useConfigStore } from "../../store";
+import { getBlockBackground } from "../../utils/styles";
 
 const store = useConfigStore();
 
@@ -33,7 +34,7 @@ onMounted(async () => {
     class="relative flex-grow overflow-hidden rounded-2xl p-4 md:min-h-[315px] md:min-w-[500px]"
     :style="`
       color: ${store.Colors.main}; 
-      background-image: linear-gradient(175.70deg, ${store.Colors.block[0]} 12.226%,${store.Colors.block[1]} 113.851%)`"
+      ${getBlockBackground(store.Colors.block[0], store.Colors.block[1])}`"
   >
     <Loader v-if="isLoading" />
     <template v-else>

@@ -15,20 +15,3 @@ import Notes from "../components/Notes/Notes.vue";
     <Notes />
   </div>
 </template>
-
-<style scoped>
-.message-enter-from {
-  opacity: 0;
-  transform: translateX(-50vw);
-}
-.message-leave-to {
-  opacity: 0;
-  transform: translateX(50vw);
-}
-.message-enter-active,
-.message-leave-active {
-  transition:
-    opacity 0.2s ease-in-out,
-    transform 0.2s ease-in-out;
-}
-</style>

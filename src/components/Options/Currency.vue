@@ -2,18 +2,17 @@
 import { getAllCurrencies } from "../../api";
 import { useConfigStore } from "../../store";
 import Loader from "../Loader.vue";
-import Message from "../Message.vue";
+import Form from "./Form.vue";
 import { onMounted, ref } from "vue";
 import FormField from "./FormField.vue";
 import Hint from "./Hint.vue";
 import InputSelect from "./InputSelect.vue";
-import FormButtons from "./FormButtons.vue";
 import { useAppStore } from "../../store";
 
 const config = useConfigStore();
 const appStore = useAppStore();
 
-const initData = {
+const createData = () => ({
   base: config.Currency.base,
   currencies: [
     config.Currency.query[0] || "",
@@ -21,11 +20,10 @@ const initData = {
     config.Currency.query[2] || "",
     config.Currency.query[3] || "",
   ],
-};
+});
 
-const message = ref("");
 const isLoading = ref(true);
-const formData = ref<typeof initData>(JSON.parse(JSON.stringify(initData)));
+const formData = ref(createData());
 
 onMounted(async () => {
   if (!appStore.allCurrencies.length) {
@@ -47,7 +45,7 @@ function onChangeHandler(e: Event) {
   const index = +name.slice(name.length - 1);
 
   if (value && formData.value.currencies.includes(value)) {
-    message.value = "Currency has already been added";
+    appStore.message = "Currency has already been added";
     select.value = config.Currency.query[index];
     return;
   }
@@ -58,25 +56,15 @@ function onChangeHandler(e: Event) {
 function save() {
   config.Currency.base = formData.value.base;
   config.Currency.query = [...formData.value.currencies.filter((curr) => curr)];
-  message.value = "Config saved successfully";
 }
 
 function reset() {
-  formData.value = JSON.parse(JSON.stringify(initData));
-  message.value = "config reset successfully";
+  formData.value = createData();
 }
 </script>
 
 <template>
-  <form
-    class="relative h-full w-full rounded-2xl p-3"
-    :style="`color: ${config.Colors.main}`"
-  >
-    <Message
-      v-if="message"
-      :message="message"
-      :onClick="() => (message = '')"
-    />
+  <Form class="relative rounded-2xl" :onSave="save" :onReset="reset">
     <Loader v-if="isLoading" />
     <FormField>
       <p>Base</p>
@@ -102,6 +90,5 @@ function reset() {
         />
       </div>
     </FormField>
-    <FormButtons :save="save" :reset="reset" />
-  </form>
+  </Form>
 </template>

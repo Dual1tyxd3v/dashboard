@@ -3,6 +3,7 @@ import { computed } from "vue";
 import { AppRoute } from "../config";
 import { useRoute } from "vue-router";
 import { useConfigStore } from "../store";
+import { getNavBackground, getDividerBackground } from "../utils/styles";
 
 const store = useConfigStore();
 const route = useRoute();
@@ -13,11 +14,11 @@ const appRoutes = computed(() => Object.entries(AppRoute).slice(1));
 <template>
   <nav
     class="rounded-[20px] px-5 backdrop-blur-[120px] md:w-72"
-    :style="`background: linear-gradient(157.20deg, ${store.Colors.bgNav[0]} 31.883%, ${store.Colors.bgNav[1]} 100%);`"
+    :style="getNavBackground(store.Colors.bgNav[0], store.Colors.bgNav[1])"
   >
     <div
       class="mb-5 bg-[length:100%_1px] bg-bottom bg-no-repeat py-2 text-center"
-      :style="`background-image: linear-gradient(to right, transparent, ${store.Colors.divider}, transparent);`"
+      :style="getDividerBackground(store.Colors.divider)"
     >
       <router-link
         class="mx-auto my-2 opacity-80 transition-opacity hover:opacity-100"

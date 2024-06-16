@@ -32,8 +32,9 @@ watch(
   position: absolute;
 }
 .route-leave-to {
-  transform: translate(100%, 100%) rotateZ(90deg);
+  transform: translate(100vw, 100%) rotateZ(90deg);
   position: absolute;
+  bottom: 0;
 }
 .route-enter-active,
 .route-leave-active {

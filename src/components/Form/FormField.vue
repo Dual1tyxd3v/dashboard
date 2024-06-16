@@ -35,9 +35,9 @@ const getFocusColor = computed(() => store.Colors.active);
       @input="changeHandler"
       :style="
         getFormElementStyle(
-          store.Colors.inputBg || '#000',
-          store.Colors.inputBg || '#000',
-          store.Colors.fromElementsBorder || '#fff',
+          store.Colors.inputBg,
+          store.Colors.inputBg,
+          store.Colors.formElementsBorder,
         )
       "
     />

@@ -5,8 +5,7 @@ import FormField from "./FormField.vue";
 import InputText from "./InputText.vue";
 import Hint from "./Hint.vue";
 import InputColor from "./InputColor.vue";
-import Message from "../Message.vue";
-import FormButtons from "./FormButtons.vue";
+import Form from "./Form.vue";
 
 const config = useConfigStore();
 
@@ -18,7 +17,6 @@ const initData = {
 };
 
 const formData = ref({ ...initData });
-const message = ref("");
 
 const getHoverColor = computed(() => config.Colors.active);
 
@@ -51,26 +49,15 @@ function onChangeHandler(e: Event) {
 
 function reset() {
   formData.value = { ...config.Background };
-  message.value = "config reset successfully";
-}
-
-function save() {
-  message.value = "Config saved successfully";
 }
 </script>
 
 <template>
-  <form class="h-full w-full p-3" :style="`color: ${config.Colors.main}`">
-    <Message
-      v-if="message"
-      :message="message"
-      :onClick="() => (message = '')"
-    />
+  <Form :onReset="reset">
     <FormField>
       <p>Background color</p>
       <InputColor
         name="color"
-        id="back-color"
         v-model="formData.color"
         @input="onChangeHandler"
       />
@@ -151,8 +138,7 @@ function save() {
       You can insert a link to an image, or several, separated by commas. In the
       latter case, 1 random one will be selected
     </Hint>
-    <FormButtons :save="save" :reset="reset" />
-  </form>
+  </Form>
 </template>
 
 <style scoped>

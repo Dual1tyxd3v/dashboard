@@ -28,9 +28,9 @@ function onClickHandler(e: Event) {
       class="relative z-10 overflow-hidden rounded-2xl border-[3px] border-transparent bg-origin-border"
       :style="
         getFormElementStyle(
-          store.Colors.inputBg || '#000',
-          store.Colors.inputBg || '#000',
-          store.Colors.fromElementsBorder || '#fff',
+          store.Colors.inputBg,
+          store.Colors.inputBg,
+          store.Colors.formElementsBorder,
         )
       "
     >

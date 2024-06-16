@@ -74,3 +74,45 @@ export enum OptionsTabs {
   NAV_LINKS = "NavLinks",
   CURRENCY = "Currency",
 }
+
+export const OPTIONS_COLORS = [
+  { name: "icon", label: "Icons", hint: "", colors: 1 },
+  {
+    name: "bgNavActive",
+    label: "Navigation active tab background",
+    hint: "",
+    colors: 1,
+  },
+  { name: "inputBg", label: "Input background", hint: "", colors: 1 },
+  { name: "inputBorder", label: "Input border", hint: "", colors: 1 },
+  {
+    name: "active",
+    label: "active",
+    hint: "active items, chart average line, outline on active items",
+    colors: 1,
+  },
+  { name: "main", label: "Text main", hint: "", colors: 1 },
+  { name: "miniTitle", label: "Text secondary", hint: "", colors: 1 },
+  { name: "gridColor", label: "Chart grid", hint: "", colors: 1 },
+  { name: "chartMin", label: "Chart minimum line", hint: "", colors: 1 },
+  {
+    name: "formElementsBorder",
+    label: "Form elements border",
+    hint: "",
+    colors: 1,
+  },
+  { name: "activeMedia", label: "Active media link", hint: "", colors: 1 },
+  { name: "divider", label: "Divider", hint: "", colors: 1 },
+  {
+    name: "bgNav",
+    label: "Navigation background",
+    hint: "linear gradient is used",
+    colors: 2,
+  },
+  {
+    name: "block",
+    label: "Block background",
+    hint: "linear gradient is used",
+    colors: 2,
+  },
+];

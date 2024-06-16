@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useConfigStore } from "../store";
+import { getBlockBackground } from "../utils/styles";
 
 const store = useConfigStore();
 </script>
@@ -7,7 +8,7 @@ const store = useConfigStore();
 <template>
   <ul
     class="bg-bg-block flex flex-grow items-center justify-evenly rounded-2xl"
-    :style="`background-image: linear-gradient(175.70deg, ${store.Colors.block[0]} 12.226%,${store.Colors.block[1]} 113.851%)`"
+    :style="getBlockBackground(store.Colors.block[0], store.Colors.block[1])"
   >
     <li
       class="py-2"

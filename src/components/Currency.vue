@@ -2,6 +2,7 @@
 import { getCurrencies } from "../api";
 import { useConfigStore } from "../store";
 import { formatValues, getCurrencyExchangeURL } from "../utils/currency";
+import { getBlockBackground } from "../utils/styles";
 import Loader from "./Loader.vue";
 import { onMounted, reactive, watch } from "vue";
 
@@ -36,7 +37,7 @@ onMounted(() => {
 <template>
   <div
     class="relative overflow-hidden rounded-2xl md:min-h-[315px] md:min-w-[300px]"
-    :style="`background-image: linear-gradient(175.70deg, ${store.Colors.block[0]} 12.226%,${store.Colors.block[1]} 113.851%)`"
+    :style="getBlockBackground(store.Colors.block[0], store.Colors.block[1])"
   >
     <Loader v-if="currencies.isLoading" />
     <p v-else-if="!currencies.data">no data</p>
@@ -47,7 +48,9 @@ onMounted(() => {
           v-for="(value, name, i) in currencies.data"
           :key="`cur_${i}_${name}`"
           class="rounded-xl px-4 py-3 [&:not(:last-child)]:mb-2"
-          :style="`background-image: linear-gradient(175.70deg, ${store.Colors.block[0]} 12.226%,${store.Colors.block[1]} 113.851%)`"
+          :style="
+            getBlockBackground(store.Colors.block[0], store.Colors.block[1])
+          "
         >
           <p
             class="flex items-center justify-between uppercase"

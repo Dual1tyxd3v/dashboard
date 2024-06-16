@@ -3,6 +3,7 @@ import { onUnmounted, ref } from "vue";
 import { useAppStore, useConfigStore } from "../../store";
 import { Note } from "../../types";
 import { getRemainingTime } from "../../utils/timeAndDate";
+import { getBlockBackground } from "../../utils/styles";
 
 type Props = {
   note: Note;
@@ -31,7 +32,12 @@ onUnmounted(() => clearInterval(timer));
 <template>
   <div
     class="group relative w-52 rounded-2xl p-2 text-center"
-    :style="`background-image: linear-gradient(175.70deg, ${configStore.Colors.block[0]} 12.226%,${configStore.Colors.block[1]} 113.851%)`"
+    :style="
+      getBlockBackground(
+        configStore.Colors.block[0],
+        configStore.Colors.block[1],
+      )
+    "
     data-js="note"
   >
     <button
