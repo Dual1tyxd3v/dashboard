@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useConfigStore } from "../store";
-import { getBlockBackground } from "../utils/styles";
+import { getBlockBackground, iconNameToKebab } from "../utils/styles";
 
 const store = useConfigStore();
 </script>
@@ -22,7 +22,7 @@ const store = useConfigStore();
         :style="`background-color: ${color}; color: ${store.Colors.main}`"
       >
         <span v-if="!icon">{{ name[0] }}</span>
-        <v-icon v-if="icon" :name="icon" scale="1.3" />
+        <v-icon v-if="icon" :name="iconNameToKebab(icon)" scale="1.3" />
       </a>
     </li>
   </ul>

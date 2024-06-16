@@ -116,3 +116,5 @@ export const OPTIONS_COLORS = [
     colors: 2,
   },
 ];
+
+export const MAX_FAST_LINKS = 20;

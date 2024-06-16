@@ -11,7 +11,7 @@ const showForm = ref(false);
 
 const background = computed(
   () =>
-    `linear-gradient(175.70deg, ${store.Colors.block[0]} 12.226%,${store.Colors.block[1]} 113.851%)`,
+    `linear-gradient(175.70deg, ${store.Colors.block[0]}bd 12.226%, ${store.Colors.block[1]}b5 113.851%)`,
 );
 
 function onclickHandler(e: Event) {

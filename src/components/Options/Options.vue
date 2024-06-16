@@ -4,6 +4,7 @@ import { useConfigStore } from "../../store";
 import { OptionsTabs } from "../../config";
 import OptionsTab from "./OptionsTab.vue";
 import Background from "./Background.vue";
+import FastLinks from "./FastLinks.vue";
 import Colors from "./Colors.vue";
 import Currency from "./Currency.vue";
 import { getDividerBackground, getNavBackground } from "../../utils/styles";
@@ -17,6 +18,7 @@ const Tabs = {
   Background,
   Currency,
   Colors,
+  FastLinks,
 };
 
 const config = useConfigStore();
@@ -46,7 +48,7 @@ function closeHandler() {
 
       <ul
         class="h-full w-40 min-w-40 bg-[length:1px_100%] bg-right bg-no-repeat py-3 pr-3"
-        :style="getDividerBackground(config.Colors.divider)"
+        :style="getDividerBackground(config.Colors.divider, true)"
       >
         <li
           class="[&:not(:last-child)]:mb-3"

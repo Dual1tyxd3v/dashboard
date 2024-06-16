@@ -16,7 +16,7 @@ export type ForecastTemp = {
   average: number;
 };
 
-type FastLink = {
+export type FastLink = {
   name: string;
   url: string;
   icon: string;

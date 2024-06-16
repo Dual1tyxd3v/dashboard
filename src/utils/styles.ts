@@ -23,5 +23,15 @@ export const getBlockBackground = (color1: string, color2: string) =>
 export const getNavBackground = (color1: string, color2: string) =>
   `background-image: linear-gradient(157.20deg, ${color1}f0 31.883%, ${color2}00 100%);`;
 
-export const getDividerBackground = (color: string) =>
-  `background-image: linear-gradient(to right, transparent, ${color}, transparent);`;
+export const getDividerBackground = (color: string, isVertical = false) =>
+  `background-image: linear-gradient(${isVertical ? "to bottom" : "to right"}, transparent, ${color}, transparent);`;
+
+export const iconNameToKebab = (name: string) =>
+  name
+    .split("")
+    .map((char, i) => {
+      if (char === char.toLowerCase()) return char;
+
+      return `${i === 0 ? "" : "-"}${char.toLowerCase()}`;
+    })
+    .join("");
