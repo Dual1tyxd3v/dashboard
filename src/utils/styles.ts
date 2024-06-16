@@ -34,4 +34,5 @@ export const iconNameToKebab = (name: string) =>
 
       return `${i === 0 ? "" : "-"}${char.toLowerCase()}`;
     })
-    .join("");
+    .join("")
+    .replace(/ /g, "");

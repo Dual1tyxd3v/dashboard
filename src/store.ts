@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import ConfigApi, { DefaultConfig } from "./configAPI";
-import { ConfigType, FastLink, MediaLink, Note, Store } from "./types";
+import { ConfigType, MediaLink, Note, Store } from "./types";
 import { getNotes, saveNotes, removeNote } from "./utils/notes";
 import { getLinks, setLinks } from "./utils/media";
 import { AppStorage } from "./config";
@@ -15,11 +15,9 @@ export const useConfigStore = defineStore({
     hardReset() {
       this.$state = JSON.parse(JSON.stringify(DefaultConfig));
       ConfigApi.setConfig(JSON.stringify(DefaultConfig));
-      console.log(this.$state);
     },
     save() {
       ConfigApi.setConfig(JSON.stringify(this.$state));
-      console.log(this.$state);
     },
   },
 });
