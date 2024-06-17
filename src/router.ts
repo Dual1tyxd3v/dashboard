@@ -25,16 +25,3 @@ export const router = createRouter({
     },
   ],
 });
-
-router.beforeEach((to, _, next) => {
-  if (to.name === "main") next();
-
-  const config = useConfigStore();
-  const route = config.NavLinks.find(
-    (link) => link[0].toLowerCase() === to.name?.toString().toLowerCase(),
-  );
-
-  if (!route || !route[1].visible) next(AppRoute.Main.route);
-
-  next();
-});

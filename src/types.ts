@@ -54,8 +54,17 @@ export type ConfigType = {
     base: string;
     query: string[];
   };
-  NavLinks: [string, { icon: string; route: string; visible: boolean }][];
+  NavLinks: NavLink[];
 };
+
+export type NavLink = [
+  string,
+  {
+    icon: string;
+    route: string;
+    visible: boolean;
+  },
+];
 
 export type Note = {
   label: string;
