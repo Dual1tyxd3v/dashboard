@@ -17,12 +17,12 @@ function onChangeHandler(e: Event) {
 
   if (name.includes("_")) {
     const [key, index] = name.split("_");
-    config.Colors[key][index] = value;
+    config.Colors[key as "bgNav" | "block"][Number(index)] = value;
 
     return;
   }
 
-  config.Colors[name] = value;
+  config.Colors[name as keyof Omit<ConfigColors, "block" | "bgNav">] = value;
 }
 
 function reset() {

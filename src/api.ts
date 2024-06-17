@@ -6,8 +6,8 @@ export const getWeather = async () => {
   try {
     const resp = await fetch(WeatherURL);
     if (!resp.ok) {
-      console.log(resp.statusText);
-      return { data: null, error: resp.statusText };
+      console.log(resp);
+      return { data: null, error: `Cant load ${WeatherURL}` };
     }
 
     const data = await resp.json();

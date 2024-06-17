@@ -48,7 +48,10 @@ function onChangeHandler(e: Event) {
 }
 
 function reset() {
-  formData.value = { ...config.Background };
+  formData.value = {
+    ...config.Background,
+    images: config.Background.images.join(","),
+  };
 }
 </script>
 
