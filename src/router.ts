@@ -3,6 +3,7 @@ import { AppRoute } from "./config";
 import Main from "./pages/Main.vue";
 import Youtube from "./pages/Youtube.vue";
 import Music from "./pages/Music.vue";
+import { useConfigStore } from "./store";
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -23,4 +24,17 @@ export const router = createRouter({
       component: Music,
     },
   ],
+});
+
+router.beforeEach((to, _, next) => {
+  if (to.name === "main") next();
+
+  const config = useConfigStore();
+  const route = config.NavLinks.find(
+    (link) => link[0].toLowerCase() === to.name?.toString().toLowerCase(),
+  );
+
+  if (!route || !route[1].visible) next(AppRoute.Main.route);
+
+  next();
 });
