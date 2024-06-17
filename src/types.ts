@@ -55,6 +55,7 @@ export type ConfigType = {
     query: string[];
   };
   NavLinks: NavLink[];
+  version: number;
 };
 
 export type NavLink = [

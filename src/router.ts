@@ -3,7 +3,6 @@ import { AppRoute } from "./config";
 import Main from "./pages/Main.vue";
 import Youtube from "./pages/Youtube.vue";
 import Music from "./pages/Music.vue";
-import { useConfigStore } from "./store";
 
 export const router = createRouter({
   history: createWebHistory(),

@@ -52,6 +52,7 @@ export const DefaultConfig: ConfigType = {
     query: ["USD", "EUR"],
   },
   NavLinks: Object.entries(AppRoute).slice(1),
+  version: 1,
 };
 
 class Config {
@@ -60,7 +61,10 @@ class Config {
   constructor() {
     const localConfig = localStorage.getItem(ConfigStorage);
     if (localConfig) {
-      this.config = JSON.parse(localConfig);
+      const conf = JSON.parse(localConfig);
+
+      if (conf.version === this.config.version)
+        this.config = JSON.parse(localConfig);
     }
   }
 
