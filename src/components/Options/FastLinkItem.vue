@@ -40,7 +40,7 @@ const config = useConfigStore();
         target="_blank"
         :style="`color: ${config.Colors.active}`"
         >Vue Icons</a
-      >. Just enter the icon name</Hint
+      >. Just enter the icon name. Icon is not necessary</Hint
     >
     <FormField>
       <p>Icon Color</p>

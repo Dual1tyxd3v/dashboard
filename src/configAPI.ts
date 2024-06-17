@@ -1,4 +1,4 @@
-import { ConfigStorage } from "./config";
+import { AppRoute, ConfigStorage } from "./config";
 import { ConfigType } from "./types";
 
 export const DefaultConfig: ConfigType = {
@@ -51,6 +51,7 @@ export const DefaultConfig: ConfigType = {
     base: "RUB",
     query: ["USD", "EUR"],
   },
+  NavLinks: Object.entries(AppRoute).slice(1),
 };
 
 class Config {

@@ -19,8 +19,8 @@ module.exports = {
         },
       },
       colors: {
-        "black-50%": 'rgba(0, 0, 0, 0.5)',
-        "black-90%": 'rgba(0, 0, 0, 0.9)',
+        "black-50%": "rgba(0, 0, 0, 0.5)",
+        "black-90%": "rgba(0, 0, 0, 0.9)",
       },
       animation: {
         loader: "loader 2s infinite",
@@ -30,6 +30,10 @@ module.exports = {
       },
       spacing: {
         "1-important": "0.25rem !important",
+      },
+      translate: {
+        left: "calc(-50% + 0.5rem)",
+        right: "calc(-50% - 0.5rem)",
       },
     },
   },

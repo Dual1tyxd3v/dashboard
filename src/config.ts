@@ -2,18 +2,22 @@ export const AppRoute = {
   Main: {
     route: "/",
     icon: "",
+    visible: true,
   },
   Music: {
     route: "/music",
     icon: "bi-music-note",
+    visible: true,
   },
   YouTube: {
     route: "/youtube",
     icon: "bi-youtube",
+    visible: true,
   },
   Games: {
     route: "/games",
     icon: "io-game-controller",
+    visible: true,
   },
 };
 

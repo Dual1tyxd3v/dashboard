@@ -1,14 +1,16 @@
 <script setup lang="ts">
-import { computed } from "vue";
 import { AppRoute } from "../config";
 import { useRoute } from "vue-router";
 import { useConfigStore } from "../store";
 import { getNavBackground, getDividerBackground } from "../utils/styles";
+import { computed } from "vue";
 
 const store = useConfigStore();
 const route = useRoute();
 
-const appRoutes = computed(() => Object.entries(AppRoute).slice(1));
+const activeLinks = computed(() =>
+  store.NavLinks.filter((link) => link[1].visible),
+);
 </script>
 
 <template>
@@ -34,37 +36,39 @@ const appRoutes = computed(() => Object.entries(AppRoute).slice(1));
         />
       </router-link>
     </div>
-    <ul :v-if="appRoutes.length">
-      <li
-        v-for="([name, { route: localRoute, icon }], i) in appRoutes"
-        :key="`nav_${name}_${i}`"
-      >
-        <router-link
-          class="flex items-center rounded-2xl px-4 py-3 text-sm capitalize opacity-80 transition-all hover:opacity-100"
-          :style="`
+    <ul :v-if="activeLinks.length">
+      <transition-group name="fastlinks">
+        <li
+          v-for="[name, { route: localRoute, icon }] in activeLinks"
+          :key="`nav_${name}`"
+        >
+          <router-link
+            class="flex items-center rounded-2xl px-4 py-3 text-sm capitalize opacity-80 transition-all hover:opacity-100"
+            :style="`
             color: ${store.Colors.main};
             ${
               localRoute === route.path
                 ? `background-color: ${store.Colors.bgNavActive}; opacity: 1 !important;`
                 : 'background-color: transparent;'
             }`"
-          :to="localRoute"
-        >
-          <span
-            class="transition-all' mr-3 flex h-7 w-7 items-center justify-center rounded-xl"
-            :style="`background-color: ${localRoute === route.path ? store.Colors.icon : store.Colors.bgNavActive}`"
+            :to="localRoute"
           >
-            <v-icon
-              :style="`fill: ${
-                localRoute === route.path
-                  ? store.Colors.main
-                  : store.Colors.icon
-              }`"
-              :name="icon"
-          /></span>
-          {{ name }}
-        </router-link>
-      </li>
+            <span
+              class="transition-all' mr-3 flex h-7 w-7 items-center justify-center rounded-xl"
+              :style="`background-color: ${localRoute === route.path ? store.Colors.icon : store.Colors.bgNavActive}`"
+            >
+              <v-icon
+                :style="`fill: ${
+                  localRoute === route.path
+                    ? store.Colors.main
+                    : store.Colors.icon
+                }`"
+                :name="icon"
+            /></span>
+            {{ name }}
+          </router-link>
+        </li>
+      </transition-group>
     </ul>
   </nav>
 </template>

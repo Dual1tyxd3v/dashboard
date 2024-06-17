@@ -8,6 +8,7 @@ import FastLinks from "./FastLinks.vue";
 import Colors from "./Colors.vue";
 import Currency from "./Currency.vue";
 import { getDividerBackground, getNavBackground } from "../../utils/styles";
+import NavLinks from "./NavLinks.vue";
 
 type Props = {
   closeOptions: () => void;
@@ -19,6 +20,7 @@ const Tabs = {
   Currency,
   Colors,
   FastLinks,
+  NavLinks,
 };
 
 const config = useConfigStore();
