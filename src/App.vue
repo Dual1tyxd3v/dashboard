@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Navigation from "./components/Navigation.vue";
+import Navigation from "./components/Navigation/Navigation.vue";
 import Content from "./components/Content.vue";
 import { useConfigStore } from "./store";
 import { getImage } from "./utils/styles";
