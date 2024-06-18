@@ -34,6 +34,7 @@ export const useAppStore = defineStore({
     [AppStorage.MUSIC]: getLinks(AppStorage.MUSIC),
     activeLink: null,
     allCurrencies: [],
+    message: "",
   }),
   actions: {
     updateStore(youtube: MediaLink[], music: MediaLink[], notes: Note[]) {

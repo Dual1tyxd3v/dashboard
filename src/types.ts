@@ -85,6 +85,7 @@ export type Store = {
   [AppStorage.YOUTUBE]: MediaLink[];
   [AppStorage.MUSIC]: MediaLink[];
   allCurrencies: string[];
+  message: string;
 };
 
 export type Currencies = {

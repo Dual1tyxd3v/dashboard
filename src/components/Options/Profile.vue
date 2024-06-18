@@ -3,7 +3,6 @@ import { ref } from "vue";
 import { useConfigStore, useAppStore } from "../../store";
 import { createProfile } from "../../utils/config";
 import Form from "./Form.vue";
-import Message from "../Message.vue";
 import Hint from "./Hint.vue";
 import { ConfigType } from "../../types";
 
@@ -12,7 +11,6 @@ const appStore = useAppStore();
 
 const profile = createProfile();
 
-const message = ref("");
 const fileName = ref("");
 
 function onChangeHandler(e: Event) {
@@ -28,7 +26,7 @@ function onChangeHandler(e: Event) {
     const { config, youtube, music, notes } = JSON.parse(cfg as string);
 
     if (config.version !== configStore.version) {
-      message.value = "Your profile is out of date";
+      appStore.message = "Your profile is out of date";
       return;
     }
 
@@ -57,11 +55,6 @@ function save() {
 
 <template>
   <Form :onReset="reset" :onSave="save">
-    <Message
-      v-if="message"
-      :message="message"
-      :onClick="() => (message = '')"
-    />
     <div class="flex flex-col items-center gap-8">
       <input
         type="file"
