@@ -52,17 +52,13 @@ function closeHandler() {
         class="h-full w-40 min-w-40 bg-[length:1px_100%] bg-right bg-no-repeat py-3 pr-3"
         :style="getDividerBackground(config.Colors.divider, true)"
       >
-        <li
-          class="[&:not(:last-child)]:mb-3"
+        <OptionsTab
           v-for="(k, v, i) in OptionsTabs"
           :key="`tab_${i}_${k}`"
-        >
-          <OptionsTab
-            @click="activeTab = k"
-            :label="v.replace(/_/g, ' ').toLowerCase()"
-            :isActive="activeTab === k"
-          />
-        </li>
+          @click="activeTab = k"
+          :label="v.replace(/_/g, ' ').toLowerCase()"
+          :isActive="activeTab === k"
+        />
       </ul>
       <div class="relative flex-grow overflow-hidden">
         <KeepAlive>

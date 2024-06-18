@@ -18,10 +18,12 @@ const getStyles = computed(() => {
 </script>
 
 <template>
-  <button
-    class="text-normal w-full rounded-2xl capitalize opacity-80 transition-all hover:opacity-100"
-    :style="getStyles"
-  >
-    {{ label }}
-  </button>
+  <li class="[&:not(:last-child)]:mb-3">
+    <button
+      class="text-normal w-full rounded-2xl capitalize opacity-80 transition-all hover:opacity-100"
+      :style="getStyles"
+    >
+      {{ label }}
+    </button>
+  </li>
 </template>

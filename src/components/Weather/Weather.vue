@@ -29,7 +29,6 @@ onMounted(async () => {
   loadWeather();
 });
 
-console.log(weather.value.error);
 </script>
 
 <template>
