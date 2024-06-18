@@ -77,6 +77,7 @@ export enum OptionsTabs {
   FAST_LINKS = "FastLinks",
   NAV_LINKS = "NavLinks",
   CURRENCY = "Currency",
+  PROFILE = "Profile",
 }
 
 export const OPTIONS_COLORS = [

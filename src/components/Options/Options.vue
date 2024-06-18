@@ -9,6 +9,7 @@ import Colors from "./Colors.vue";
 import Currency from "./Currency.vue";
 import { getDividerBackground, getNavBackground } from "../../utils/styles";
 import NavLinks from "./NavLinks.vue";
+import Profile from "./Profile.vue";
 
 type Props = {
   closeOptions: () => void;
@@ -21,6 +22,7 @@ const Tabs = {
   Colors,
   FastLinks,
   NavLinks,
+  Profile,
 };
 
 const config = useConfigStore();
