@@ -20,7 +20,7 @@ const appStore = useAppStore();
     <p class="py-2 text-center" v-if="!appStore.freeGames?.length">
       There is no free games at this time...
     </p>
-    <div v-else class="flex flex-wrap justify-center">
+    <div v-else class="flex flex-wrap justify-center gap-3">
       <FreeGame
         v-for="game in appStore.freeGames"
         :key="game.name"

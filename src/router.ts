@@ -25,5 +25,9 @@ export const router = createRouter({
       name: "games",
       component: () => import("./pages/Games.vue"),
     },
+    {
+      path: "/:pathMatch(.*)*",
+      component: () => import("./components/NotFound.vue"),
+    },
   ],
 });
