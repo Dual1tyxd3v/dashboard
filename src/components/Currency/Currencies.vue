@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { getCurrencies } from "../api";
-import { useConfigStore } from "../store";
-import { formatValues, getCurrencyExchangeURL } from "../utils/currency";
-import { getBlockBackground } from "../utils/styles";
-import Loader from "./Loader.vue";
+import { getCurrencies } from "../../api";
+import { useConfigStore } from "../../store";
+import { formatValues, getCurrencyExchangeURL } from "../../utils/currency";
+import { getBlockBackground } from "../../utils/styles";
+import Loader from "../Loader.vue";
 import { onMounted, reactive, watch } from "vue";
+import Currency from "./Currency.vue";
 
 const currencies = reactive<{ isLoading: boolean; data: null | Object }>({
   isLoading: false,
@@ -44,24 +45,12 @@ onMounted(() => {
     <div v-else class="p-4" :style="`color: ${store.Colors.main}`">
       <h3 class="mb-4 text-2xl font-bold">Currencies</h3>
       <ul>
-        <li
-          v-for="(value, name, i) in currencies.data"
-          :key="`cur_${i}_${name}`"
-          class="rounded-xl px-4 py-3 [&:not(:last-child)]:mb-2"
-          :style="
-            getBlockBackground(store.Colors.block[0], store.Colors.block[1])
-          "
-        >
-          <p
-            class="flex items-center justify-between uppercase"
-            :style="`color: ${store.Colors.miniTitle}`"
-          >
-            1 {{ name }} to {{ store.Currency.base }}
-            <span class="text-l" :style="`color: ${store.Colors.main}`">
-              {{ value }}</span
-            >
-          </p>
-        </li>
+        <Currency
+          v-for="(value, name) in currencies.data"
+          :key="`cur${name}`"
+          :name="name"
+          :value="value.toString()"
+        />
       </ul>
     </div>
   </div>

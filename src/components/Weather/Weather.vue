@@ -7,7 +7,6 @@ import { getWeather } from "../../api";
 import Loader from "../Loader.vue";
 import { useConfigStore } from "../../store";
 import { getBlockBackground } from "../../utils/styles";
-import Button from "../Button.vue";
 import Error from "../Error.vue";
 
 const store = useConfigStore();

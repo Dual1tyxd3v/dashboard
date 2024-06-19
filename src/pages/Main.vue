@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Currency from "../components/Currency.vue";
+import Currency from "../components/Currency/Currencies.vue";
 import SearchBar from "../components/SearchBar.vue";
 import Weather from "../components/Weather/Weather.vue";
 import Notes from "../components/Notes/Notes.vue";
