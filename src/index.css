@@ -47,6 +47,16 @@
     left: 0;
     background-image: linear-gradient(to left, transparent, #000);
   }
+
+  .clip-full {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+  .clip-hide-top {
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  }
+  .clip-hide-bottom {
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+  }
 }
 
 .form-enter-from,

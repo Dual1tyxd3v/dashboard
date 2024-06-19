@@ -21,6 +21,7 @@ module.exports = {
       colors: {
         "black-50%": "rgba(0, 0, 0, 0.5)",
         "black-90%": "rgba(0, 0, 0, 0.9)",
+        "black-75%": "rgba(0, 0, 0, 0.75)",
       },
       animation: {
         loader: "loader 2s infinite",

@@ -2,6 +2,7 @@
 import { watch } from "vue";
 import { useAppStore } from "../store";
 import { setLocalFreeGames } from "../utils/media";
+import FreeGames from "../components/Games/FreeGames.vue";
 
 const appStore = useAppStore();
 
@@ -17,5 +18,7 @@ watch(
 </script>
 
 <template>
-  <div class="flex-grow"></div>
+  <div class="flex-grow">
+    <FreeGames />
+  </div>
 </template>

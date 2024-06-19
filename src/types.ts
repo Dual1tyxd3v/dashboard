@@ -82,6 +82,7 @@ export type NewGame = {
   place: string;
   img: string;
   url: string;
+  name: string;
 };
 
 export type Store = {
