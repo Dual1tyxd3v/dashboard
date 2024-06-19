@@ -36,3 +36,9 @@ export const iconNameToKebab = (name: string) =>
     })
     .join("")
     .replace(/ /g, "");
+
+export const getChartFontSize = (screenSize: number) => {
+  if (screenSize >= 1280) return 16;
+  if (screenSize >= 1024) return 12;
+  return 10;
+};

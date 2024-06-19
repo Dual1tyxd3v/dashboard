@@ -10,10 +10,11 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { computed } from "vue";
+import { computed, onMounted, onUnmounted } from "vue";
 import { Line } from "vue-chartjs";
 import { getChartConfig } from "../../config";
 import { useConfigStore } from "../../store";
+import { getChartFontSize } from "../../utils/styles";
 
 ChartJS.register(
   CategoryScale,
@@ -24,6 +25,7 @@ ChartJS.register(
   Tooltip,
   Legend,
 );
+// ChartJS.defaults.font.size = 5;
 
 const props = defineProps({
   forecastTemp: Array || null,
@@ -63,6 +65,20 @@ const data = computed(() => {
     ],
   };
 });
+
+function onResizeHandler() {
+  ChartJS.defaults.font.size = getChartFontSize(window.outerWidth);
+}
+
+onMounted(() => {
+  ChartJS.defaults.font.size = getChartFontSize(window.outerWidth);
+
+  window.addEventListener("resize", onResizeHandler);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("resize", onResizeHandler);
+});
 </script>
 
 <template>
@@ -72,10 +88,7 @@ const data = computed(() => {
       responsive
       :data="data"
       :options="
-        getChartConfig(
-          store.Colors.main,
-          `${store.Colors.gridColor}33`,
-        )
+        getChartConfig(store.Colors.main, `${store.Colors.gridColor}33`)
       "
     />
   </template>
