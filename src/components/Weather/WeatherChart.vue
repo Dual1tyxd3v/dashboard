@@ -25,7 +25,6 @@ ChartJS.register(
   Tooltip,
   Legend,
 );
-// ChartJS.defaults.font.size = 5;
 
 const props = defineProps({
   forecastTemp: Array || null,
