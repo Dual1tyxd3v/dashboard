@@ -32,7 +32,7 @@ onMounted(async () => {
 
 <template>
   <div
-    class="relative flex-grow overflow-hidden rounded-2xl p-4 md:min-h-[315px] md:min-w-[500px]"
+    class="relative mb-3 flex-grow overflow-hidden rounded-2xl p-4 xl:mb-0 xl:min-h-[315px] xl:min-w-[500px]"
     :style="`
       color: ${store.Colors.main}; 
       ${getBlockBackground(store.Colors.block[0], store.Colors.block[1])}`"

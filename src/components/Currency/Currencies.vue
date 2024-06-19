@@ -45,7 +45,7 @@ onMounted(() => {
 
 <template>
   <div
-    class="relative overflow-hidden rounded-2xl md:min-h-[315px] md:min-w-[300px]"
+    class="relative overflow-hidden rounded-2xl xl:min-h-[315px] xl:min-w-[300px]"
     :style="`
     ${getBlockBackground(store.Colors.block[0], store.Colors.block[1])}; 
     color: ${store.Colors.main}`"
@@ -57,8 +57,8 @@ onMounted(() => {
       :reload="() => loadCurrency()"
     />
     <div v-else class="p-4">
-      <h3 class="mb-4 text-2xl font-bold">Currencies</h3>
-      <ul>
+      <h3 class="mb-2 xl:mb-4 text-2xl font-bold">Currencies</h3>
+      <ul class="flex items-center justify-start gap-3 xl:block">
         <Currency
           v-for="(value, name) in currencies.data"
           :key="`cur${name}`"

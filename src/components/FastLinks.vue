@@ -23,7 +23,12 @@ const store = useConfigStore();
           :style="`background-color: ${color}; color: ${store.Colors.main}`"
         >
           <span v-if="!icon">{{ name[0] }}</span>
-          <v-icon v-if="icon" :name="iconNameToKebab(icon)" scale="1.3" />
+          <v-icon
+            class="scale-75 xl:scale-100"
+            v-if="icon"
+            :name="iconNameToKebab(icon)"
+            scale="1.3"
+          />
         </a>
       </li>
     </TransitionGroup>

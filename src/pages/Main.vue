@@ -8,7 +8,7 @@ import Notes from "../components/Notes/Notes.vue";
 <template>
   <div class="flex flex-grow flex-col gap-4">
     <SearchBar />
-    <div class="gap-6 md:flex">
+    <div class="gap-6 xl:flex">
       <Weather />
       <Currency />
     </div>

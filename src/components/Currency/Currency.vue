@@ -13,11 +13,11 @@ const config = useConfigStore();
 
 <template>
   <li
-    class="rounded-xl px-4 py-3 [&:not(:last-child)]:mb-2"
+    class="rounded-xl px-4 py-3 xl:[&:not(:last-child)]:mb-2"
     :style="getBlockBackground(config.Colors.block[0], config.Colors.block[1])"
   >
     <p
-      class="flex items-center justify-between uppercase"
+      class="flex items-center gap-2 uppercase xl:justify-between"
       :style="`color: ${config.Colors.miniTitle}`"
     >
       1 {{ name }} to {{ config.Currency.base }}
