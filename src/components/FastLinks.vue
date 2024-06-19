@@ -24,7 +24,7 @@ const store = useConfigStore();
         >
           <span v-if="!icon">{{ name[0] }}</span>
           <v-icon
-            class="scale-75 xl:scale-100"
+            class="scale-50 lg:scale-75 xl:scale-100"
             v-if="icon"
             :name="iconNameToKebab(icon)"
             scale="1.3"

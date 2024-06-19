@@ -14,7 +14,7 @@ const showOptions = ref(false);
 
 <template>
   <Transition name="options">
-    <Options v-if="showOptions" :closeOptions="() => showOptions = false" />
+    <Options v-if="showOptions" :closeOptions="() => (showOptions = false)" />
   </Transition>
   <header class="flex items-center justify-between gap-5 py-5">
     <p
@@ -31,6 +31,7 @@ const showOptions = ref(false);
       @click="() => (showOptions = true)"
     >
       <v-icon
+        class="scale-75 xl:scale-100"
         name="vi-file-type-config"
         scale="1.5"
         :fill="store.Colors.main"

@@ -39,7 +39,7 @@ onMounted(async () => {
   >
     <Loader v-if="isLoading" />
     <Error
-      v-else-if="weather.error"
+      v-else-if="weather.error || !weather.data"
       :error="weather.error"
       :reload="() => loadWeather"
     />

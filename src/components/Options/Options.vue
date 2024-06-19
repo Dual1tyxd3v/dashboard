@@ -37,7 +37,7 @@ function closeHandler() {
 
 <template>
   <div
-    class="fixed bottom-5 right-0 top-5 z-30 w-[50%] rounded-l-2xl bg-black-90% backdrop:blur-[30px] md:min-w-[614px]"
+    class="fixed bottom-5 right-0 top-5 z-30 w-[50%] rounded-l-2xl bg-black-90% backdrop:blur-[30px] lg:min-w-[614px]"
     :style="getNavBackground(config.Colors.bgNav[0], config.Colors.bgNav[1])"
   >
     <div class="relative flex h-full w-full p-5 pt-7">
@@ -47,7 +47,12 @@ function closeHandler() {
         title="Close options"
         aria-label="Close options"
       >
-        <v-icon :fill="config.Colors.main" scale="2" name="io-close-sharp" />
+        <v-icon
+          class="scale-50 lg:scale-75 xl:scale-100"
+          :fill="config.Colors.main"
+          scale="2"
+          name="io-close-sharp"
+        />
       </button>
 
       <ul
