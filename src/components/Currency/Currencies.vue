@@ -6,10 +6,16 @@ import { getBlockBackground } from "../../utils/styles";
 import Loader from "../Loader.vue";
 import { onMounted, reactive, watch } from "vue";
 import Currency from "./Currency.vue";
+import Error from "../Error.vue";
 
-const currencies = reactive<{ isLoading: boolean; data: null | Object }>({
+const currencies = reactive<{
+  isLoading: boolean;
+  data: null | Object;
+  error: string;
+}>({
   isLoading: false,
   data: null,
+  error: "",
 });
 const store = useConfigStore();
 
@@ -20,7 +26,9 @@ async function loadCurrency() {
   );
   currencies.isLoading = false;
 
+  currencies.error = resp.error;
   if (!resp.data) return;
+
   const data = formatValues(resp.data);
 
   currencies.data = data;
@@ -38,11 +46,17 @@ onMounted(() => {
 <template>
   <div
     class="relative overflow-hidden rounded-2xl md:min-h-[315px] md:min-w-[300px]"
-    :style="getBlockBackground(store.Colors.block[0], store.Colors.block[1])"
+    :style="`
+    ${getBlockBackground(store.Colors.block[0], store.Colors.block[1])}; 
+    color: ${store.Colors.main}`"
   >
     <Loader v-if="currencies.isLoading" />
-    <p v-else-if="!currencies.data">no data</p>
-    <div v-else class="p-4" :style="`color: ${store.Colors.main}`">
+    <Error
+      v-else-if="currencies.error"
+      :error="currencies.error"
+      :reload="() => loadCurrency()"
+    />
+    <div v-else class="p-4">
       <h3 class="mb-4 text-2xl font-bold">Currencies</h3>
       <ul>
         <Currency

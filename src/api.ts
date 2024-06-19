@@ -29,8 +29,7 @@ export const getCurrencies = async (url: string) => {
       },
     });
     if (!resp.ok) {
-      console.log(resp.statusText);
-      return { data: null, error: resp.statusText };
+      return { data: null, error: "Cant load currency" };
     }
 
     const { data } = await resp.json();
