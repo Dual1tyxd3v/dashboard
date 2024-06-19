@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { useConfigStore } from "../../store";
+import { AppRoute } from "../../config";
+import { useAppStore, useConfigStore } from "../../store";
 
 type Props = {
   isActive: boolean;
@@ -8,6 +9,9 @@ type Props = {
   route: string;
 };
 defineProps<Props>();
+
+const appStore = useAppStore();
+console.log(appStore.freeGames);
 
 const config = useConfigStore();
 </script>
@@ -34,6 +38,12 @@ const config = useConfigStore();
           :name="icon"
       /></span>
       {{ name }}
+      <p
+        :style="`color: ${config.Colors.active}`"
+        v-if="route === AppRoute.Games.route && appStore.newfreeGamesCount"
+      >
+        &nbsp;({{ appStore.newfreeGamesCount }})
+      </p>
     </router-link>
   </li>
 </template>

@@ -1,5 +1,5 @@
 import { AppStorage } from "../config";
-import { MediaLink } from "../types";
+import { MediaLink, NewGame } from "../types";
 
 export const getLinks = (storageName: string): MediaLink[] => {
   const localLinks = localStorage.getItem(storageName);
@@ -22,6 +22,8 @@ export const getMatch = (links: MediaLink[], link: MediaLink) => {
   return false;
 };
 
+// MUSIC
+
 export const checkURL = (url: string, type: AppStorage) => {
   return type === AppStorage.YOUTUBE
     ? !!url.match(/^https:\/\/www.youtube.com/i)
@@ -35,4 +37,24 @@ export const yandexMusicURLParser = (url: string) => {
   if (!name || !id) return false;
 
   return `https://music.yandex.ru/iframe/playlist/${name}/${id}`;
+};
+
+// GAMES
+
+const getLocalFreeGames = () => {
+  return localStorage.getItem(AppStorage.FREE_GAMES) || "[]";
+};
+
+export const newFreeGamesAmount = (games: NewGame[]) => {
+  const localGames = getLocalFreeGames();
+
+  return games.reduce((a, b) => {
+    if (!localGames.includes(JSON.stringify(b))) a++;
+
+    return a;
+  }, 0);
+};
+
+export const setLocalFreeGames = (games: NewGame[]) => {
+  localStorage.setItem(AppStorage.FREE_GAMES, JSON.stringify(games));
 };

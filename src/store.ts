@@ -1,8 +1,8 @@
 import { defineStore } from "pinia";
 import ConfigApi, { DefaultConfig } from "./configAPI";
-import { ConfigType, MediaLink, Note, Store } from "./types";
+import { ConfigType, MediaLink, NewGame, Note, Store } from "./types";
 import { getNotes, saveNotes, removeNote } from "./utils/notes";
-import { getLinks, setLinks } from "./utils/media";
+import { getLinks, newFreeGamesAmount, setLinks } from "./utils/media";
 import { AppStorage } from "./config";
 
 export const useConfigStore = defineStore({
@@ -35,6 +35,8 @@ export const useAppStore = defineStore({
     activeLink: null,
     allCurrencies: [],
     message: "",
+    newfreeGamesCount: 0,
+    freeGames: null,
   }),
   actions: {
     updateStore(youtube: MediaLink[], music: MediaLink[], notes: Note[]) {
@@ -49,6 +51,10 @@ export const useAppStore = defineStore({
     },
     resetStore() {
       this.$reset();
+    },
+    updateFreeGames(games: NewGame[]) {
+      this.freeGames = games;
+      this.newfreeGamesCount = newFreeGamesAmount(games);
     },
     addNote(note: Note) {
       this.notes.push(note);

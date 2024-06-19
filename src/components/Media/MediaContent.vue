@@ -8,13 +8,13 @@ import { useAppStore } from "../../store";
 type Props = {
   type: AppStorage;
 };
-const props = defineProps<Props>();
+defineProps<Props>();
 
 const appStore = useAppStore();
 
 const isLoading = ref(true);
 
-function loadH() {
+function onLoadHandler() {
   isLoading.value = false;
 }
 
@@ -26,14 +26,14 @@ watch(
 
 <template>
   <div class="flex h-full flex-col p-1">
-    <MediaContentHeader :type="props.type" />
+    <MediaContentHeader :type="type" />
     <div
       v-if="appStore.activeLink"
       class="relative flex flex-grow overflow-hidden rounded-2xl"
     >
       <Loader v-if="isLoading" />
       <iframe
-        @load="loadH"
+        @load="onLoadHandler"
         class="flex-grow rounded-2xl"
         :src="appStore.activeLink.url"
         frameborder="0"

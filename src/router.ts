@@ -20,5 +20,10 @@ export const router = createRouter({
       name: "music",
       component: () => import("./pages/Music.vue"),
     },
+    {
+      path: AppRoute.Games.route,
+      name: "games",
+      component: () => import("./pages/Games.vue"),
+    },
   ],
 });

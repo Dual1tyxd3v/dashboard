@@ -1,17 +1,32 @@
 <script setup lang="ts">
 import Navigation from "./components/Navigation/Navigation.vue";
 import Content from "./components/Content.vue";
-import { useConfigStore } from "./store";
+import { useConfigStore, useAppStore } from "./store";
 import { getImage } from "./utils/styles";
-import { computed } from 'vue';
+import { computed, onMounted, ref } from "vue";
+import { getFreeGames } from "./api";
+import Message from "./components/Message.vue";
 
 const store = useConfigStore();
+const appStore = useAppStore();
 
 const getScrollBarColor = computed(() => store.Colors.icon);
 const getScrollBarActiveColor = computed(() => store.Colors.active);
+
+const message = ref("");
+
+onMounted(async () => {
+  const resp = await getFreeGames();
+  message.value = resp.error;
+
+  if (!resp.data) return;
+
+  appStore.updateFreeGames(resp.data);
+});
 </script>
 
 <template>
+  <Message v-if="message" :message="message" :onClick="() => (message = '')" />
   <div
     class="bg-center bg-no-repeat"
     :style="`

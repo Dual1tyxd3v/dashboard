@@ -78,6 +78,12 @@ export type MediaLink = {
   label: string;
 };
 
+export type NewGame = {
+  place: string;
+  img: string;
+  url: string;
+};
+
 export type Store = {
   notes: Note[];
   expiredNotes: Note[];
@@ -86,6 +92,8 @@ export type Store = {
   [AppStorage.MUSIC]: MediaLink[];
   allCurrencies: string[];
   message: string;
+  newfreeGamesCount: number;
+  freeGames: NewGame[] | null;
 };
 
 export type Currencies = {

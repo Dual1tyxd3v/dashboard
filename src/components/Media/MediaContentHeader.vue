@@ -28,8 +28,10 @@ const filteredLinks = computed(() =>
 );
 
 watch(
-  () => appStore[props.type].length,
+  () => appStore[props.type]?.length,
   (newValue, oldValue) => {
+    if (!newValue || !oldValue) return;
+
     if (itemsContainer.value && newValue > oldValue) {
       setTimeout(
         () =>

@@ -70,6 +70,7 @@ export enum AppStorage {
   NOTES = "notes",
   YOUTUBE = "youtube",
   MUSIC = "music",
+  FREE_GAMES = "freeGames",
 }
 
 export enum OptionsTabs {
