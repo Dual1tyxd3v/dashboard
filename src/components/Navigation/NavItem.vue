@@ -11,8 +11,6 @@ type Props = {
 defineProps<Props>();
 
 const appStore = useAppStore();
-console.log(appStore.freeGames);
-
 const config = useConfigStore();
 </script>
 
@@ -39,6 +37,7 @@ const config = useConfigStore();
       /></span>
       {{ name }}
       <p
+        class="font-bold"
         :style="`color: ${config.Colors.active}`"
         v-if="route === AppRoute.Games.route && appStore.newfreeGamesCount"
       >
