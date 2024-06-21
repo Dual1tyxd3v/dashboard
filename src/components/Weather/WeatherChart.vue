@@ -25,6 +25,7 @@ ChartJS.register(
   Tooltip,
   Legend,
 );
+ChartJS.defaults.font.size = getChartFontSize(window.outerWidth);
 
 const props = defineProps({
   forecastTemp: Array || null,
@@ -70,8 +71,6 @@ function onResizeHandler() {
 }
 
 onMounted(() => {
-  ChartJS.defaults.font.size = getChartFontSize(window.outerWidth);
-
   window.addEventListener("resize", onResizeHandler);
 });
 
