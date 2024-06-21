@@ -41,9 +41,11 @@ const showOptions = ref(false);
 </template>
 
 <style scoped>
-.options-enter-from,
+.options-enter-from {
+  transform: translateY(100%);
+}
 .options-leave-to {
-  transform: translateX(100%);
+  transform: translateY(-100%);
 }
 .options-enter-active,
 .options-leave-active {

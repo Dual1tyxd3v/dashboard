@@ -28,6 +28,7 @@ const Tabs = {
 const config = useConfigStore();
 
 const activeTab = ref(OptionsTabs.BACKGROUND);
+const onRight = ref(true);
 
 function closeHandler() {
   activeTab.value = OptionsTabs.BACKGROUND;
@@ -37,23 +38,40 @@ function closeHandler() {
 
 <template>
   <div
-    class="fixed bottom-5 right-0 top-5 z-30 w-[50%] rounded-l-2xl bg-black-90% backdrop:blur-[30px] lg:min-w-[614px]"
+    :class="`fixed bottom-5 top-5 z-30 w-[50%] bg-black-90% backdrop:blur-[30px] lg:min-w-[614px] ${onRight ? 'stick-right' : 'stick-left'}`"
     :style="getNavBackground(config.Colors.bgNav[0], config.Colors.bgNav[1])"
   >
     <div class="relative flex h-full w-full p-5 pt-7">
-      <button
-        @click="closeHandler"
-        class="absolute right-0 top-0 opacity-50 transition-opacity hover:opacity-100"
-        title="Close options"
-        aria-label="Close options"
+      <div
+        :class="`absolute ${onRight ? 'right-5' : 'left-5'} top-0 flex gap-2`"
       >
-        <v-icon
-          class="scale-50 lg:scale-75 xl:scale-100"
-          :fill="config.Colors.main"
-          scale="2"
-          name="io-close-sharp"
-        />
-      </button>
+        <button
+          :class="`opacity-50 transition-opacity hover:opacity-100 ${!onRight && 'order-2'}`"
+          title="Switch options side"
+          aria-label="Switch options side"
+          @click="onRight = !onRight"
+        >
+          <v-icon
+            class="scale-50 lg:scale-75 xl:scale-100"
+            :fill="config.Colors.main"
+            scale="2"
+            :name="onRight ? 'md-switchleft' : 'md-switchright'"
+          />
+        </button>
+        <button
+          @click="closeHandler"
+          class="opacity-50 transition-opacity hover:opacity-100"
+          title="Close options"
+          aria-label="Close options"
+        >
+          <v-icon
+            class="scale-50 lg:scale-75 xl:scale-100"
+            :fill="config.Colors.main"
+            scale="2"
+            name="io-close-sharp"
+          />
+        </button>
+      </div>
 
       <ul
         class="h-full w-40 min-w-40 bg-[length:1px_100%] bg-right bg-no-repeat py-3 pr-3"
