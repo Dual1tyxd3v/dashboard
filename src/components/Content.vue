@@ -29,15 +29,15 @@ watch(
 <style scoped>
 .route-enter-from {
   transform: translateY(-100%);
-  position: absolute;
 }
 .route-leave-to {
-  transform: translate(100vw, 100%) rotateZ(90deg);
-  position: absolute;
-  bottom: 0;
+  transform: translate(100vw, 100vh) rotateZ(90deg);
 }
 .route-enter-active,
 .route-leave-active {
   transition: transform 0.3s cubic-bezier(0.8, 0, 0.29, 0.99);
+}
+.route-leave-active {
+  position: absolute;
 }
 </style>

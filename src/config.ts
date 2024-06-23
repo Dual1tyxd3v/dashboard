@@ -19,6 +19,11 @@ export const AppRoute = {
     icon: "io-game-controller",
     visible: true,
   },
+  Utils: {
+    route: "/utils",
+    icon: "ri-tools-line",
+    visible: true,
+  },
 };
 
 export const WeatherURL = "https://moexapi.vercel.app/weather";
@@ -81,6 +86,10 @@ export enum OptionsTabs {
   CURRENCY = "Currency",
   PROFILE = "Profile",
 }
+
+export const UTILS = {
+  Timer: "md-timer-outlined",
+};
 
 export const OPTIONS_COLORS = [
   { name: "icon", label: "Icons", hint: "", colors: 1 },

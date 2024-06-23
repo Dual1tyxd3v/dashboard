@@ -63,8 +63,11 @@ class Config {
     if (localConfig) {
       const conf = JSON.parse(localConfig);
 
-      if (conf.version === this.config.version)
-        this.config = JSON.parse(localConfig);
+      if (conf.NavLinks.length !== DefaultConfig.NavLinks.length) {
+        conf.NavLinks = [...DefaultConfig.NavLinks];
+      }
+
+      if (conf.version === this.config.version) this.config = conf;
     }
   }
 

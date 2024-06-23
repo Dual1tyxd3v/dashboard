@@ -95,6 +95,7 @@ export type Store = {
   message: string;
   newfreeGamesCount: number;
   freeGames: NewGame[] | null;
+  activeUtil: string;
 };
 
 export type Currencies = {

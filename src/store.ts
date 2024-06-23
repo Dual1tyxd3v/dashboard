@@ -37,6 +37,7 @@ export const useAppStore = defineStore({
     message: "",
     newfreeGamesCount: 0,
     freeGames: null,
+    activeUtil: ''
   }),
   actions: {
     updateStore(youtube: MediaLink[], music: MediaLink[], notes: Note[]) {
