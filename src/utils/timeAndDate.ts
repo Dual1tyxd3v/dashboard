@@ -26,3 +26,29 @@ export const getRemainingTime = (time: number) => {
 
   return `${days}:${timer}`;
 };
+
+type Props = {
+  type: "h" | "m" | "s";
+  time: number;
+};
+export const getTimerValue = ({ type, time }: Props) => {
+  const formatedTime = new Date(time)
+    .toISOString()
+    .split("T")[1]
+    .split(".")[0]
+    .split(":");
+
+  switch (type) {
+    case "h": {
+      return formatedTime[0].split("");
+    }
+    case "m": {
+      return formatedTime[1].split("");
+    }
+    case "s": {
+      return formatedTime[2].split("");
+    }
+    default:
+      return ["0", "0"];
+  }
+};

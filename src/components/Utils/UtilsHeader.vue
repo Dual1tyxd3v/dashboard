@@ -9,7 +9,7 @@ const config = useConfigStore();
 
 <template>
   <div
-    class="flex flex-wrap items-center justify-center gap-3 rounded-2xl px-2 py-1"
+    class="mb-5 flex flex-wrap items-center justify-center gap-3 rounded-2xl p-2"
     :style="getBlockBackground(config.Colors.block[0], config.Colors.block[1])"
   >
     <UtilsItem
