@@ -17,6 +17,6 @@ defineProps<Props>();
     :style="activeStyle"
     @click="click"
   >
-    <v-icon scale="1.7" :name="icon" />
+    <v-icon class="lg:scale-125 xl:scale-150" scale="1" :name="icon" />
   </button>
 </template>

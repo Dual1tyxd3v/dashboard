@@ -41,7 +41,7 @@ function closeHandler() {
     :class="`fixed bottom-5 top-5 z-30 w-[50%] bg-black-90% backdrop:blur-[30px] lg:min-w-[614px] ${onRight ? 'stick-right' : 'stick-left'}`"
     :style="getNavBackground(config.Colors.bgNav[0], config.Colors.bgNav[1])"
   >
-    <div class="relative flex h-full w-full p-5 pt-7">
+    <div class="relative flex h-full w-full p-5 pt-9 xl:pt-7">
       <div
         :class="`absolute ${onRight ? 'right-5' : 'left-5'} top-0 flex gap-2`"
       >
