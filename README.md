@@ -6,6 +6,7 @@ Allows:
 -exchange rate
 -manage reminders
 -add quick links to frequently used resources
+-customize the appearance of the application
 -various auxiliary functions
 
 Stack:
