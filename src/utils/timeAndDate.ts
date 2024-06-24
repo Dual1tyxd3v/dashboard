@@ -1,3 +1,5 @@
+import { TimeData } from "../types";
+
 export const getTime = (ms: number) => {
   const date = new Date(ms);
 
@@ -27,28 +29,30 @@ export const getRemainingTime = (time: number) => {
   return `${days}:${timer}`;
 };
 
-type Props = {
-  type: "h" | "m" | "s";
-  time: number;
-};
-export const getTimerValue = ({ type, time }: Props) => {
-  const formatedTime = new Date(time)
+export const getNewTimerValue = (oldValue: TimeData) => {
+  const totalTime =
+    1000 *
+      (+oldValue.s.join("") +
+        +oldValue.m.join("") * 60 +
+        +oldValue.h.join("") * 3600) -
+    1000;
+
+  if (totalTime < 0) return 0;
+
+  const newTime = new Date(totalTime)
     .toISOString()
     .split("T")[1]
     .split(".")[0]
     .split(":");
+  const h = newTime[0].split("");
+  const m = newTime[1].split("");
+  const s = newTime[2].split("");
 
-  switch (type) {
-    case "h": {
-      return formatedTime[0].split("");
-    }
-    case "m": {
-      return formatedTime[1].split("");
-    }
-    case "s": {
-      return formatedTime[2].split("");
-    }
-    default:
-      return ["0", "0"];
-  }
+  return { h, m, s };
+};
+
+export const getMemorizedTime = (time: null | TimeData) => {
+  if (!time) return "Remember timer";
+
+  return `${time.h.join("")}:${time.m.join("")}:${time.s.join("")}`;
 };

@@ -22,7 +22,7 @@ const getHoverColor = computed(() =>
   <button
     class="my-button flex h-16 w-20 flex-col items-center justify-center rounded-2xl transition-colors xl:h-14 xl:w-16"
     :style="`background-color: ${isActive ? config.Colors.active : config.Colors.icon}`"
-    title="Timer"
+    :title="name"
     @click="appStore.activeUtil = name"
   >
     <v-icon class="scale-75 xl:scale-100" :name="icon" scale="1.5" />

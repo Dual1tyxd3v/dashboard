@@ -101,3 +101,9 @@ export type Store = {
 export type Currencies = {
   [propertyName: string]: number;
 };
+
+export type TimeData = {
+  h: string[];
+  m: string[];
+  s: string[];
+};

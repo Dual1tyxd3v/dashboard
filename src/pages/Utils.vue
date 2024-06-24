@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import UtilsHeader from "../components/Utils/UtilsHeader.vue";
 import { useAppStore, useConfigStore } from "../store";
-import Timer from "../components/Utils/Timer.vue";
+import Timer from "../components/Timer/Timer.vue";
 
 const config = useConfigStore();
 const appStore = useAppStore();
