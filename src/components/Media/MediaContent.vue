@@ -35,9 +35,11 @@ watch(
       <iframe
         @load="onLoadHandler"
         class="flex-grow rounded-2xl"
-        :src="appStore.activeLink.url"
+        
+        src="https://www.youtube.com/embed/channel/UCw_09chvmXy_zZJz2Tj2-mg"
         frameborder="0"
       ></iframe>
     </div>
   </div>
 </template>
+<!-- :src="appStore.activeLink.url" -->
