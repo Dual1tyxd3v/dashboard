@@ -9,19 +9,25 @@ import Button from "../Button.vue";
 import Message from "../Message.vue";
 import { AppStorage } from "../../config";
 import { MediaLink, Store } from "../../types";
+import { useRoute } from "vue-router";
 
 type Props = {
   closeForm: () => void;
   type: AppStorage;
 };
-
 const props = defineProps<Props>();
 
 const configStore = useConfigStore();
 const appStore = useAppStore();
 
+const route = useRoute();
+
 const formData = ref({ label: "", url: "" });
-const error = ref("");
+const error = ref(
+  route.name === "youtube"
+    ? "At this time you can add link only on youtube channel/videos"
+    : "",
+);
 
 function onChangeHandler(e: Event) {
   const input = e.target as HTMLInputElement;

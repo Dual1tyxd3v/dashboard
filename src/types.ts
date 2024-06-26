@@ -107,3 +107,11 @@ export type TimeData = {
   m: string[];
   s: string[];
 };
+
+export type YoutubeItem = {
+  title: string;
+  date: string;
+  url: string;
+};
+
+export type YoutubeData = YoutubeItem[];

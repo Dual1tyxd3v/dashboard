@@ -16,7 +16,7 @@ const activeLinks = computed(() =>
 
 <template>
   <nav
-    class="rounded-[20px] px-5 backdrop-blur-[120px] md:w-72"
+    class="rounded-[20px] px-5 backdrop-blur-[120px] md:w-72 md:min-w-72"
     :style="getNavBackground(store.Colors.bgNav[0], store.Colors.bgNav[1])"
   >
     <div

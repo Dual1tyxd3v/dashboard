@@ -31,6 +31,7 @@ export const SEARCH_URL = "https://www.google.com/search?q=";
 export const ALL_CURRENCIES_URL =
   "https://api.freecurrencyapi.com/v1/currencies";
 export const FREE_GAMES_URL = "https://moexapi.vercel.app/freesteam";
+export const YOUTUBE_API_URL = "https://moexapi.vercel.app/youtube";
 
 export const getChartConfig = (mainColor: string, gridColor: string) => ({
   plugins: {

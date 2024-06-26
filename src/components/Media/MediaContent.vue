@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
-import Loader from "../Loader.vue";
 import MediaContentHeader from "../Media/MediaContentHeader.vue";
 import { AppStorage } from "../../config";
 import { useAppStore } from "../../store";
+import Music from "./Music.vue";
+import Youtube from "./Youtube.vue";
+import { useRoute } from "vue-router";
 
 type Props = {
   type: AppStorage;
@@ -11,35 +12,19 @@ type Props = {
 defineProps<Props>();
 
 const appStore = useAppStore();
+const route = useRoute();
 
-const isLoading = ref(true);
-
-function onLoadHandler() {
-  isLoading.value = false;
-}
-
-watch(
-  () => appStore.activeLink,
-  () => (isLoading.value = true),
-);
+const Tabs = { music: Music, youtube: Youtube };
 </script>
 
 <template>
-  <div class="flex h-full flex-col p-1">
+  <section class="flex h-full flex-col p-1 overflow-hidden">
     <MediaContentHeader :type="type" />
     <div
       v-if="appStore.activeLink"
       class="relative flex flex-grow overflow-hidden rounded-2xl"
     >
-      <Loader v-if="isLoading" />
-      <iframe
-        @load="onLoadHandler"
-        class="flex-grow rounded-2xl"
-        
-        src="https://www.youtube.com/embed/channel/UCw_09chvmXy_zZJz2Tj2-mg"
-        frameborder="0"
-      ></iframe>
+      <component :is="Tabs[route.name as keyof typeof Tabs]" />
     </div>
-  </div>
+  </section>
 </template>
-<!-- :src="appStore.activeLink.url" -->

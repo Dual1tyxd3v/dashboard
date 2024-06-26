@@ -1,4 +1,10 @@
-import { ALL_CURRENCIES_URL, FREE_GAMES_URL, WeatherURL } from "./config";
+import {
+  ALL_CURRENCIES_URL,
+  FREE_GAMES_URL,
+  WeatherURL,
+  YOUTUBE_API_URL,
+} from "./config";
+import { YoutubeData } from "./types";
 
 const CURRENCY_API_KEY = "fca_live_nkgJCR6VcRSHvwF1Ktqe5nuamdeVMIV3zFLSiiRT";
 
@@ -75,6 +81,29 @@ export const getFreeGames = async () => {
     const data = await resp.json();
 
     return data;
+  } catch (e) {
+    console.log(e);
+    return { data: [], error: (e as Error).message };
+  }
+};
+
+export const getYoutubeVideos = async (url: string) => {
+  try {
+    const resp = await fetch(YOUTUBE_API_URL, {
+      method: "POST",
+      body: JSON.stringify({ url }),
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+    if (!resp.ok) {
+      console.log(resp);
+      return { data: [], error: "Cant get youtube videos" };
+    }
+
+    const data = await resp.json();
+
+    return data as { data: YoutubeData; error: string };
   } catch (e) {
     console.log(e);
     return { data: [], error: (e as Error).message };
