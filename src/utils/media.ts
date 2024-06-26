@@ -1,5 +1,6 @@
 import { AppStorage } from "../config";
 import { MediaLink, NewGame } from "../types";
+import { AppRoute } from "../config";
 
 export const getLinks = (storageName: string): MediaLink[] => {
   const localLinks = localStorage.getItem(storageName);
@@ -57,4 +58,17 @@ export const newFreeGamesAmount = (games: NewGame[]) => {
 
 export const setLocalFreeGames = (games: NewGame[]) => {
   localStorage.setItem(AppStorage.FREE_GAMES, JSON.stringify(games));
+};
+
+// HINT
+
+export const getHint = (route: string) => {
+  switch (route) {
+    case AppRoute.YouTube.route:
+      return "At this time you can add link only on youtube channel/videos";
+    case AppRoute.Music.route:
+      return "At this time you can add link only on YandexMusic playlist";
+    default:
+      return "";
+  }
 };

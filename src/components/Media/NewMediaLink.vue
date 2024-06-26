@@ -10,6 +10,8 @@ import Message from "../Message.vue";
 import { AppStorage } from "../../config";
 import { MediaLink, Store } from "../../types";
 import { useRoute } from "vue-router";
+import Hint from "../Options/Hint.vue";
+import { getHint } from "../../utils/media";
 
 type Props = {
   closeForm: () => void;
@@ -23,11 +25,7 @@ const appStore = useAppStore();
 const route = useRoute();
 
 const formData = ref({ label: "", url: "" });
-const error = ref(
-  route.name === "youtube"
-    ? "At this time you can add link only on youtube channel/videos"
-    : "",
-);
+const error = ref("");
 
 function onChangeHandler(e: Event) {
   const input = e.target as HTMLInputElement;
@@ -96,7 +94,8 @@ function onSumbitHanlder() {
         label="url"
         :required="true"
       />
-      <Button>Add link</Button>
+      <Button class="mb-2">Add link</Button>
+      <Hint>{{ getHint(route.fullPath) }}</Hint>
     </form>
   </Modal>
 </template>

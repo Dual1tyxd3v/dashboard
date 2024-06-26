@@ -16,7 +16,7 @@ const getActiveColor = computed(() => config.Colors.active);
 
 <template>
   <div
-    class="card relative w-72 overflow-hidden rounded-2xl p-2 text-sm transition-shadow duration-300"
+    class="card w-64 relative overflow-hidden rounded-2xl p-2 text-sm transition-shadow duration-300 lg:w-72"
     :style="getBlockBackground(config.Colors.block[0], config.Colors.block[1])"
   >
     <iframe
