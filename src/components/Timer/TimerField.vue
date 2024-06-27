@@ -14,35 +14,39 @@ defineProps<Props>();
 const config = useConfigStore();
 
 const getActiveColor = computed(() => config.Colors.active);
+
+function onFocusHandler(e: Event) {
+  (e.target as HTMLInputElement).select();
+}
 </script>
 
 <template>
-  <div class="flex gap-1">
-    <input
-      class="h-8 w-8 rounded-lg border-2 text-center outline-none"
-      type="number"
-      :style="`
+  <input
+    class="mr-1 h-8 w-8 rounded-lg border-2 text-center outline-none [&:not(:first-child)]:ml-2"
+    type="number"
+    :style="`
         background-color: ${config.Colors.formElementsBorder}; 
         border-color: ${config.Colors.formElementsBorder};
         color: ${isActive ? config.Colors.active : config.Colors.main}`"
-      :value="value[0]"
-      :data-type="type"
-      @input="(e) => onChangeHandler(e, 0, max)"
-      :disabled="isActive"
-    />
-    <input
-      class="h-8 w-8 rounded-lg border-2 text-center outline-none"
-      type="number"
-      :style="`
+    :value="value[0]"
+    :data-type="type"
+    @input="(e) => onChangeHandler(e, 0, max)"
+    @focus="onFocusHandler"
+    :disabled="isActive"
+  />
+  <input
+    class="mr-2 h-8 w-8 rounded-lg border-2 text-center outline-none"
+    type="number"
+    :style="`
         background-color: ${config.Colors.formElementsBorder}; 
         border-color: ${config.Colors.formElementsBorder};
         color: ${isActive ? config.Colors.active : config.Colors.main}`"
-      :value="value[1]"
-      :data-type="type"
-      @input="(e) => onChangeHandler(e, 1, max)"
-      :disabled="isActive"
-    />
-  </div>
+    :value="value[1]"
+    :data-type="type"
+    @input="(e) => onChangeHandler(e, 1, max)"
+    @focus="onFocusHandler"
+    :disabled="isActive"
+  />
 </template>
 
 <style scoped>
