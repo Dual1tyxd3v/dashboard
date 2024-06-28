@@ -18,7 +18,7 @@ const isLoading = ref(true);
       :src="getImage(store.Background.images)"
       alt="Background"
       referrerpolicy="no-referrer"
-      :class="`h-full w-full object-cover transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`"
+      :class="`h-full w-full object-cover transition-opacity duration-300 ${isLoading ? 'opacity-5' : 'opacity-100'}`"
       @load="isLoading = false"
     />
   </div>
