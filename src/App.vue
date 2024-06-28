@@ -2,7 +2,6 @@
 import Navigation from "./components/Navigation/Navigation.vue";
 import Content from "./components/Content.vue";
 import { useConfigStore, useAppStore } from "./store";
-
 import { computed, onMounted, ref } from "vue";
 import { getFreeGames } from "./api";
 import Message from "./components/Message.vue";
@@ -29,7 +28,10 @@ onMounted(async () => {
 <template>
   <Message v-if="message" :message="message" :onClick="() => (message = '')" />
   <Background />
-  <div class="bg-center bg-no-repeat" referrer-policy="no-referrer">
+  <div
+    class="bg-center bg-no-repeat"
+    referrer-policy="no-referrer"
+  >
     <div
       class="flex h-dvh gap-5 py-2.5 pl-2.5 pr-5"
       :style="`backdrop-filter: blur(${store.Background.blur || 0}px)`"
