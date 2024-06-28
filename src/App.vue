@@ -23,17 +23,18 @@ onMounted(async () => {
 
   appStore.updateFreeGames(resp.data);
 });
+console.log(getImage(store.Background.images))
 </script>
 
 <template>
   <Message v-if="message" :message="message" :onClick="() => (message = '')" />
-  <div
-    class="bg-center bg-no-repeat"
-    :style="`
-      background-color:${store.Background.color || '#000'}; 
-      background-image: url(${getImage(store.Background.images) || 'none'});
-      background-size: ${store.Background.size};`"
-  >
+  <img
+    :src="getImage(store.Background.images)"
+    alt="Background"
+    referrerpolicy="no-referrer"
+    class="fixed inset-0 z-[-1] w-dvw h-dvh object-cover"
+  />
+  <div class="bg-center bg-no-repeat">
     <div
       class="flex h-dvh gap-5 py-2.5 pl-2.5 pr-5"
       :style="`backdrop-filter: blur(${store.Background.blur || 0}px)`"
@@ -53,3 +54,9 @@ onMounted(async () => {
   background-color: v-bind(getScrollBarActiveColor);
 }
 </style>
+
+<!-- 
+:style="`
+      background-color:${store.Background.color || '#000'}; 
+      background-image: url(${getImage(store.Background.images) || 'none'});
+      background-size: ${store.Background.size};`" -->
