@@ -4,7 +4,7 @@ import { useConfigStore } from "../store";
 import { getImage } from "../utils/styles";
 
 const store = useConfigStore();
-
+const src = getImage(store.Background.images);
 const isLoading = ref(true);
 </script>
 
@@ -15,7 +15,7 @@ const isLoading = ref(true);
       background-color:${store.Background.color || '#000'}`"
   >
     <img
-      :src="getImage(store.Background.images)"
+      :src="src"
       alt="Background"
       referrerpolicy="no-referrer"
       :class="`h-full w-full object-cover transition-opacity duration-300 ${isLoading ? 'opacity-5' : 'opacity-100'}`"
