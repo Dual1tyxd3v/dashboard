@@ -6,6 +6,7 @@ import InputText from "./InputText.vue";
 import Hint from "./Hint.vue";
 import InputColor from "./InputColor.vue";
 import Form from "./Form.vue";
+import { MS_PER_MINUTE } from "../../config";
 
 const config = useConfigStore();
 
@@ -14,6 +15,7 @@ const initData = {
   blur: config.Background.blur,
   images: config.Background.images.join(","),
   size: config.Background.size,
+  timing: config.Background.timing / MS_PER_MINUTE,
 };
 
 const formData = ref({ ...initData });
@@ -41,6 +43,11 @@ function onChangeHandler(e: Event) {
 
   if (name === "blur") {
     config.Background.blur = formData.value.blur;
+    return;
+  }
+
+  if (name === "timing") {
+    config.Background.timing = formData.value.timing * MS_PER_MINUTE;
     return;
   }
 
@@ -124,6 +131,16 @@ function reset() {
       />
     </FormField>
     <Hint>Background blur in pixels. Just enter the number</Hint>
+    <FormField>
+      <p>Background slide mode</p>
+      <InputText
+        name="timing"
+        type="number"
+        @input="onChangeHandler"
+        v-model="formData.timing"
+      />
+    </FormField>
+    <Hint>Enter amount of minutes to turn on slide mode</Hint>
     <FormField>
       <p>Background images</p>
       <textarea

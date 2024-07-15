@@ -1,11 +1,35 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { onUnmounted, ref, watch } from "vue";
 import { useConfigStore } from "../store";
 import { getImage } from "../utils/styles";
 
 const store = useConfigStore();
-const src = getImage(store.Background.images);
+const src = ref(getImage(store.Background.images));
 const isLoading = ref(true);
+
+let timer = store.Background.timing
+  ? setInterval(
+      () => (src.value = getImage(store.Background.images)),
+      store.Background.timing,
+    )
+  : null;
+
+watch(
+  () => store.Background.timing,
+  (value) => {
+    timer && clearInterval(timer);
+    timer = value
+      ? setInterval(
+          () => (src.value = getImage(store.Background.images)),
+          value,
+        )
+      : null;
+  },
+);
+
+onUnmounted(() => {
+  timer && clearInterval(timer);
+});
 </script>
 
 <template>

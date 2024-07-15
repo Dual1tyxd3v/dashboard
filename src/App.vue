@@ -19,19 +19,14 @@ onMounted(async () => {
   const resp = await getFreeGames();
   message.value = resp.error;
 
-  if (!resp.data) return;
-
-  appStore.updateFreeGames(resp.data);
+  resp.data && appStore.updateFreeGames(resp.data);
 });
 </script>
 
 <template>
   <Message v-if="message" :message="message" :onClick="() => (message = '')" />
   <Background />
-  <div
-    class="bg-center bg-no-repeat"
-    referrer-policy="no-referrer"
-  >
+  <div class="bg-center bg-no-repeat">
     <div
       class="flex h-dvh gap-5 py-2.5 pl-2.5 pr-5"
       :style="`backdrop-filter: blur(${store.Background.blur || 0}px)`"

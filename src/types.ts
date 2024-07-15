@@ -48,6 +48,7 @@ export type ConfigType = {
     blur: string;
     images: string[];
     size: "cover" | "contain" | "100% 100%";
+    timing: number;
   };
   FastLinks: FastLink[];
   Currency: {

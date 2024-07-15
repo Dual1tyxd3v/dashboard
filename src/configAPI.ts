@@ -23,6 +23,7 @@ export const DefaultConfig: ConfigType = {
     images: ["/imgs/bg.jpeg"],
     size: "cover",
     color: "#060B26",
+    timing: 0,
   },
   FastLinks: [
     {
@@ -61,7 +62,7 @@ class Config {
   constructor() {
     const localConfig = localStorage.getItem(ConfigStorage);
     if (localConfig) {
-      const conf = JSON.parse(localConfig);
+      const conf = { ...DefaultConfig, ...JSON.parse(localConfig) };
 
       if (conf.NavLinks.length !== DefaultConfig.NavLinks.length) {
         conf.NavLinks = [...DefaultConfig.NavLinks];

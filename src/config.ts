@@ -71,6 +71,7 @@ export const ConfigStorage = "config";
 
 export const MAX_CHARS = 15;
 export const MAX_CURRENCIES = 4;
+export const MS_PER_MINUTE = 60000;
 
 export enum AppStorage {
   NOTES = "notes",
